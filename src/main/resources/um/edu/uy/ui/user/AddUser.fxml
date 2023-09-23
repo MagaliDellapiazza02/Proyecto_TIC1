@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="274.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.user.UserController">
+   <center>
+      <AnchorPane prefHeight="317.0" prefWidth="459.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="23.0" layoutY="37.0" text="Documento" />
+            <Label layoutX="23.0" layoutY="75.0" text="Nombre Completo" />
+            <TextField fx:id="txtDocument" layoutX="158.0" layoutY="31.0" />
+            <TextField fx:id="txtName" layoutX="158.0" layoutY="69.0" />
+            <TextField fx:id="txtAddress" layoutX="158.0" layoutY="110.0" prefHeight="27.0" prefWidth="253.0" />
+            <Label layoutX="23.0" layoutY="116.0" text="Direccion" />
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Crear un usuario" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Text>
+   </top>
+   <bottom>
+      <HBox alignment="CENTER_LEFT" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnClose" mnemonicParsing="false" onAction="#close" text="Cancelar">
+               <HBox.margin>
+                  <Insets left="10.0" right="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btnAdd" mnemonicParsing="false" onAction="#addUser" text="Agregar" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
