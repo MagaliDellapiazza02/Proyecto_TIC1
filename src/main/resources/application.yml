@@ -16,6 +16,10 @@ spring:
     properties:
       hibernate:
         format_sql: true
+  google:
+    cloud:
+      credentials:
+        location: src/main/resources/GCloudCredentials.json
 logging:
   level:
     ROOT: INFO
