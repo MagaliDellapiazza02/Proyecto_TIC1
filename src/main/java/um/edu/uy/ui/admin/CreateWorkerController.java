@@ -2,10 +2,13 @@ package um.edu.uy.ui.admin;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 
 @Controller
@@ -47,4 +50,40 @@ public class CreateWorkerController {
         // Asignar la lista de elementos al ComboBox
         this.cboxWorkerType.setItems(workerTypes);
     }
+
+    public void confirmButtonPressed(ActionEvent actionEvent) {
+
+        //---------agregar trabajador a la base de datos----------
+
+
+        //Cerrar ventana de crear trabajador
+        try {
+
+            // Cerrar la ventana de crear trabajador
+            Stage loginStage = (Stage) btnConfirm.getScene().getWindow();
+            loginStage.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //Mostrar alerta con confirmación
+        Alert ConfirmTask = new Alert(Alert.AlertType.INFORMATION);
+        ConfirmTask.setContentText("Trabajador agregado con éxito");
+        ConfirmTask.show();
+    }
+
+    public void backButtonPressed(ActionEvent actionEvent) {
+
+        try {
+
+            // Cerrar la ventana de crear trabajador
+            Stage loginStage = (Stage) btnConfirm.getScene().getWindow();
+            loginStage.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
