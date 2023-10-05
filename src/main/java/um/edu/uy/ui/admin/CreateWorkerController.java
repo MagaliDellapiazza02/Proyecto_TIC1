@@ -76,10 +76,9 @@ public class CreateWorkerController {
     public void backButtonPressed(ActionEvent actionEvent) {
 
         try {
-
             // Cerrar la ventana de crear trabajador
-            Stage loginStage = (Stage) btnConfirm.getScene().getWindow();
-            loginStage.close();
+            Stage CreateWorkerStage = (Stage) btnConfirm.getScene().getWindow();
+            CreateWorkerStage.close();
 
         } catch (Exception e) {
             e.printStackTrace();
