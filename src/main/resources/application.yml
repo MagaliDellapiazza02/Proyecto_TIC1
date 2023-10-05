@@ -6,8 +6,11 @@ spring:
     username: root
     password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
+  MySQL:
+    console.enabled: true
   jpa:
     show-sql: true
+    database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
     properties:
