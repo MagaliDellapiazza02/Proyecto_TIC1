@@ -68,6 +68,7 @@ public class AirlineCreatorController {
         }
     }
 
+
     private void showAlert(String title, String contextText) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

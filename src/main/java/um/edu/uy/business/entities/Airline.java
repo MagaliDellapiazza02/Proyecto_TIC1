@@ -34,7 +34,4 @@ public class Airline {
         this.alnICAO = alnICAO;
         this.airlineCountry = airlineCountry;
     }
-
-    public void addAirline(Airline airline) {
-    }
 }
