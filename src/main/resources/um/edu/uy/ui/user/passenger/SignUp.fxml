@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="335.0" prefWidth="452.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.passenger.SignUpController">
+   <top>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Crea tu cuenta" textAlignment="CENTER" wrappingWidth="213.239990234375" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Heiti TC Light" size="28.0" />
+         </font>
+      </Text>
+   </top>
+   <padding>
+      <Insets top="10.0" />
+   </padding>
+   <bottom>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="304.0" prefWidth="452.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="304.0" prefWidth="455.0">
+               <children>
+                  <Label fx:id="loginWindow" layoutX="23.0" layoutY="37.0" text="Documento">
+                     <font>
+                        <Font name="Verdana" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="21.0" layoutY="75.0" text="Nombre completo">
+                     <font>
+                        <Font name="Verdana" size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtDocument" alignment="CENTER" layoutX="173.0" layoutY="32.0" prefHeight="26.0" prefWidth="247.0" promptText="1.234.567-8" />
+                  <TextField fx:id="txtName" alignment="CENTER" layoutX="172.0" layoutY="70.0" prefHeight="26.0" prefWidth="251.0" promptText="Juan Perez Martínez" />
+                  <TextField fx:id="txtMail" alignment="CENTER" layoutX="171.0" layoutY="111.0" prefHeight="27.0" prefWidth="253.0" promptText="jperez@gmail.com" />
+                  <Label layoutX="23.0" layoutY="155.0" text="Contraseña">
+                     <font>
+                        <Font name="Verdana" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="21.0" layoutY="116.0" prefHeight="16.0" prefWidth="130.0" text="Mail">
+                     <font>
+                        <Font name="Verdana" size="13.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="txtPassword" alignment="CENTER" layoutX="172.0" layoutY="150.0" prefHeight="26.0" prefWidth="250.0" />
+                  <Label layoutX="23.0" layoutY="198.0" prefHeight="16.0" prefWidth="139.0" text="Verificar contraseña">
+                     <font>
+                        <Font name="Verdana" size="13.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="txtPasswordC" alignment="CENTER" layoutX="172.0" layoutY="194.0" prefHeight="26.0" prefWidth="250.0" />
+                  <Button fx:id="btnAdd" layoutX="352.0" layoutY="255.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#registrarmeButtonClicked" prefHeight="34.0" prefWidth="70.0" text="Crear" />
+                  <Button fx:id="btnBack" layoutX="21.0" layoutY="255.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="34.0" prefWidth="69.0" text="Salir" />
+               </children>
+               <opaqueInsets>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </opaqueInsets>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>
