@@ -52,21 +52,15 @@ public class UserAdminWindowController {
 
         // Open the User window
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/um/edu/uy/ui/user/admin/AdminAln.fxml"));
-            Parent root = loader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-            Stage loginStage = new Stage();
-            loginStage.setTitle("Admin Airlines");
-
-            // Configurar el controlador de la ventana de inicio de sesión (si es necesario)
-            AdminAirlinesController controller = loader.getController();
-            // Puedes pasar datos al controlador de inicio de sesión si es necesario
-
+            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AdminAln.fxml"));
             Scene scene = new Scene(root);
-            loginStage.setScene(scene);
-
-            // Mostrar la ventana de inicio de sesión
-            loginStage.show();
+            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Admin Airlines");
+            stage.show();
 
             close(event);
 
@@ -81,21 +75,15 @@ public class UserAdminWindowController {
     void adminAirports(ActionEvent event) {
         // Open the User window
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/um/edu/uy/ui/user/admin/AdminAirports.fxml"));
-            Parent root = loader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-            Stage loginStage = new Stage();
-            loginStage.setTitle("Admin Airports");
-
-            // Configurar el controlador de la ventana (si es necesario)
-            AdminAirportsController controller = loader.getController();
-            // Puedes pasar datos al controlador si es necesario
-
+            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AdminAirports.fxml"));
             Scene scene = new Scene(root);
-            loginStage.setScene(scene);
-
-            // Mostrar la ventana de inicio de sesión
-            loginStage.show();
+            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Admin Airports");
+            stage.show();
 
             close(event);
 
@@ -109,27 +97,19 @@ public class UserAdminWindowController {
 
     @FXML
     void adminWorkersbtnClicked(ActionEvent event) {
-
-
         // Open the User window
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/um/edu/uy/ui/user/admin/AdminWorkers.fxml"));
-            Parent root = loader.load();
-
-            Stage loginStage = new Stage();
-            loginStage.setTitle("Admin Worker");
-
-            // Configurar el controlador de la ventana (si es necesario)
-            AdminWorkersController controller = loader.getController();
-            // Puedes pasar datos al controlador si es necesario
-
-            Scene scene = new Scene(root);
-            loginStage.setScene(scene);
-
-            // Mostrar la ventana de inicio de sesión
-            loginStage.show();
-
             close(event);
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AdminWorkers.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Admin Worker");
+            stage.show();
 
 
         } catch (IOException e) {
@@ -144,21 +124,15 @@ public class UserAdminWindowController {
 
         // Open the User window
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/um/edu/uy/ui/user/LogIn.fxml"));
-            Parent root = loader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-            Stage loginStage = new Stage();
-            loginStage.setTitle("Log In");
-
-            // Configurar el controlador de la ventana de inicio de sesión (si es necesario)
-            LogInController loginController = loader.getController();
-            // Puedes pasar datos al controlador de inicio de sesión si es necesario
-
+            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn.fxml"));
             Scene scene = new Scene(root);
-            loginStage.setScene(scene);
-
-            // Mostrar la ventana de inicio de sesión
-            loginStage.show();
+            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Log In");
+            stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
