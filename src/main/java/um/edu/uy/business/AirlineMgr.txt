@@ -1,0 +1,33 @@
+package um.edu.uy.business;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import um.edu.uy.business.entities.Airline;
+import um.edu.uy.business.exceptions.EntityAlreadyExists;
+import um.edu.uy.business.exceptions.InvalidInformation;
+import um.edu.uy.persistence.AirlineRepository;
+
+@Service
+public class AirlineMgr {
+
+    @Autowired
+    private AirlineRepository airlineRepository;
+
+    public void addAirline(Airline airline)
+            throws InvalidInformation, EntityAlreadyExists {
+
+        if (airline.getAirlineName()== null || "".equals(airline.getAirlineName()) || airline.getAirlineCountry() == null || "".equals(airline.getAirlineCountry())) {
+            //hacer algo
+            throw new InvalidInformation("Alguno de los datos ingresados no es correcto");
+
+        }
+
+        // Verifico si no existe
+
+        if (airlineRepository.findOneByIATACode(airline.getAlnIATA()) != null) {
+
+            throw new EntityAlreadyExists();
+        }
+        airlineRepository.save(airline);
+    }
+}

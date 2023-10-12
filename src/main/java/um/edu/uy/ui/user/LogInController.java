@@ -158,7 +158,7 @@ public class LogInController {
 
                 //Buscar el usuario en la base de datos y mostrarle su ventana correspondiente
 
-                showAlert("Bienvenido! " + username, "Se agrego con exito el usuario!B");
+                showAlert("Bienvenido! " + username, "Se agrego con exito el usuario!");
 
                 close(event);
 

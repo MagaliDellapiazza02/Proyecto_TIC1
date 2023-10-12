@@ -88,8 +88,4 @@ build/
 out/
 /gradle/wrapper/
 gradlew
-<<<<<<< Updated upstream
 gradlew.bat
-=======
-gradlew.bat
->>>>>>> Stashed changes
