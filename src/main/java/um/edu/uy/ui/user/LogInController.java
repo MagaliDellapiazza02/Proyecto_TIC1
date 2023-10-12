@@ -3,7 +3,6 @@ package um.edu.uy.ui.user;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,18 +13,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import um.edu.uy.business.entities.User;
-import um.edu.uy.business.UserMgr;
+import um.edu.uy.services.UserMgr;
 import um.edu.uy.business.exceptions.InvalidUserInformation;
-import um.edu.uy.business.exceptions.UserAlreadyExists;
-
-
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import um.edu.uy.ui.passenger.PassengerWindowController;
+import um.edu.uy.ui.passenger.SignUpController;
 
 @Controller
 public class LogInController {
@@ -53,7 +46,7 @@ public class LogInController {
     }
 
     @FXML
-    private void loginButtonClicked() {
+    void loginButtonClicked(ActionEvent event) {
         // Obtener los valores de los campos de entrada
         String username = txtUsername.getText();
         String password = txtPassword.getText();
@@ -66,40 +59,45 @@ public class LogInController {
         }
 
         try {
-            // Cargar el archivo FXML de la nueva ventana
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("UserWindow.fxml"));
-            Parent root = loader.load();
+            if (username.equals("admin") && password.equals("admin")){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/um/edu/uy/ui/user/admin/UserAdminMenu.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setResizable(false);
+                stage.show();
+                close(event);
+            } else {
+                // Cargar el archivo FXML de la nueva ventana
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/um/edu/uy/ui/user/passenger/PassengerWindow.fxml"));
+                Parent root = loader.load();
 
-            // Crear una nueva instancia de Stage para la nueva ventana
-            Stage userDataWindow = new Stage();
-            userDataWindow.setTitle("User Data Window");
+                // Crear una nueva instancia de Stage para la nueva ventana
+                Stage userDataWindow = new Stage();
+                userDataWindow.setTitle("User Data Window");
 
-            // Configurar el controlador de la nueva ventana (si es necesario)
-            UserWindowController userDWController = loader.getController();
-            // Puedes pasar datos al controlador de la nueva ventana si es necesario
+                // Configurar el controlador de la nueva ventana (si es necesario)
+                PassengerWindowController userDWController = loader.getController();
+                // Puedes pasar datos al controlador de la nueva ventana si es necesario
 
-            // Configurar la escena
-            Scene scene = new Scene(root);
+                // Configurar la escena
+                Scene scene = new Scene(root);
 
-            // Establecer la escena en la nueva ventana
-            userDataWindow.setScene(scene);
+                // Establecer la escena en la nueva ventana
+                userDataWindow.setScene(scene);
 
-            // Mostrar la nueva ventana
-            userDataWindow.show();
+                // Mostrar la nueva ventana
+                userDataWindow.show();
 
-            // Cerrar la ventana de inicio de sesión
-            closeLoginWindow();
+                // Cerrar la ventana de inicio de sesión
+                close(event);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void closeLoginWindow() {
-        // Obtener la ventana de inicio de sesión actual y cerrarla
-        Stage loginStage = (Stage) loginButton.getScene().getWindow();
-        loginStage.close();
-    }
 
     @FXML
     private void registrarmeButtonClicked() {
@@ -110,7 +108,7 @@ public class LogInController {
             }
 
             // Cargar el archivo FXML de la nueva ventana
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/um/edu/uy/ui/user/passenger/SignUp.fxml"));
             Parent root = loader.load();
 
             // Crear una nueva instancia de Stage para la nueva ventana

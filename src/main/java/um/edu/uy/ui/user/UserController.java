@@ -1,6 +1,5 @@
 package um.edu.uy.ui.user;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -10,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
-import um.edu.uy.business.UserMgr;
+import um.edu.uy.services.UserMgr;
 import um.edu.uy.business.entities.User;
 import um.edu.uy.business.exceptions.UserAlreadyExists;
 import um.edu.uy.business.exceptions.InvalidUserInformation;
@@ -18,24 +17,40 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserController {
-
-    @Autowired
-    private UserMgr userMgr;
-
-    @FXML
-    private Button btnClose;
-
-    @FXML
-    private TextField txtName;
-
     @FXML
     private Button btnAdd;
+
+    @FXML
+    private Button btnBack;
 
     @FXML
     private TextField txtAddress;
 
     @FXML
+    private TextField txtCompany;
+
+    @FXML
     private TextField txtDocument;
+
+    @FXML
+    private TextField txtMail;
+
+    @FXML
+    private TextField txtName;
+
+    @FXML
+    private TextField txtPassword;
+
+    @FXML
+    private TextField txtPasswordC;
+
+    @FXML
+    private TextField txtRole;
+
+
+    @Autowired
+    private UserMgr userMgr;
+
 
     @FXML
     private Label loginWindow;
@@ -67,7 +82,7 @@ public class UserController {
 
                 try {
 
-                    User user = new User(document, name, address);
+                    User user = new User();
 
                     userMgr.addUser(user);
 
@@ -75,10 +90,6 @@ public class UserController {
 
                     close(event);
 
-                } catch (InvalidUserInformation invalidUserInformation) {
-                    showAlert(
-                            "Informacion invalida !",
-                            "Se encontro un error en los datos ingresados.");
                 } catch (UserAlreadyExists userAlreadyExists) {
                     showAlert(
                             "Documento ya registrado !",

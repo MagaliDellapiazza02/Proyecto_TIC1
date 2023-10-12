@@ -1,4 +1,4 @@
-package um.edu.uy.business;
+package um.edu.uy.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,30 +7,23 @@ import um.edu.uy.business.exceptions.UserAlreadyExists;
 import um.edu.uy.business.exceptions.InvalidUserInformation;
 import um.edu.uy.persistence.UserRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UserMgr {
 
     @Autowired
     private UserRepository userRepository;
 
-    public void addUser(User user)
-            throws InvalidUserInformation, UserAlreadyExists {
+    public void addUser(User user) throws UserAlreadyExists{
+        //verificar en el front que los datos sean de tipo correcto antes de crear el usuario. Checkear que el role este correcto
 
-        if (user.getName() == null || "".equals(user.getName()) || user.getAddress() == null || "".equals(user.getAddress())) {
-            //hacer algo
-            throw new InvalidUserInformation("Alguno de los datos ingresados no es correcto");
-
-        }
-
-        // Verifico si el cliente no existe
-
-        if (userRepository.findOneByDocument(user.getDocument()) != null) {
-
+        if(findByDocument(user.document) != null) {
             throw new UserAlreadyExists();
         }
 
         userRepository.save(user);
-
     }
 
     public void loginUser(User user)
@@ -43,7 +36,7 @@ public class UserMgr {
         }
 
 
-        if (userRepository.findOneByDocument(user.getDocument()) != null) {
+        if (findByDocument(user.document) != null) {
 
         }
 
@@ -51,8 +44,14 @@ public class UserMgr {
 
     }
 
-    public User findUserByDocument(Long document) {
-        return userRepository.findOneByDocument(document);
+    public List<User> getAllUsers()
+    {
+        List<User> lista = new ArrayList<>();
+        userRepository.findAll().forEach(user -> lista.add(user));
+        return lista;
+    }
+    public User findByDocument(Long document) {
+        return userRepository.findByDocument(document);
     }
 
 }
