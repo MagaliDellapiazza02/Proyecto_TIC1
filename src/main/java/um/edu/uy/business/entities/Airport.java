@@ -1,50 +1,37 @@
 package um.edu.uy.business.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "airports")
 public class Airport {
 
     @Id
+    @GeneratedValue(generator = "airport_ids")
+    @GenericGenerator(name = "airport_ids", strategy = "increment")
     private Long id;
 
+    @Column(name = "Nombre")
     public String name;
 
-    public String tipo;
+    @Column(name = "Tipo")
+    public String type;
 
-    public Airport(Long id, String name, String tipo) {
-        this.id = id;
+    @Column(name = "IATA")
+    public String IATA;
+
+    public Airport(String name, String type, String IATA) {
         this.name = name;
-        this.tipo = tipo;
+        this.type = type;
+        this.IATA = IATA;
     }
 
     public Airport() {
 
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 }
