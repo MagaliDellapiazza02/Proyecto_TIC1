@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import um.edu.uy.Main;
 import um.edu.uy.services.UserMgr;
 import um.edu.uy.business.exceptions.InvalidInformation;
 import um.edu.uy.ui.passenger.PassengerWindowController;
@@ -60,14 +61,18 @@ public class LogInController {
 
         try {
             if (username.equals("admin") && password.equals("admin")){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/um/edu/uy/ui/user/admin/UserAdminMenu.fxml"));
-                Parent root = loader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.setResizable(false);
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+                Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/UserAdminMenu.fxml"));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+                stage.setScene(scene);
                 stage.show();
+
                 close(event);
             } else {
+
                 // Cargar el archivo FXML de la nueva ventana
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/um/edu/uy/ui/user/passenger/PassengerWindow.fxml"));
                 Parent root = loader.load();
@@ -100,38 +105,22 @@ public class LogInController {
 
 
     @FXML
-    private void registrarmeButtonClicked() {
+    private void registrarmeButtonClicked(ActionEvent event) {
         try {
             // Verificar si la ventana de registro ya está abierta
             if (isSignUpWindowOpen()) {
                 return; // No hacer nada si ya está abierta
             }
 
-            // Cargar el archivo FXML de la nueva ventana
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/um/edu/uy/ui/user/passenger/SignUp.fxml"));
-            Parent root = loader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-            // Crear una nueva instancia de Stage para la nueva ventana
-            Stage registerWindow = new Stage();
-
-            // Configurar la ventana como un diálogo modal
-            registerWindow.initModality(Modality.APPLICATION_MODAL);
-
-            // Configurar el controlador de la nueva ventana (si es necesario)
-            SignUpController nuevaVentanaController = loader.getController();
-            // Puedes pasar datos al controlador de la nueva ventana si es necesario
-
-            // Configurar la escena
+            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/passenger/SignUp.fxml"));
             Scene scene = new Scene(root);
+            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
 
-            // Establecer la escena en la nueva ventana
-            registerWindow.setScene(scene);
-
-            // Quitar el título de la ventana
-            registerWindow.initStyle(StageStyle.UTILITY);
-
-            // Mostrar la nueva ventana
-            registerWindow.showAndWait(); // El programa se bloqueará hasta que la ventana se cierre
         } catch (Exception e) {
             e.printStackTrace();
         }

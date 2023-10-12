@@ -11,7 +11,10 @@ import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import um.edu.uy.Main;
 import um.edu.uy.business.entities.Passenger;
+import um.edu.uy.business.exceptions.EntityAlreadyExists;
+import um.edu.uy.persistence.PassengerRepository;
 import um.edu.uy.services.PassengerMgr;
 import um.edu.uy.ui.user.LogInController;
 import org.springframework.stereotype.Component;
@@ -41,8 +44,20 @@ public class SignUpController {
     @FXML
     private Button registrarmeButton;
 
+
     @Autowired
-    private PassengerMgr passengerMgr = new PassengerMgr();
+    private PassengerRepository passengerRepository;
+
+    @FXML
+    private void addPassenger(Passenger p) throws EntityAlreadyExists {
+        //verificar en el front que los datos sean de tipo correcto antes de crear el usuario. Checkear que el role este correcto
+
+        if(passengerRepository.findByDocument(p.document) != null) {
+            throw new EntityAlreadyExists();
+        }
+
+        passengerRepository.save(p);
+    }
 
     @FXML
     void close(ActionEvent actionEvent) {
@@ -61,7 +76,7 @@ public class SignUpController {
     }
 
     @FXML
-    public void registrarmeButtonClicked() {
+    public void registrarmeButtonClicked(ActionEvent event) {
         // Checkear que se haya llenado todos los espacios
         if (txtDocument.getText() == null || txtDocument.getText().equals("") ||
                 txtName.getText() == null || txtName.getText().equals("") ||
@@ -86,7 +101,17 @@ public class SignUpController {
                     String password = txtPassword.getText();
 
                     Passenger newP = new Passenger(document, name, mail, password);
-                    passengerMgr.addPassenger(newP);
+                    passengerRepository.save(newP);
+
+                    //Mostrar ventana
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+                    Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/passenger/PassengerWindow.fxml"));
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
 
                 } catch(Exception e) {
                     e.printStackTrace();
@@ -106,30 +131,22 @@ public class SignUpController {
     void backButtonClicked(ActionEvent event) throws Exception {
 
         close(event);
-/*
+
         // Open the User window
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/um/edu/uy/ui/user/LogIn.fxml"));
-            Parent root = loader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-            Stage loginStage = new Stage();
-            loginStage.setTitle("Log In");
-
-            // Configurar el controlador de la ventana de inicio de sesión (si es necesario)
-            LogInController loginController = loader.getController();
-            // Puedes pasar datos al controlador de inicio de sesión si es necesario
-
+            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn.fxml"));
             Scene scene = new Scene(root);
-            loginStage.setScene(scene);
-
-            // Mostrar la ventana de inicio de sesión
-            loginStage.show();
+            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
- */
     }
 
 }

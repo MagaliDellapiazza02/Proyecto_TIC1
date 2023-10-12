@@ -8,8 +8,10 @@ import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.springframework.stereotype.Component;
 import um.edu.uy.ui.user.LogInController;
 
+@Component
 public class PassengerWindowController {
 
     @FXML
