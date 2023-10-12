@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.admin.AddWorkerController">
+  <children>
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="586.0">
+         <children>
+            <Label layoutX="66.0" layoutY="88.0" text="Nombre Completo:" />
+            <Label layoutX="103.0" layoutY="128.0" text="Documento:" />
+            <TextField fx:id="txtName" layoutX="185.0" layoutY="84.0" prefHeight="25.0" prefWidth="251.0" />
+            <Label layoutX="142.0" layoutY="169.0" text="Mail:" />
+            <Label layoutX="167.0" layoutY="14.0" text="Nuevo Trabajador" textAlignment="CENTER">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="114.0" layoutY="245.0" text="Direccion:" />
+            <Label layoutX="147.0" layoutY="209.0" text="Rol:" />
+            <Label layoutX="103.0" layoutY="283.0" text="Contraseña:" />
+            <Label layoutX="47.0" layoutY="320.0" text="Confirmar Contraseña:" />
+            <TextField fx:id="txtDocument" layoutX="186.0" layoutY="124.0" prefHeight="25.0" prefWidth="251.0" />
+            <TextField fx:id="txtMail" layoutX="186.0" layoutY="165.0" prefHeight="25.0" prefWidth="251.0" />
+            <TextField fx:id="txtRole" layoutX="185.0" layoutY="205.0" prefHeight="25.0" prefWidth="251.0" />
+            <TextField fx:id="txtAddress" layoutX="185.0" layoutY="241.0" prefHeight="25.0" prefWidth="251.0" />
+            <TextField fx:id="txtPassword" layoutX="185.0" layoutY="279.0" prefHeight="25.0" prefWidth="251.0" />
+            <TextField fx:id="txtPasswordC" layoutX="184.0" layoutY="316.0" prefHeight="25.0" prefWidth="251.0" />
+            <Button fx:id="btnAdd" layoutX="415.0" layoutY="369.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="63.0" onAction="#addBtnClicked" text="Crear" />
+            <Button fx:id="btnBack" layoutX="35.0" layoutY="369.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="63.0" onAction="#backButtonClicked" text="Atras" />
+         </children>
+      </AnchorPane>
+  </children>
+</VBox>

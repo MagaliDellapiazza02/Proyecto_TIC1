@@ -1,4 +1,4 @@
-package um.edu.uy.business;
+package um.edu.uy.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,6 +6,9 @@ import um.edu.uy.business.entities.User;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.business.exceptions.InvalidInformation;
 import um.edu.uy.persistence.UserRepository;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserMgr {
@@ -24,13 +27,12 @@ public class UserMgr {
 
         // Verifico si el cliente no existe
 
-        if (userRepository.findOneByDocument(user.getDocument()) != null) {
+        if (userRepository.findByDocument(user.getDocument()) != null) {
 
             throw new EntityAlreadyExists();
         }
 
         userRepository.save(user);
-
     }
 
     public void loginUser(User user)
@@ -43,7 +45,7 @@ public class UserMgr {
         }
 
 
-        if (userRepository.findOneByDocument(user.getDocument()) != null) {
+        if (findByDocument(user.document) != null) {
 
         }
 
@@ -51,8 +53,14 @@ public class UserMgr {
 
     }
 
-    public User findUserByDocument(Long document) {
-        return userRepository.findOneByDocument(document);
+    public List<User> getAllUsers()
+    {
+        List<User> lista = new ArrayList<>();
+        userRepository.findAll().forEach(user -> lista.add(user));
+        return lista;
+    }
+    public User findByDocument(Long document) {
+        return userRepository.findByDocument(document);
     }
 
 }
