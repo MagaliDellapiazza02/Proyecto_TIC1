@@ -3,8 +3,8 @@ package um.edu.uy.business;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import um.edu.uy.business.entities.User;
-import um.edu.uy.business.exceptions.UserAlreadyExists;
-import um.edu.uy.business.exceptions.InvalidUserInformation;
+import um.edu.uy.business.exceptions.EntityAlreadyExists;
+import um.edu.uy.business.exceptions.InvalidInformation;
 import um.edu.uy.persistence.UserRepository;
 
 @Service
@@ -14,11 +14,11 @@ public class UserMgr {
     private UserRepository userRepository;
 
     public void addUser(User user)
-            throws InvalidUserInformation, UserAlreadyExists {
+            throws InvalidInformation, EntityAlreadyExists {
 
         if (user.getName() == null || "".equals(user.getName()) || user.getAddress() == null || "".equals(user.getAddress())) {
             //hacer algo
-            throw new InvalidUserInformation("Alguno de los datos ingresados no es correcto");
+            throw new InvalidInformation("Alguno de los datos ingresados no es correcto");
 
         }
 
@@ -26,7 +26,7 @@ public class UserMgr {
 
         if (userRepository.findOneByDocument(user.getDocument()) != null) {
 
-            throw new UserAlreadyExists();
+            throw new EntityAlreadyExists();
         }
 
         userRepository.save(user);
@@ -34,11 +34,11 @@ public class UserMgr {
     }
 
     public void loginUser(User user)
-            throws InvalidUserInformation {
+            throws InvalidInformation {
 
         if (user.getName() == null || "".equals(user.getName()) || user.getAddress() == null || "".equals(user.getAddress())) {
             //hacer algo
-            throw new InvalidUserInformation("Alguno de los datos ingresados no es correcto");
+            throw new InvalidInformation("Alguno de los datos ingresados no es correcto");
 
         }
 

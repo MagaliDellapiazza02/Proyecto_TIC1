@@ -3,7 +3,6 @@ package um.edu.uy.ui.user;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,18 +13,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.Window;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import um.edu.uy.business.entities.User;
 import um.edu.uy.business.UserMgr;
-import um.edu.uy.business.exceptions.InvalidUserInformation;
-import um.edu.uy.business.exceptions.UserAlreadyExists;
-
-
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import um.edu.uy.business.exceptions.InvalidInformation;
 
 @Controller
 public class LogInController {
@@ -150,7 +141,7 @@ public class LogInController {
     }
 
     @FXML
-    private void userLogIn(ActionEvent event) throws InvalidUserInformation {
+    private void userLogIn(ActionEvent event) throws InvalidInformation {
         if (txtUsername.getText() == null || txtPassword.getText().equals("") || txtPassword.getText() == null) {
 
             showAlert(

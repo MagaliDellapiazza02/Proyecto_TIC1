@@ -1,6 +1,5 @@
 package um.edu.uy.ui.user;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -12,8 +11,8 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import um.edu.uy.business.UserMgr;
 import um.edu.uy.business.entities.User;
-import um.edu.uy.business.exceptions.UserAlreadyExists;
-import um.edu.uy.business.exceptions.InvalidUserInformation;
+import um.edu.uy.business.exceptions.EntityAlreadyExists;
+import um.edu.uy.business.exceptions.InvalidInformation;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -52,7 +51,6 @@ public class UserController {
         if (txtDocument.getText() == null || txtDocument.getText().equals("") ||
         txtAddress.getText() == null || txtAddress.getText().equals("") ||
         txtAddress.getText() == null || txtAddress.getText().equals("")) {
-
             showAlert(
             "Datos faltantes!",
             "No se ingresaron los datos necesarios para completar el ingreso.");
@@ -75,11 +73,11 @@ public class UserController {
 
                     close(event);
 
-                } catch (InvalidUserInformation invalidUserInformation) {
+                } catch (InvalidInformation invalidInformation) {
                     showAlert(
                             "Informacion invalida !",
                             "Se encontro un error en los datos ingresados.");
-                } catch (UserAlreadyExists userAlreadyExists) {
+                } catch (EntityAlreadyExists entityAlreadyExists) {
                     showAlert(
                             "Documento ya registrado !",
                             "El documento indicado ya ha sido registrado en el sistema).");
