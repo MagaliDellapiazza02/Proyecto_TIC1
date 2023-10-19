@@ -21,6 +21,8 @@ import um.edu.uy.business.exceptions.InvalidInformation;
 import um.edu.uy.ui.passenger.PassengerWindowController;
 import um.edu.uy.ui.passenger.SignUpController;
 
+import java.io.IOException;
+
 @Controller
 public class LogInController {
 
@@ -172,6 +174,27 @@ public class LogInController {
         alert.setHeaderText(null);
         alert.setContentText(contextText);
         alert.showAndWait();
+    }
+
+    @FXML
+    void backButtonClicked(ActionEvent event) {
+
+        close(event);
+
+        // Open the User window
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn1.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

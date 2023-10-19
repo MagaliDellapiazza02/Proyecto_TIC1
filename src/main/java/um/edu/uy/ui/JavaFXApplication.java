@@ -23,7 +23,7 @@ public class JavaFXApplication extends Application  {
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-        root = fxmlLoader.load(LogInController.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn.fxml"));
+        root = fxmlLoader.load(LogInController.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn1.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.show();
