@@ -62,27 +62,27 @@ public class AddAirportController {
     @FXML
     void addBtnClicked(javafx.event.ActionEvent event) {
         // Checkear que se haya llenado todos los espacios
-        if (txtIATA.getText() == null || txtIATA.getText().equals("") ||
-                txtName.getText() == null || txtName.getText().equals("") ||
-                txtType.getText() == null || txtType.getText().equals("")) {
+        if (txtIATA.getText() == null || txtIATA.getText().equals("") || txtName.getText() == null || txtName.getText().equals("") || txtType.getText() == null || txtType.getText().equals("")) {
+            System.out.println("faltaron datos");
 
-            showAlert(
-                    "Datos faltantes!",
-                    "No se ingresaron los datos necesarios para completar el ingreso.");
+            showAlert("Datos faltantes!", "No se ingresaron los datos necesarios para completar el ingreso.");
 
         } else {
             try {
+                System.out.println("entro a agregar");
                 String name = txtName.getText();
                 String type = txtType.getText();
                 String IATA = txtIATA.getText();
 
-
                 Airport newA = new Airport(name, type, IATA);
                 addAirport(newA);
+                showAlert("Éxito", "Aeropuerto creado con éxito");
 
             } catch (Exception e) {
                 e.printStackTrace();
+                showAlert("Error", "Hubo un error al guardar el aeropuerto");
             }
+            close(event);
         }
     }
 

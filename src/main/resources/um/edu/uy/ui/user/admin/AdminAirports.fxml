@@ -52,7 +52,7 @@
                   <Font size="31.0" />
                </font>
             </Label>
-            <Button fx:id="btnAdd" layoutX="245.0" layoutY="135.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Crear Aeropuerto" />
+            <Button fx:id="btnAdd" layoutX="245.0" layoutY="135.0" mnemonicParsing="false" onAction="#addAirportButtonClicked" prefHeight="25.0" prefWidth="109.0" text="Crear Aeropuerto" />
             <Button fx:id="btnDelete" layoutX="245.0" layoutY="178.0" mnemonicParsing="false" text="Borrar Aeropuerto" />
             <Button fx:id="btnSearch" layoutX="242.0" layoutY="222.0" mnemonicParsing="false" text="Buscar Aeropuerto" />
       </children>

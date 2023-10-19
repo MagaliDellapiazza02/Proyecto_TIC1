@@ -64,5 +64,23 @@ public class AdminAirportsController {
         }
     }
 
+    @FXML
+    void addAirportButtonClicked(ActionEvent event){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+            Parent root = fxmlLoader.load(AddAirportController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AddAirport.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Crear aeropuerto");
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 

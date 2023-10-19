@@ -75,6 +75,9 @@ public class UserAdminWindowController {
     void adminAirports(ActionEvent event) {
         // Open the User window
         try {
+
+            close(event);
+
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
@@ -85,7 +88,7 @@ public class UserAdminWindowController {
             stage.setTitle("Admin Airports");
             stage.show();
 
-            close(event);
+
 
         } catch (IOException e) {
             e.printStackTrace();

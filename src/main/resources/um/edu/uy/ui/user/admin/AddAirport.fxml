@@ -38,7 +38,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.admin.AddAirportController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
@@ -50,7 +50,7 @@
             <TextField fx:id="txtIATA" layoutX="296.0" layoutY="159.0" />
             <TextField fx:id="txtType" layoutX="296.0" layoutY="123.0" promptText="Internacional" />
             <Button fx:id="btnBack" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" text="Atrás" />
-            <Button fx:id="btnConfirm" layoutX="519.0" layoutY="361.0" mnemonicParsing="false" text="Crear aeropuerto" />
+            <Button fx:id="btnConfirm" layoutX="519.0" layoutY="361.0" mnemonicParsing="false" onAction="#addBtnClicked" text="Crear aeropuerto" />
          </children>
     </AnchorPane>
   </children>

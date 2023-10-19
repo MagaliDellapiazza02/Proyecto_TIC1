@@ -31,13 +31,13 @@ public class AddAirplaneController {
     private TextField txtLicensePlate;
 
     @FXML
-    private TextField txtLuggage;
+    private TextField txtType;
 
     @FXML
     private TextField txtSeats;
 
     @FXML
-    private TextField txtType;
+    private TextField txtLuggage;
 
     @Autowired
     private AirplaneRepository airplaneRepository;
@@ -63,29 +63,26 @@ public class AddAirplaneController {
     @FXML
     void addBtnClicked(javafx.event.ActionEvent event) {
         // Checkear que se haya llenado todos los espacios
-        if (txtLuggage.getText() == null || txtLuggage.getText().equals("") ||
-                txtSeats.getText() == null || txtSeats.getText().equals("") ||
-                txtType.getText() == null || txtType.getText().equals("") ||
-                txtLicensePlate.getText() == null || txtLicensePlate.getText().equals("")) {
+        if (txtLuggage.getText() == null || txtLuggage.getText().equals("") || txtSeats.getText() == null || txtSeats.getText().equals("") || txtType.getText() == null || txtType.getText().equals("") || txtLicensePlate.getText() == null || txtLicensePlate.getText().equals("")) {
 
-            showAlert(
-                    "Datos faltantes!",
-                    "No se ingresaron los datos necesarios para completar el ingreso.");
+            showAlert("Datos faltantes!", "No se ingresaron los datos necesarios para completar el ingreso.");
 
         } else {
             try {
                 String licensePlate = txtLicensePlate.getText();
                 String type = txtType.getText();
-                int luggage = Integer.getInteger(txtLuggage.getText());
-                int seats = Integer.getInteger(txtSeats.getText());
+                int luggage = Integer.parseInt(txtLuggage.getText());
+                int seats = Integer.parseInt(txtSeats.getText());
 
-
-                Airplane newA = new Airplane(licensePlate,type,seats,luggage);
+                Airplane newA = new Airplane(licensePlate, type, seats, luggage);
                 addAirplane(newA);
+                showAlert("", "Avión agregado con éxito");
 
             } catch (Exception e) {
                 e.printStackTrace();
+                showAlert("", "Hubo un error al guardar el avión");
             }
+            close(event);
         }
     }
 
