@@ -1,4 +1,4 @@
-package um.edu.uy.business;
+package um.edu.uy.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +24,7 @@ public class AirlineMgr {
 
         // Verifico si no existe
 
-        if (airlineRepository.findOneByIATACode(airline.getAlnIATA()) != null) {
+        if (airlineRepository.findOneByIATACode(airline.IATACode) != null) {
 
             throw new EntityAlreadyExists();
         }
