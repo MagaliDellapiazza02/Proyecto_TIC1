@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import um.edu.uy.Main;
 import um.edu.uy.business.entities.Airplane;
-import um.edu.uy.business.entities.Airport;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.persistence.AirplaneRepository;
 
@@ -63,9 +62,14 @@ public class AddAirplaneController {
     @FXML
     void addBtnClicked(javafx.event.ActionEvent event) {
         // Checkear que se haya llenado todos los espacios
-        if (txtLuggage.getText() == null || txtLuggage.getText().equals("") || txtSeats.getText() == null || txtSeats.getText().equals("") || txtType.getText() == null || txtType.getText().equals("") || txtLicensePlate.getText() == null || txtLicensePlate.getText().equals("")) {
+        if (txtLuggage.getText() == null || txtLuggage.getText().equals("") ||
+                txtSeats.getText() == null || txtSeats.getText().equals("") ||
+                txtType.getText() == null || txtType.getText().equals("") ||
+                txtLicensePlate.getText() == null || txtLicensePlate.getText().equals("")) {
 
-            showAlert("Datos faltantes!", "No se ingresaron los datos necesarios para completar el ingreso.");
+            showAlert(
+                    "Datos faltantes!",
+                    "No se ingresaron los datos necesarios para completar el ingreso.");
 
         } else {
             try {
@@ -83,6 +87,21 @@ public class AddAirplaneController {
                 showAlert("", "Hubo un error al guardar el avión");
             }
             close(event);
+
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+                Parent root = fxmlLoader.load(AlnWorkerController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AlnWorker.fxml"));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.setTitle("Administrar aeropuertos");
+                stage.show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

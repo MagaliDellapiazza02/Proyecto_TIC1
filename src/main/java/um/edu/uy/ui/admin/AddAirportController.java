@@ -13,11 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import um.edu.uy.Main;
 import um.edu.uy.business.entities.Airport;
-import um.edu.uy.business.entities.User;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.persistence.AirportRepository;
-import um.edu.uy.persistence.PassengerRepository;
-import um.edu.uy.ui.passenger.SignUpController;
 
 import java.io.IOException;
 
@@ -83,6 +80,21 @@ public class AddAirportController {
                 showAlert("Error", "Hubo un error al guardar el aeropuerto");
             }
             close(event);
+
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+                Parent root = fxmlLoader.load(AdminAirportsController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AdminAirports.fxml"));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setScene(scene);
+                stage.setTitle("Administrar aeropuertos");
+                stage.show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
