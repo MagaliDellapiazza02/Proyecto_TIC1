@@ -16,13 +16,10 @@ public class Airport {
     @GenericGenerator(name = "airport_ids", strategy = "increment")
     private Long id;
 
-    @Column(name = "Nombre")
     public String name;
 
-    @Column(name = "Tipo")
     public String type;
 
-    @Column(name = "IATA")
     public String IATA;
 
     public Airport(String name, String type, String IATA) {

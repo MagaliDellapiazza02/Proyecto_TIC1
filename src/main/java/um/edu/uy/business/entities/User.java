@@ -45,4 +45,9 @@ public class User {
         this.company = company;
         this.role = role;
     }
+
+    public User(String password, String mail) {
+        this.password = password;
+        this.mail = mail;
+    }
 }

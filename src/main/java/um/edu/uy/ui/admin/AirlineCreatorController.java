@@ -1,28 +1,41 @@
 package um.edu.uy.ui.admin;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
+import org.springframework.beans.factory.annotation.Autowired;
+import um.edu.uy.Main;
 import um.edu.uy.business.entities.Airline;
+import um.edu.uy.business.entities.Passenger;
 import um.edu.uy.business.exceptions.InvalidInformation;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
+import um.edu.uy.persistence.AirlineRepository;
+import org.springframework.stereotype.Component;
+import um.edu.uy.ui.passenger.SignUpController;
 
+import java.io.IOException;
+
+@Component
 public class AirlineCreatorController {
 
     @FXML
-    private TextField alnCodeIATA;
+    private TextField txtalnCodeIATA;
 
     @FXML
-    private TextField alnCodeICAO;
+    private TextField txtalnCodeICAO;
 
     @FXML
-    private TextField alnCountry;
+    private TextField txtalnCountry;
 
     @FXML
-    private TextField alnName;
+    private TextField txtalnName;
 
 
     @FXML
@@ -31,6 +44,20 @@ public class AirlineCreatorController {
     @FXML
     private Button btnConfirm;
 
+    @Autowired
+    private AirlineRepository airlineRepository;
+
+
+    @FXML
+    private void addAirline(Airline airline) throws EntityAlreadyExists {
+        //verificar en el front que los datos sean de tipo correcto antes de crear el usuario. Checkear que el role este correcto
+
+        if(airlineRepository.findOneByAlnIATA(airline.alnIATA) != null) {
+            throw new EntityAlreadyExists();
+        }
+
+        airlineRepository.save(airline);
+    }
 
     @FXML
     void close(ActionEvent actionEvent) {
@@ -40,31 +67,63 @@ public class AirlineCreatorController {
     }
 
     @FXML
-    private void addAirline(ActionEvent event) throws InvalidInformation, EntityAlreadyExists {
-        // Obtener los valores de los campos de entrada
-        if (alnName.getText().isEmpty() || alnCodeIATA.getText().isEmpty() || alnCodeICAO.getText().isEmpty() || alnCountry.getText().isEmpty()) {
-            // Mostrar una alerta de campos vacíos
-            showAlert("Campos vacíos", "Por favor, complete todos los campos.");
-            return; // No hacer nada más si los campos son nulos o vacíos
-        } else {
+    void backButtonClicked(javafx.event.ActionEvent event) {
 
-            String alnNameText = alnName.getText();
-            String alnCodeIATAText = alnCodeIATA.getText();
-            String alnCodeICAOText = alnCodeICAO.getText();
-            String alnCountryText = alnCountry.getText();
+        close(event);
 
+        // Open the User window
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-            // Verificar si los campos de usuario y contraseña son nulos o están vacíos
+            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AdminWorkers.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Admin Worker");
+            stage.show();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-            Airline airline = new Airline(alnNameText, alnCodeIATAText, alnCodeICAOText, alnCountryText);
+    @FXML
+    void addAirlineButtonClicked(ActionEvent event) throws EntityAlreadyExists {
+        // Checkear que se haya llenado todos los espacios
+        if (txtalnCodeIATA.getText() == null || txtalnCodeIATA.getText().equals("") ||
+                txtalnCodeICAO.getText() == null || txtalnCodeICAO.getText().equals("") ||
+                txtalnCountry.getText() == null || txtalnCountry.getText().equals("") ||
+                txtalnName.getText() == null || txtalnName.getText().equals("")) {
 
-            airline.addAirline(airline);
+            showAlert(
+                    "Datos faltantes!",
+                    "No se ingresaron los datos necesarios para completar el ingreso.");
 
-            showAlert("Aerolinea creada", "Se agregó con éxito la aerolinea!");
+        } else{
+            try {
+                String alnCodeIATA = String.valueOf(txtalnCodeIATA.getText());
+                String alnCodeICAO = txtalnCodeICAO.getText();
+                String alnCountry = txtalnCountry.getText();
+                String alnName = txtalnName.getText();
 
-            close(event);
+                Airline newP = new Airline(alnCodeIATA, alnCodeICAO, alnCountry, alnName);
+                addAirline(newP);
 
+                close(event); //cierro la ventana
+                //Mostrar ventana
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+                Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("um/edu/uy/ui/user/admin/UserAdminMenu.fxml"));
+                Scene scene = new Scene(root);
+                Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+
+            } catch(Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
