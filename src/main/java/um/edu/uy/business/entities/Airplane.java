@@ -1,15 +1,16 @@
 package um.edu.uy.business.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "airplanes")
-
+@Builder
 public class Airplane {
 
     @Id
@@ -34,9 +35,5 @@ public class Airplane {
         this.type = type;
         this.seatCapacity = seatCapacity;
         this.luggageCapacity = luggageCapacity;
-    }
-
-    public Airplane() {
-
     }
 }

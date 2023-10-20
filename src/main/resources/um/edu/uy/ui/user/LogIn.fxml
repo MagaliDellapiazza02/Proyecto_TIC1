@@ -15,7 +15,8 @@
                     <Button fx:id="btnLogin" layoutX="260.0" layoutY="266.0" mnemonicParsing="false" onAction="#loginButtonClicked" text="Iniciar sesión" />
                     <TextField fx:id="txtUsername" layoutX="230.0" layoutY="110.0" promptText="Usuario" />
                     <PasswordField fx:id="txtPassword" layoutX="230.0" layoutY="165.0" promptText="Contraseña" />
-                    <Button fx:id="btnSignUp" layoutX="14.0" layoutY="356.0" mnemonicParsing="false" onAction="#registrarmeButtonClicked" text="Registrarme" />
+                    <Button fx:id="btnSignUp" layoutX="14.0" layoutY="355.0" mnemonicParsing="false" onAction="#registrarmeButtonClicked" text="Registrarme" />
+               <Button fx:id="btnBack" layoutX="14.0" layoutY="45.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atras" />
                 </children>
             </AnchorPane>
         </StackPane>

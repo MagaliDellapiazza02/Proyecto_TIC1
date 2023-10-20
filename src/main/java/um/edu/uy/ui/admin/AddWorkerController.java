@@ -11,10 +11,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import um.edu.uy.Main;
 import um.edu.uy.business.entities.Passenger;
 import um.edu.uy.business.entities.User;
 import um.edu.uy.services.PassengerMgr;
 import um.edu.uy.services.UserMgr;
+import um.edu.uy.ui.passenger.SignUpController;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -114,21 +116,15 @@ public class AddWorkerController {
 
         // Open the User window
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/um/edu/uy/ui/user/admin/AdminWorkers.fxml"));
-            Parent root = loader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-            Stage loginStage = new Stage();
-            loginStage.setTitle("Admin Workers");
-
-            // Configurar el controlador de la ventana (si es necesario)
-            AdminWorkersController controller = loader.getController();
-            // Puedes pasar datos al controlador si es necesario
-
+            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AdminWorkers.fxml"));
             Scene scene = new Scene(root);
-            loginStage.setScene(scene);
-
-            // Mostrar la ventana de inicio de sesión
-            loginStage.show();
+            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Admin Worker");
+            stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();

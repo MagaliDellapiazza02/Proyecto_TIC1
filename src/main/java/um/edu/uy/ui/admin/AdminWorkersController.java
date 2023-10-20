@@ -8,12 +8,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import org.springframework.stereotype.Component;
 import um.edu.uy.Main;
+import um.edu.uy.ui.passenger.SignUpController;
 import um.edu.uy.ui.user.LogInController;
 import um.edu.uy.ui.user.UserController;
 
 import java.io.IOException;
-
+@Component
 public class AdminWorkersController {
 
     @FXML
@@ -44,18 +46,15 @@ public class AdminWorkersController {
 
         // Open Add Worker window
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/um/edu/uy/ui/user/admin/AddWorker.fxml"));
-            Parent root = loader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-            Stage loginStage = new Stage();
-            loginStage.setTitle("Add Worker");
-
-            AddWorkerController controller = loader.getController();
-
+            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AddWorker.fxml"));
             Scene scene = new Scene(root);
-            loginStage.setScene(scene);
-
-            loginStage.show();
+            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Add Worker");
+            stage.show();
 
         } catch (IOException e){
             e.printStackTrace();
@@ -69,21 +68,15 @@ public class AdminWorkersController {
 
         // Open the User window
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/um/edu/uy/ui/user/admin/UserAdminMenu.fxml"));
-            Parent root = loader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-            Stage loginStage = new Stage();
-            loginStage.setTitle("User Admin Menu");
-
-            // Configurar el controlador de la ventana (si es necesario)
-            UserAdminWindowController controller = loader.getController();
-            // Puedes pasar datos al controlador si es necesario
-
+            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/UserAdminMenu.fxml"));
             Scene scene = new Scene(root);
-            loginStage.setScene(scene);
-
-            // Mostrar la ventana de inicio de sesión
-            loginStage.show();
+            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Admin Menu");
+            stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();

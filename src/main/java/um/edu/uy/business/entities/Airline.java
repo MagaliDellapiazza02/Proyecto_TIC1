@@ -22,7 +22,8 @@ public class Airline {
     @GenericGenerator(name="airlines_ids", strategy = "increment")
     public long id;
 
-    public String alnIATA;
+    public String IATACode;
+
     public String alnICAO;
 
     public String airlineName;
@@ -30,7 +31,7 @@ public class Airline {
     public String airlineCountry;
     public Airline(String airlineName, String alnIATA, String alnICAO, String airlineCountry) {
         this.airlineName = airlineName;
-        this.alnIATA = alnIATA;
+        this.IATACode = alnIATA;
         this.alnICAO = alnICAO;
         this.airlineCountry = airlineCountry;
     }

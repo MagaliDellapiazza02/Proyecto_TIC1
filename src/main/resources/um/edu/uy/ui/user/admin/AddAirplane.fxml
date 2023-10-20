@@ -33,26 +33,28 @@
 -->
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.admin.UserAdminWindowController">
-  <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false">
-               <graphic>
-                  <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#backButtonClicked" text="Cerrar Sesion" />
-               </graphic>
-        </Menu>
-      </menus>
-    </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <children>
-            <Button fx:id="btnWorkers" layoutX="252.0" layoutY="103.0" mnemonicParsing="false" onAction="#adminWorkersbtnClicked" text="Administrar Trabajadores" />
-            <Button fx:id="btnAln" layoutX="252.0" layoutY="145.0" mnemonicParsing="false" onAction="#adminAln" prefHeight="25.0" prefWidth="147.0" text="Administrar Aerolíneas" />
-            <Button fx:id="btnAirports" layoutX="252.0" layoutY="192.0" mnemonicParsing="false" onAction="#adminAirports" text="Administrar Aeropuertos" />
-      </children>
-    </AnchorPane>
-  </children>
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="um.edu.uy.ui.admin.AddAirplaneController">
+    <children>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+            <children>
+                <TextField fx:id="txtLicensePlate" layoutX="296.0" layoutY="87.0" promptText="AB-123"/>
+                <TextField fx:id="txtType" layoutX="296.0" layoutY="123.0" promptText="Boeing 777"/>
+                <TextField fx:id="txtSeats" layoutX="296.0" layoutY="159.0"/>
+                <TextField fx:id="txtLuggage" layoutX="296.0" layoutY="197.0"/>
+                <Label layoutX="204.0" layoutY="91.0" text="Matrícula"/>
+                <Label layoutX="175.0" layoutY="163.0" text="Capacidad asientos"/>
+                <Label layoutX="214.0" layoutY="127.0" text="Tipo"/>
+                <Button fx:id="btnBack" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" text="Atrás"/>
+                <Button fx:id="btnConfirm" layoutX="549.0" layoutY="361.0" mnemonicParsing="false"
+                        onAction="#addBtnClicked" text="Crear avión"/>
+                <Label layoutX="283.0" layoutY="41.0" text="Agregar avión"/>
+                <Label layoutX="174.0" layoutY="201.0" text="Capacidad equipaje"/>
+
+            </children>
+        </AnchorPane>
+    </children>
 </VBox>

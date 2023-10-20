@@ -13,7 +13,6 @@ import org.hibernate.annotations.GenericGenerator;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class Passenger {
 
     @Id

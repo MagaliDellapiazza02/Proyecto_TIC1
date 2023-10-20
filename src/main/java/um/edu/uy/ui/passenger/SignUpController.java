@@ -101,7 +101,7 @@ public class SignUpController {
                     String password = txtPassword.getText();
 
                     Passenger newP = new Passenger(document, name, mail, password);
-                    passengerRepository.save(newP);
+                    addPassenger(newP);
 
                     //Mostrar ventana
                     FXMLLoader fxmlLoader = new FXMLLoader();

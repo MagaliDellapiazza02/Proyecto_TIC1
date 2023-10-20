@@ -21,6 +21,8 @@ import um.edu.uy.business.exceptions.InvalidInformation;
 import um.edu.uy.ui.passenger.PassengerWindowController;
 import um.edu.uy.ui.passenger.SignUpController;
 
+import java.io.IOException;
+
 @Controller
 public class LogInController {
 
@@ -61,41 +63,33 @@ public class LogInController {
 
         try {
             if (username.equals("admin") && password.equals("admin")){
+                close(event);
+
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
                 Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/UserAdminMenu.fxml"));
                 Scene scene = new Scene(root);
-                Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+                Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("Admin Menu");
                 stage.setScene(scene);
                 stage.show();
 
-                close(event);
             } else {
+                close(event);
 
-                // Cargar el archivo FXML de la nueva ventana
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/um/edu/uy/ui/user/passenger/PassengerWindow.fxml"));
-                Parent root = loader.load();
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-                // Crear una nueva instancia de Stage para la nueva ventana
-                Stage userDataWindow = new Stage();
-                userDataWindow.setTitle("User Data Window");
-
-                // Configurar el controlador de la nueva ventana (si es necesario)
-                PassengerWindowController userDWController = loader.getController();
-                // Puedes pasar datos al controlador de la nueva ventana si es necesario
-
-                // Configurar la escena
+                Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/passenger/PassengerWindow.fxml"));
                 Scene scene = new Scene(root);
-
-                // Establecer la escena en la nueva ventana
-                userDataWindow.setScene(scene);
-
-                // Mostrar la nueva ventana
-                userDataWindow.show();
+                Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+                stage.setTitle("Pasajero");
+                stage.setScene(scene);
+                stage.show();
 
                 // Cerrar la ventana de inicio de sesión
-                close(event);
+
             }
 
         } catch (Exception e) {
@@ -118,6 +112,7 @@ public class LogInController {
             Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/passenger/SignUp.fxml"));
             Scene scene = new Scene(root);
             Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+            stage.setTitle("Registrarme");
             stage.setScene(scene);
             stage.show();
 
@@ -179,6 +174,27 @@ public class LogInController {
         alert.setHeaderText(null);
         alert.setContentText(contextText);
         alert.showAndWait();
+    }
+
+    @FXML
+    void backButtonClicked(ActionEvent event) {
+
+        close(event);
+
+        // Open the User window
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn1.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
