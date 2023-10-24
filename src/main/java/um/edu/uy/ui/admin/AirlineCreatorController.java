@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import javafx.event.ActionEvent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import um.edu.uy.Main;
 import um.edu.uy.business.entities.Airline;
 import um.edu.uy.business.entities.Passenger;
@@ -23,6 +24,7 @@ import um.edu.uy.ui.passenger.SignUpController;
 import java.io.IOException;
 
 @Component
+@Controller
 public class AirlineCreatorController {
 
     @FXML

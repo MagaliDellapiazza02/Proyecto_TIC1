@@ -9,9 +9,12 @@ import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import um.edu.uy.Main;
 import um.edu.uy.ui.user.LogInController;
 
 @Component
+@Controller
 public class PassengerWindowController {
 
     @FXML
@@ -46,28 +49,22 @@ public class PassengerWindowController {
     }
 
     @FXML
-    private void logOutButtonClicked(ActionEvent actionEvent) {
-        Node source = (Node) actionEvent.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
+    private void logOutButtonClicked(ActionEvent event) {
 
+        close(event);
         // Abrir la ventana de inicio de sesión (puede ser "LogIn.fxml")
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/um/edu/uy/ui/user/LogIn.fxml"));
-            Parent root = loader.load();
 
-            Stage loginStage = new Stage();
-            loginStage.setTitle("Log In");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-            // Configurar el controlador de la ventana de inicio de sesión (si es necesario)
-            LogInController loginController = loader.getController();
-            // Puedes pasar datos al controlador de inicio de sesión si es necesario
-
+            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn.fxml"));
             Scene scene = new Scene(root);
-            loginStage.setScene(scene);
+            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Log In");
+            stage.show();
 
-            // Mostrar la ventana de inicio de sesión
-            loginStage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }

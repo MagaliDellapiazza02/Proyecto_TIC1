@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import um.edu.uy.Main;
 import um.edu.uy.ui.passenger.SignUpController;
 import um.edu.uy.ui.user.LogInController;
@@ -16,6 +17,7 @@ import um.edu.uy.ui.user.UserController;
 
 import java.io.IOException;
 @Component
+@Controller
 public class AdminWorkersController {
 
     @FXML

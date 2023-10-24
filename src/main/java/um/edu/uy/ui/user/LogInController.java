@@ -14,8 +14,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import um.edu.uy.Main;
+import um.edu.uy.services.PassengerMgr;
 import um.edu.uy.services.UserMgr;
 import um.edu.uy.business.exceptions.InvalidInformation;
 import um.edu.uy.ui.passenger.PassengerWindowController;
@@ -24,10 +26,14 @@ import um.edu.uy.ui.passenger.SignUpController;
 import java.io.IOException;
 
 @Controller
+@Component
 public class LogInController {
 
     @Autowired
     private UserMgr userMgr;
+
+    @Autowired
+    private PassengerMgr passengerMgr;
 
     @FXML
     private TextField txtUsername;
@@ -76,19 +82,23 @@ public class LogInController {
                 stage.show();
 
             } else {
-                close(event);
 
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-                Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/passenger/PassengerWindow.fxml"));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
-                stage.setTitle("Pasajero");
-                stage.setScene(scene);
-                stage.show();
+                if (!passengerMgr.checkLogIn(username,password)) {
+                    showAlert("Usuario invalido", "Mail no existe o contraseña incorrecta");
+                } else {
+                    close(event);
 
-                // Cerrar la ventana de inicio de sesión
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+                    Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/passenger/PassengerWindow.fxml"));
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+                    stage.setTitle("Pasajero");
+                    stage.setScene(scene);
+                    stage.show();
+                }
 
             }
 
