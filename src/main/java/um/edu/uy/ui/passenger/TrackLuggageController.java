@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import um.edu.uy.Main;
 import um.edu.uy.business.entities.Luggage;
+import um.edu.uy.business.entities.Session;
 import um.edu.uy.persistence.AirplaneRepository;
 import um.edu.uy.persistence.LuggageRepository;
 import um.edu.uy.persistence.PassengerRepository;
@@ -54,7 +55,7 @@ public class TrackLuggageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        agregarElementosALista();
+        //agregarElementosALista(); //se rompe
     }
 
     private void agregarElementosALista() {
@@ -62,7 +63,7 @@ public class TrackLuggageController implements Initializable {
         weightColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
         stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
 
-        Iterable<Luggage> elementos = passengerRepository.findByMail(loginController.getTxtUsername().getText()).get().getLuggageList();
+        Iterable<Luggage> elementos = passengerRepository.findByMail(Session.mail).get().getLuggageList();
 
         ObservableList<Luggage> listaDeEquipaje = FXCollections.observableArrayList();
 
