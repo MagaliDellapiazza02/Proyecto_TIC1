@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import um.edu.uy.Main;
+import um.edu.uy.business.entities.Session;
 import um.edu.uy.services.PassengerMgr;
 import um.edu.uy.services.UserMgr;
 import um.edu.uy.business.exceptions.InvalidInformation;
@@ -72,6 +73,9 @@ public class LogInController {
                 showAlert("Usuario invalido", "Mail no existe o contraseña incorrecta");
 
             } else {
+
+                Session.mail=username; //guardo el mail del usuario para acceder en otras instancias
+
                 close(event);
 
                 FXMLLoader fxmlLoader = new FXMLLoader();

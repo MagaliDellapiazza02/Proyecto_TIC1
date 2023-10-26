@@ -89,3 +89,5 @@ out/
 /gradle/wrapper/
 gradlew
 gradlew.bat
+!/gradlew
+!/build.gradle
