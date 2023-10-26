@@ -32,6 +32,9 @@ public class adminGeneralController {
     @FXML
     private TextField txtUser;
 
+    @Autowired
+    private UserMgr userMgr;
+
     @FXML
     void close(ActionEvent actionEvent) {
         Node source = (Node)  actionEvent.getSource();
@@ -53,7 +56,9 @@ public class adminGeneralController {
         }
 
         try {
-            if (username.equals("admin") && password.equals("admin")) {
+            if (!userMgr.checkAdminLogIn(username, password)) {
+                showAlert("Administrador invalido", "Contraseña incorrecta o no es administrador");
+            } else {
                 close(event);
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -65,10 +70,8 @@ public class adminGeneralController {
                 stage.setTitle("Admin Menu");
                 stage.setScene(scene);
                 stage.show();
-
-            } else {
-                showAlert("Error Log in", "No esta registrado");
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

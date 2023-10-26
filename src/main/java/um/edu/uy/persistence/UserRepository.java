@@ -2,7 +2,10 @@ package um.edu.uy.persistence;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import um.edu.uy.business.entities.Passenger;
 import um.edu.uy.business.entities.User;
+
+import java.util.Optional;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
@@ -12,6 +15,9 @@ public interface UserRepository extends CrudRepository<User, Long> {
      * @return
      */
     User findByDocument(long document);
+
+    Optional<User> findByMail(String mail);
+
 
     boolean existsByIdAndName(Long id, String name);
 

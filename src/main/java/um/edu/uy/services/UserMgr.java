@@ -2,6 +2,7 @@ package um.edu.uy.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import um.edu.uy.business.entities.Passenger;
 import um.edu.uy.business.entities.User;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.business.exceptions.InvalidInformation;
@@ -9,6 +10,7 @@ import um.edu.uy.persistence.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserMgr {
@@ -51,6 +53,26 @@ public class UserMgr {
 
         userRepository.save(user);
 
+    }
+
+    public boolean checkIfUserNameExists(String mail) {
+        Optional<User> userOptional = userRepository.findByMail(mail);
+        return userOptional.isPresent();
+    }
+
+    public boolean checkAdminLogIn(String mail, String password) {
+        if (!checkIfUserNameExists(mail)) {
+            return false;
+        }
+        Optional<User> uOptional = userRepository.findByMail(mail);
+        if(uOptional.isPresent()) {
+            if(uOptional.get().getPassword().equals(password) && uOptional.get().role.equals("administrator")) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
     }
 
     public List<User> getAllUsers()

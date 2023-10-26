@@ -2,7 +2,6 @@ package um.edu.uy.ui.passenger;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -15,9 +14,7 @@ import org.springframework.stereotype.Controller;
 import um.edu.uy.Main;
 import um.edu.uy.business.entities.Passenger;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
-import um.edu.uy.persistence.PassengerRepository;
 import um.edu.uy.services.PassengerMgr;
-import um.edu.uy.ui.user.LogInController;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -48,18 +45,7 @@ public class SignUpController {
 
 
     @Autowired
-    private PassengerRepository passengerRepository;
-
-    @FXML
-    private void addPassenger(Passenger p) throws EntityAlreadyExists {
-        //verificar en el front que los datos sean de tipo correcto antes de crear el usuario. Checkear que el role este correcto
-
-        if(passengerRepository.findByDocument(p.document) != null) {
-            throw new EntityAlreadyExists();
-        }
-
-        passengerRepository.save(p);
-    }
+    private PassengerMgr passengerMgr;
 
     @FXML
     void close(ActionEvent actionEvent) {
@@ -103,7 +89,8 @@ public class SignUpController {
                     String password = txtPassword.getText();
 
                     Passenger newP = new Passenger(document, name, mail, password);
-                    addPassenger(newP);
+                    passengerMgr.addPassenger(newP);
+
 
                     //Mostrar ventana
                     FXMLLoader fxmlLoader = new FXMLLoader();

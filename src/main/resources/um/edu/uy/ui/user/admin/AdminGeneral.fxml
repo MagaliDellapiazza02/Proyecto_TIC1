@@ -95,9 +95,9 @@
                </font>
             </Label>
             <TextField fx:id="txtUser" layoutX="220.0" layoutY="125.0" />
-            <TextField fx:id="txtPass" layoutX="220.0" layoutY="171.0" />
-            <Label layoutX="119.0" layoutY="129.0" text="Usuario" />
+            <Label layoutX="119.0" layoutY="129.0" text="Usuario (mail)" />
             <Label layoutX="119.0" layoutY="179.0" text="Contraseña" />
+            <PasswordField fx:id="txtPass" layoutX="220.0" layoutY="175.0" />
          </children>
     </AnchorPane>
   </children>

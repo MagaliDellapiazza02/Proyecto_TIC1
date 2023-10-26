@@ -68,38 +68,21 @@ public class LogInController {
         }
 
         try {
-            if (username.equals("admin") && password.equals("admin")){
+            if (!passengerMgr.checkLogIn(username, password)) {
+                showAlert("Usuario invalido", "Mail no existe o contraseña incorrecta");
+
+            } else {
                 close(event);
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-                Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/UserAdminMenu.fxml"));
+                Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/passenger/PassengerWindow.fxml"));
                 Scene scene = new Scene(root);
-                Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-                stage.setTitle("Admin Menu");
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setTitle("Pasajero");
                 stage.setScene(scene);
                 stage.show();
-
-            } else {
-
-
-                if (!passengerMgr.checkLogIn(username,password)) {
-                    showAlert("Usuario invalido", "Mail no existe o contraseña incorrecta");
-                } else {
-                    close(event);
-
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-                    Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/passenger/PassengerWindow.fxml"));
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
-                    stage.setTitle("Pasajero");
-                    stage.setScene(scene);
-                    stage.show();
-                }
-
             }
 
         } catch (Exception e) {
