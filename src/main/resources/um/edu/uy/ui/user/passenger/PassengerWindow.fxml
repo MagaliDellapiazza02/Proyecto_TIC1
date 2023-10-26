@@ -7,23 +7,27 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.passenger.PassengerWindowController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="um.edu.uy.ui.passenger.PassengerWindowController">
     <children>
 
         <AnchorPane prefHeight="470.0" prefWidth="640.0">
             <children>
-                <Button fx:id="luggageBtn" alignment="CENTER" layoutX="269.0" layoutY="155.0" mnemonicParsing="false" text="Rastrear equipaje" />
+                <Button fx:id="luggageBtn" alignment="CENTER" layoutX="269.0" layoutY="155.0" mnemonicParsing="false" onAction="#rastrearEquipajeButtonClicked"
+                        text="Rastrear equipaje"/>
                 <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="640.0">
                     <menus>
                         <Menu mnemonicParsing="false">
                             <graphic>
-                                <Button fx:id="logOutBtn" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar sesión" />
+                                <Button fx:id="logOutBtn" mnemonicParsing="false" onAction="#logOutButtonClicked"
+                                        text="Cerrar sesión"/>
                             </graphic>
                         </Menu>
                     </menus>
                 </MenuBar>
-                <Button fx:id="flightsBtn" alignment="CENTER" layoutX="269.0" layoutY="106.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Ver vuelos" />
-                <Label alignment="CENTER" layoutX="276.0" layoutY="43.0" text="Hola, &lt;nombre&gt;" />
+                <Button fx:id="flightsBtn" alignment="CENTER" layoutX="269.0" layoutY="106.0" mnemonicParsing="false"
+                        prefHeight="25.0" prefWidth="108.0" text="Ver vuelos"/>
+                <Label alignment="CENTER" layoutX="276.0" layoutY="43.0" text="Hola, &lt;nombre&gt;"/>
             </children>
         </AnchorPane>
     </children>

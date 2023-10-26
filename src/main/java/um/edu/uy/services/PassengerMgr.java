@@ -20,7 +20,7 @@ public class PassengerMgr {
     public void addPassenger(Passenger p) throws EntityAlreadyExists {
         //verificar en el front que los datos sean de tipo correcto antes de crear el usuario. Checkear que el role este correcto
 
-        if(passengerRepository.findByDocument(p.document) != null ||  checkIfUserNameExists(p.mail)) {
+        if(passengerRepository.findByDocument(p.getDocument()) != null ||  checkIfUserNameExists(p.getMail())) {
             throw new EntityAlreadyExists();
         }
 

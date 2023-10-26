@@ -1,11 +1,12 @@
 package um.edu.uy.business.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 @Table(name = "passengers")
@@ -19,15 +20,18 @@ public class Passenger {
     @Id
     @GeneratedValue(generator="passengers_ids")
     @GenericGenerator(name="passengers_ids", strategy = "increment")
-    public long id;
+    private long id;
 
-    public long document;
+    private long document;
 
-    public String name;
+    private String name;
 
-    public String mail;
+    private String mail;
 
-    public String password;
+    private String password;
+
+    @OneToMany(mappedBy = "passenger") //relación 1-n entre pasajero y equipaje
+    private List<Luggage> luggageList = new ArrayList<>();
 
     public Passenger(long document, String name, String mail, String password) {
         this.document = document;

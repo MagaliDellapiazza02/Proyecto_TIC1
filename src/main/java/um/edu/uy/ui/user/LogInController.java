@@ -27,6 +27,7 @@ import java.io.IOException;
 
 @Controller
 @Component
+@Getter
 public class LogInController {
 
     @Autowired
