@@ -20,21 +20,21 @@ public class User {
     @Id
     @GeneratedValue(generator="users_ids")
     @GenericGenerator(name="users_ids", strategy = "increment")
-    public long id;
+    private long id;
 
-    public long document;
+    private long document;
 
-    public String name;
+    private String name;
 
-    public String mail;
+    private String mail;
 
-    public String password;
+    private String password;
 
-    public String address;
+    private String address;
 
-    public String company;
+    private String company;
 
-    public String role;
+    private String role;
 
     public User(long document, String name, String mail, String password, String address, String company, String role) {
         this.document = document;

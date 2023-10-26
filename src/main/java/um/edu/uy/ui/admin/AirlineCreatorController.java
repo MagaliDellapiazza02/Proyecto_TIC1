@@ -54,7 +54,7 @@ public class AirlineCreatorController {
     private void addAirline(Airline airline) throws EntityAlreadyExists {
         //verificar en el front que los datos sean de tipo correcto antes de crear el usuario. Checkear que el role este correcto
 
-        if(airlineRepository.findOneByAlnIATA(airline.alnIATA) != null) {
+        if(airlineRepository.findOneByAlnIATA(airline.getAlnIATA()) != null) {
             throw new EntityAlreadyExists();
         }
 

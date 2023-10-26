@@ -47,7 +47,7 @@ public class UserMgr {
         }
 
 
-        if (findByDocument(user.document) != null) {
+        if (findByDocument(user.getDocument()) != null) {
 
         }
 
@@ -66,7 +66,7 @@ public class UserMgr {
         }
         Optional<User> uOptional = userRepository.findByMail(mail);
         if(uOptional.isPresent()) {
-            if(uOptional.get().getPassword().equals(password) && uOptional.get().role.equals("administrator")) {
+            if(uOptional.get().getPassword().equals(password) && uOptional.get().getRole().equals("administrator")) {
                 return true;
             } else {
                 return false;

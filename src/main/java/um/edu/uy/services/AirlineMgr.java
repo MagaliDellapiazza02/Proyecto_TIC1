@@ -30,7 +30,7 @@ public class AirlineMgr {
 
         // Verifico si no existe
 
-        if (airlineRepository.findOneByAlnIATA(airline.alnIATA) != null) {
+        if (airlineRepository.findOneByAlnIATA(airline.getAlnIATA()) != null) {
 
             throw new EntityAlreadyExists();
         }
@@ -40,9 +40,9 @@ public class AirlineMgr {
         //Asignarle un trabajador a la aerolinea, admin de aerolinea
 
         // password: iata de aerolinea, mail: nombre de la aerolinea
-        User adminAirline = new User(airline.alnIATA,airline.alnName); //
+        User adminAirline = new User(airline.getAlnIATA(),airline.getAlnName()); //
         adminAirline.setRole("adminAirline");
-        adminAirline.setCompany(airline.alnName);
+        adminAirline.setCompany(airline.getAlnName());
         userRepository.save(adminAirline);
         // document = ? , restriccion not null en la tabla
 

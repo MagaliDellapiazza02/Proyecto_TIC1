@@ -20,15 +20,15 @@ public class Airline {
     @Id
     @GeneratedValue(generator="airlines_ids")
     @GenericGenerator(name="airlines_ids", strategy = "increment")
-    public long id;
+    private long id;
 
-    public String alnIATA;
+    private String alnIATA;
 
-    public String alnICAO;
+    private String alnICAO;
 
-    public String alnName;
+    private String alnName;
 
-    public String alnCountry;
+    private String alnCountry;
     public Airline(String alnName, String alnIATA, String alnICAO, String alnCountry) {
         this.alnName = alnName;
         this.alnIATA = alnIATA;
