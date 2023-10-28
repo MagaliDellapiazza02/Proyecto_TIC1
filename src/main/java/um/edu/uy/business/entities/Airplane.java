@@ -1,5 +1,6 @@
 package um.edu.uy.business.entities;
 
+
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -18,16 +19,12 @@ public class Airplane {
     @GenericGenerator(name = "airplanes_ids", strategy = "increment")
     private long id;
 
-    @Column(name = "Matrícula")
     private String licensePlate;
 
-    @Column(name = "Tipo")
     private String type; //  ej: Airbus A320, Boeing 777, etc
 
-    @Column(name = "Capacidad asientos")
     private int seatCapacity;
 
-    @Column(name = "Capacidad bultos")
     private int luggageCapacity;
 
     public Airplane(String licensePlate, String type, int seatCapacity, int luggageCapacity) {
