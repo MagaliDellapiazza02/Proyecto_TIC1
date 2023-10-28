@@ -12,7 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -20,13 +20,13 @@ import um.edu.uy.Main;
 import um.edu.uy.services.PassengerMgr;
 import um.edu.uy.services.UserMgr;
 import um.edu.uy.business.exceptions.InvalidInformation;
-import um.edu.uy.ui.passenger.PassengerWindowController;
 import um.edu.uy.ui.passenger.SignUpController;
 
 import java.io.IOException;
 
 @Controller
 @Component
+@Getter
 public class LogInController {
 
     @Autowired

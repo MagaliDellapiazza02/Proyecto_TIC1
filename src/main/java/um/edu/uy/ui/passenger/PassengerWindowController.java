@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
+import um.edu.uy.Main;
 import org.springframework.stereotype.Controller;
 import um.edu.uy.Main;
 import um.edu.uy.ui.user.LogInController;
@@ -38,8 +39,21 @@ public class PassengerWindowController {
 
     @FXML
     private void rastrearEquipajeButtonClicked(ActionEvent event) {
-        // Manejo del evento para el botón "Rastrear equipaje"
-        // Puedes agregar aquí la lógica para rastrear el equipaje
+        try {
+            //Mostrar ventana
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+            Parent root = fxmlLoader.load(TrackLuggageController.class.getResourceAsStream("/um/edu/uy/ui/user/passenger/TrackLuggage.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Rastreo equipajes");
+            stage.show();
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
