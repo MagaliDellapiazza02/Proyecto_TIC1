@@ -1,45 +1,57 @@
 package um.edu.uy.business.entities;
 
-import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
+@Entity
 @Getter
 @Setter
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "vuelos")
 @Builder
+@Table(name = "flights")
 public class Flight {
 
     @Id
-    @GeneratedValue(generator = "flight_ids")
-    @GenericGenerator(name = "flight_ids", strategy = "increment")
-    private Long id;
+    private String flightNumber; //lo asigna la aerolinea
 
-    @Column(name = "Origen")
-    private String origin;
+    //Datos básicos de un vuelo:
+    @ManyToOne //  muchos vuelos pueden estar asociados con un avión
+    private Airplane airplane;
 
-    @Column(name = "Destino")
-    private String destiny;
+    @ManyToOne // muchos vuelos pueden estar asociados con una aerolinea
+    private Airline airlineOwner;
+    private String flightIATA;
+    private String flightICAO;
 
-    @Column(name = "Avion")
-    private String airplane;
+    // Detalles de la Ruta:
+    @ManyToOne // muchos vuelos pueden salir y llegar a un aeropuerto
+    private Airport originAirport;
+    private String originAirportIATA = originAirport.getIATA();
 
-    @Column(name = "Aerolinea")
-    private String airline;
+    @ManyToOne // muchos vuelos pueden salir y llegar a un aeropuerto
+    private Airport destinyAirport;
+    private String destinyAirportIATA = destinyAirport.getIATA();
 
-    @Column(name = "Hora")
-    private Date time;
+    //Horarios del Vuelo:
+    private Date scheduledDeparture;  //ETD
+    private Date scheduledArrival; //ETA
+    private Date realDeparture; //ATD
+    private Date realArrival; //ATA
 
-    public Flight(String origin, String destiny, String airplane, String airline, Date time) {
-        this.origin = origin;
-        this.destiny = destiny;
+    //Estado del Vuelo:
+    private String flightState;
+
+    public Flight(Airline airlineOwner, Airport originAirport, Airport destinyAirport, Airplane airplane, Date scheduledDeparture, Date scheduledArrival, String flightNumber) {
+        this.airlineOwner = airlineOwner;
+        this.originAirport = originAirport;
+        this.destinyAirport = destinyAirport;
         this.airplane = airplane;
-        this.airline = airline;
-        this.time = time;
+        this.scheduledDeparture = scheduledDeparture;
+        this.scheduledArrival = scheduledArrival;
     }
 }

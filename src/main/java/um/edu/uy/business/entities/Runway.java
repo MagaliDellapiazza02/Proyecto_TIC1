@@ -11,7 +11,7 @@ import java.util.Date;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "pistas")
+@Table(name = "runways")
 @Builder
 public class Runway {
 
@@ -23,6 +23,9 @@ public class Runway {
     private int runwayNumber;
 
     private String state;
+
+    @ManyToOne
+    private Airport airport;
 
     public Runway(int runwayNumber, String state) {
         this.runwayNumber = runwayNumber;

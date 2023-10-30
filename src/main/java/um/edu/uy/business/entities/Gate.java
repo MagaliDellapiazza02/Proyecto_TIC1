@@ -11,7 +11,7 @@ import java.util.Date;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "puertas")
+@Table(name = "gates")
 @Builder
 public class Gate {
 
@@ -23,6 +23,9 @@ public class Gate {
     private int gateNumber;
 
     private String state;
+
+    @ManyToOne
+    private Airport airport;
 
     public Gate(int gateNumber, String state) {
         this.gateNumber = gateNumber;

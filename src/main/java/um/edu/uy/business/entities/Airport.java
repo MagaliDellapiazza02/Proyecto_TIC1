@@ -1,9 +1,13 @@
 package um.edu.uy.business.entities;
 
+import um.edu.uy.business.entities.Gate;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+
+import java.util.LinkedList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,13 +26,18 @@ public class Airport {
 
     private String IATA;
 
+    @OneToMany(mappedBy = "airport")
+    private List<Gate> gates;
+
     public Airport(String name, String type, String IATA) {
         this.name = name;
         this.type = type;
         this.IATA = IATA;
+        gates = new LinkedList<Gate>();
     }
 
     public Airport() {
 
+        gates = new LinkedList<Gate>();
     }
 }

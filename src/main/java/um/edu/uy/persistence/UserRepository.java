@@ -15,6 +15,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
      * @return
      */
     User findByDocument(long document);
+    User findByName(String name);
 
     Optional<User> findByMail(String mail);
 
@@ -22,6 +23,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
     boolean existsByIdAndName(Long id, String name);
 
     @Query(value = "select count(*) from users where name=?", nativeQuery = true)
-    int contarUsuariosPorNombre(String name);
+    int countUsersByName(String name);
 
 }
