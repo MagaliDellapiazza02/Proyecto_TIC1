@@ -22,13 +22,10 @@ public class Gate {
 
     private int gateNumber;
 
-    private String state;
-
     @ManyToOne
     private Airport airport;
 
-    public Gate(int gateNumber, String state) {
+    public Gate(int gateNumber) {
         this.gateNumber = gateNumber;
-        this.state = state;
     }
 }
