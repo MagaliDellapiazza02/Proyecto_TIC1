@@ -1,4 +1,4 @@
-package um.edu.uy.ui.airline;
+package um.edu.uy.ui.admin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,50 +7,55 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 import um.edu.uy.Main;
 import um.edu.uy.ui.passenger.SignUpController;
 
+import java.io.IOException;
+
 @Component
-public class AdministrarVuelosController {
-    @FXML
-    private Button btnAdd;
-
-    @FXML
-    private Button btnBack;
-
-    @FXML
-    private Button btnDelete;
-
+public class AddAirlineController {
     @FXML
     private Button btnLogOut;
 
     @FXML
-    private Button btnModify;
+    private TextField txtAddress;
 
     @FXML
-    private Button btnSeeFlights;
+    private TextField txtDocument;
 
     @FXML
-    void backButtonClicked(ActionEvent event) {
-        close(event);
+    private TextField txtMail;
 
-        try {
+    @FXML
+    private TextField txtName;
 
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+    @FXML
+    private TextField txtPassword;
 
-            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/airline/AlnWorkerAdmin.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Administrador Aerolinea");
-            stage.show();
+    @FXML
+    private TextField txtPasswordC;
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    @FXML
+    private TextField txtRole;
+
+    @FXML
+    private TextField txtalnCodeIATA;
+
+    @FXML
+    private TextField txtalnCodeICAO;
+
+    @FXML
+    private TextField txtalnCountry;
+
+    @FXML
+    private TextField txtalnName;
+
+    @FXML
+    void addAirlineButtonClicked(ActionEvent event) {
+        //asignar rol de administrador  y company
     }
 
     @FXML
@@ -70,6 +75,27 @@ public class AdministrarVuelosController {
             stage.show();
 
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void backButtonClicked(ActionEvent event) {
+        close(event);
+
+        // Open the User window
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+
+            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AdminAln.fxml"));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Administrar Aerolineas");
+            stage.show();
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
