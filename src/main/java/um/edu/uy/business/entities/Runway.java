@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,6 +16,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Table(name = "runways")
 @Builder
+
 public class Runway {
 
     @Id
@@ -22,13 +26,10 @@ public class Runway {
 
     private int runwayNumber;
 
-    private String state;
-
     @ManyToOne
     private Airport airport;
 
-    public Runway(int runwayNumber, String state) {
+    public Runway(int runwayNumber) {
         this.runwayNumber = runwayNumber;
-        this.state = state;
     }
 }
