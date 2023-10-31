@@ -33,6 +33,9 @@ public class Passenger {
     @OneToMany(mappedBy = "passenger") //relación 1-n entre pasajero y equipaje
     private List<Luggage> luggageList = new ArrayList<>();
 
+    @ManyToMany
+    private List<Flight> flights = new ArrayList<>();
+
     public Passenger(long document, String name, String mail, String password) {
         this.document = document;
         this.name = name;

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -46,6 +48,12 @@ public class Flight {
     //Estado del Vuelo:
     private String flightState;
 
+    //Lista de pasajeros y equipajes:
+    @ManyToMany(mappedBy = "flights")
+    private List<Passenger> passengers = new LinkedList<>();
+    @ManyToMany(mappedBy = "flights")
+    private List<Luggage> luggages = new LinkedList<>();
+
     public Flight(Airline airlineOwner, Airport originAirport, Airport destinyAirport, Airplane airplane, Date scheduledDeparture, Date scheduledArrival, String flightNumber) {
         this.airlineOwner = airlineOwner;
         this.originAirport = originAirport;
@@ -53,5 +61,6 @@ public class Flight {
         this.airplane = airplane;
         this.scheduledDeparture = scheduledDeparture;
         this.scheduledArrival = scheduledArrival;
+        this.flightNumber = flightNumber;
     }
 }

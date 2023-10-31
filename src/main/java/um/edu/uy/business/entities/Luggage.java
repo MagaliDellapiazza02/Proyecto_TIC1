@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import javafx.scene.control.TextField;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+
+import java.util.LinkedList;
+import java.util.List;
+
 @Entity
 @Table(name = "luggage")
 @Getter
@@ -27,6 +31,9 @@ public class Luggage {
 
     @ManyToOne
     private Passenger passenger;
+
+    @ManyToMany
+    private List<Flight> flights = new LinkedList<>();
 
     public Luggage(int weight, String trackingNumber) {
         this.weight = weight;
