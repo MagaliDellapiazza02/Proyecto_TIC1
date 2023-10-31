@@ -97,6 +97,7 @@ public class AddWorkerController {
 
             } catch(Exception e) {
                 e.printStackTrace();
+                showAlert("Usuario ya existe", "Ya existe un usuario con ese mail");
             }
         }
     }

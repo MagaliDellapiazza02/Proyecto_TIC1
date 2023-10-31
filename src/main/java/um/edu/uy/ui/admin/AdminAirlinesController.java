@@ -61,6 +61,7 @@ public class AdminAirlinesController {
         }
     }
 
+
     @FXML
         void addAirlineButtonClicked(ActionEvent event) {
         close(event);

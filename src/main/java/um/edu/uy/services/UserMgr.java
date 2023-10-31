@@ -29,7 +29,7 @@ public class UserMgr {
 
         // Verifico si el cliente no existe
 
-        if (userRepository.findByDocument(user.getDocument()) != null) {
+        if (userRepository.findUserByMail(user.getMail()) != null) {
 
             throw new EntityAlreadyExists();
         }
@@ -73,6 +73,32 @@ public class UserMgr {
             }
         }
         return false;
+    }
+
+    public String checkWorkerLogIn(String mail, String password) {
+        if (!checkIfUserNameExists(mail)) {
+            return "None";
+        }
+        Optional<User> uOptional = userRepository.findByMail(mail);
+        if(uOptional.isPresent()) {
+            if(uOptional.get().getPassword().equals(password)) {
+                if (uOptional.get().getCompany().equals("aeropuerto")) {
+                    if (uOptional.get().getRole().equals("administrador")) {
+                        return "Admin Airport";
+                    } else {
+                        return "Worker Airport";
+                    }
+                } else {
+                    String airline = uOptional.get().getCompany();
+                    if (uOptional.get().getRole().equals("administrador")) {
+                        return "Admin " + airline;
+                    } else {
+                        return "Worker " + airline;
+                    }
+                }
+            }
+        }
+        return "None";
     }
 
     public List<User> getAllUsers()

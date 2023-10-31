@@ -10,7 +10,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -20,15 +19,12 @@ import org.springframework.stereotype.Component;
 import um.edu.uy.Main;
 import um.edu.uy.business.entities.Luggage;
 import um.edu.uy.business.entities.Session;
-import um.edu.uy.persistence.AirplaneRepository;
 import um.edu.uy.persistence.LuggageRepository;
 import um.edu.uy.persistence.PassengerRepository;
-import um.edu.uy.ui.user.LogInController;
+import um.edu.uy.ui.user.LogInControllerYaNoVa;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 @Component
@@ -49,7 +45,7 @@ public class TrackLuggageController implements Initializable {
     @Autowired
     private LuggageRepository luggageRepository;
     @Autowired
-    private LogInController loginController;
+    private LogInControllerYaNoVa loginController;
     @Autowired
     private PassengerRepository passengerRepository;
 
