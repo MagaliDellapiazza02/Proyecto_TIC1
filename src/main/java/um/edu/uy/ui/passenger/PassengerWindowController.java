@@ -11,8 +11,6 @@ import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 import um.edu.uy.Main;
 import org.springframework.stereotype.Controller;
-import um.edu.uy.Main;
-import um.edu.uy.ui.user.LogInController;
 
 @Component
 @Controller
@@ -63,7 +61,7 @@ public class PassengerWindowController {
     }
 
     @FXML
-    private void logOutButtonClicked(ActionEvent event) {
+    void logOutButtonClicked(ActionEvent event) {
 
         close(event);
         // Abrir la ventana de inicio de sesión (puede ser "LogIn.fxml")

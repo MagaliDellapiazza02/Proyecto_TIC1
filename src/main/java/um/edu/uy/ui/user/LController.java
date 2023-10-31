@@ -6,29 +6,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import um.edu.uy.Main;
 import um.edu.uy.business.entities.Session;
 import um.edu.uy.services.PassengerMgr;
 import um.edu.uy.services.UserMgr;
-import um.edu.uy.business.exceptions.InvalidInformation;
 import um.edu.uy.ui.passenger.SignUpController;
 
-import java.io.IOException;
 
-@Controller
 @Component
-@Getter
-public class LogInController {
+
+public class LController {
 
     @Autowired
     private UserMgr userMgr;
@@ -48,15 +42,10 @@ public class LogInController {
     @FXML
     private Button signUpButton;
 
-    @FXML
-    void close(ActionEvent actionEvent) {
-        Node source = (Node)  actionEvent.getSource();
-        Stage stage  = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
+
 
     @FXML
-    void loginButtonClicked(ActionEvent event) {
+    void logInButtonClicked(ActionEvent event) {
         // Obtener los valores de los campos de entrada
         String username = txtUsername.getText();
         String password = txtPassword.getText();
@@ -69,8 +58,61 @@ public class LogInController {
         }
 
         try {
+
             if (!passengerMgr.checkLogIn(username, password)) {
-                showAlert("Usuario invalido", "Mail no existe o contraseña incorrecta");
+                String checkedLogIn = userMgr.checkWorkerLogIn(username, password);
+
+                if (checkedLogIn.equals("None")) {
+                    showAlert("Usuario invalido", "Mail no existe o contraseña incorrecta");
+
+                }else if (checkedLogIn.equals("Admin Airport")) {
+                    Session.mail=username; //guardo el mail del usuario para acceder en otras instancias
+                    close(event);
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                    Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/UserAdminMenu.fxml"));
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setTitle("Menu Administrador");
+                    stage.setScene(scene);
+                    stage.show();
+
+                } else if (checkedLogIn.equals("Worker Airport")) {
+                    Session.mail=username; //guardo el mail del usuario para acceder en otras instancias
+                    close(event);
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                    Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/userAirport/AirportWorker.fxml"));
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setTitle("Menu Administrador");
+                    stage.setScene(scene);
+                    stage.show();
+
+                }else if (checkedLogIn.split(" ")[0].equals("Admin")) {
+                    Session.mail = username; //guardo el mail del usuario para acceder en otras instancias
+                    close(event);
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                    Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/airline/AlnWorkerAdmin.fxml"));
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setTitle("Aerolinea Administrador");
+                    stage.setScene(scene);
+                    stage.show();
+
+                } else if (checkedLogIn.split(" ")[0].equals("Worker")) {
+                    Session.mail = username; //guardo el mail del usuario para acceder en otras instancias
+                    close(event);
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setControllerFactory(Main.getContext()::getBean);
+                    Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/airline/AlnWorkerUser.fxml"));
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setTitle("Trabajador Aerolinea");
+                    stage.setScene(scene);
+                    stage.show();
+                }
 
             } else {
 
@@ -93,7 +135,6 @@ public class LogInController {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     private void registrarmeButtonClicked(ActionEvent event) {
@@ -129,40 +170,10 @@ public class LogInController {
     }
 
     @FXML
-    private void userLogIn(ActionEvent event) throws InvalidInformation {
-        if (txtUsername.getText() == null || txtPassword.getText().equals("") || txtPassword.getText() == null) {
-
-            showAlert(
-                    "Datos faltantes!",
-                    "No se ingresaron los datos necesarios para completar el ingreso.");
-
-        } else {
-
-            try {
-                String username = txtUsername.getText();
-                String password = txtPassword.getText();
-
-                //userMgr.logIn(username, password);
-
-                //Buscar el usuario en la base de datos y mostrarle su ventana correspondiente
-
-                showAlert("Bienvenido! " + username, "Se agrego con exito el usuario!");
-
-                close(event);
-
-            } catch (NumberFormatException e) {
-
-                showAlert(
-                        "Datos incorrectos !",
-                        "El documento no tiene el formato esperado (numérico).");
-
-            }
-        }
-    }
-
-    private void clean() {
-        txtUsername.setText(null);
-        txtPassword.setText(null);
+    void close(ActionEvent actionEvent) {
+        Node source = (Node)  actionEvent.getSource();
+        Stage stage  = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 
     private void showAlert(String title, String contextText) {
@@ -171,26 +182,5 @@ public class LogInController {
         alert.setHeaderText(null);
         alert.setContentText(contextText);
         alert.showAndWait();
-    }
-
-    @FXML
-    void backButtonClicked(ActionEvent event) {
-
-        close(event);
-
-        // Open the User window
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn1.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

@@ -6,15 +6,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import um.edu.uy.Main;
-import um.edu.uy.ui.user.LogInController;
 import um.edu.uy.ui.passenger.SignUpController;
-import um.edu.uy.ui.user.UserController;
 
 import java.io.IOException;
 
@@ -52,6 +48,9 @@ public class UserAdminWindowController {
 
         // Open the User window
         try {
+            close(event);
+
+
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
@@ -61,8 +60,6 @@ public class UserAdminWindowController {
             stage.setScene(scene);
             stage.setTitle("Admin Airlines");
             stage.show();
-
-            close(event);
 
 
         } catch (IOException e) {
@@ -121,7 +118,7 @@ public class UserAdminWindowController {
     }
 
     @FXML
-    void backButtonClicked(ActionEvent event) {
+    void logOutButtonClicked(ActionEvent event) {
 
         close(event);
 
@@ -130,7 +127,7 @@ public class UserAdminWindowController {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn1.fxml"));
+            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn.fxml"));
             Scene scene = new Scene(root);
             Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
             stage.setScene(scene);

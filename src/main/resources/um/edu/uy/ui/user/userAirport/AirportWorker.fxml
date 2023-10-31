@@ -32,27 +32,25 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.admin.UserAdminWindowController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.airport.AirportWorkerController">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false">
-               <graphic>
-                  <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar Sesion" />
-               </graphic>
-        </Menu>
-      </menus>
-    </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <children>
-            <Button fx:id="btnWorkers" layoutX="252.0" layoutY="103.0" mnemonicParsing="false" onAction="#adminWorkersbtnClicked" text="Administrar Trabajadores" />
-            <Button fx:id="btnAln" layoutX="252.0" layoutY="145.0" mnemonicParsing="false" onAction="#adminAln" prefHeight="25.0" prefWidth="147.0" text="Administrar Aerolíneas" />
-            <Button fx:id="btnAirports" layoutX="252.0" layoutY="192.0" mnemonicParsing="false" onAction="#adminAirports" text="Administrar Aeropuertos" />
-      </children>
+         <children>
+            <Button fx:id="btnLuggage" layoutX="255.0" layoutY="134.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="87.0" text="Valijas" />
+            <Button fx:id="btnFlights" layoutX="255.0" layoutY="215.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="87.0" text="Vuelos" />
+            <Button fx:id="btnLogOut" layoutX="22.0" layoutY="33.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar Sesión" />
+            <Label layoutX="192.0" layoutY="40.0" text="Trabajador Aerolinea">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Label>
+         </children>
     </AnchorPane>
   </children>
 </VBox>

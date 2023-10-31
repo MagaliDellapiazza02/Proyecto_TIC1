@@ -90,7 +90,7 @@ public class AlnWorkerAdminController {
     }
 
     @FXML
-    private void logOutButtonClicked(ActionEvent event) {
+    void logOutButtonClicked(ActionEvent event) {
 
         close(event);
 
