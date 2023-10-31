@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import um.edu.uy.Main;
 import um.edu.uy.services.UserMgr;
@@ -16,6 +17,7 @@ import um.edu.uy.ui.passenger.SignUpController;
 
 import java.io.IOException;
 
+@Component
 @Controller
 public class LogIn1Controller {
 

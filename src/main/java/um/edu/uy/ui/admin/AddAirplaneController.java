@@ -92,7 +92,7 @@ public class AddAirplaneController {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-                Parent root = fxmlLoader.load(AlnWorkerController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AlnWorker.fxml"));
+                Parent root = fxmlLoader.load(AlnWorkerController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AlnWorkerAdmin.fxml"));
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(scene);
