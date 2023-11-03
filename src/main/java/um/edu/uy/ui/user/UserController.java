@@ -3,17 +3,16 @@ package um.edu.uy.ui.user;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
-import um.edu.uy.services.UserMgr;
+import org.springframework.stereotype.Component;
 import um.edu.uy.business.entities.User;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
-import um.edu.uy.business.exceptions.InvalidInformation;
-import org.springframework.stereotype.Component;
+import um.edu.uy.services.UserMgr;
 
 @Component
 public class UserController {

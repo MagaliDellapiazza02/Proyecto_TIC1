@@ -1,7 +1,6 @@
 package um.edu.uy.business.entities;
 
 import jakarta.persistence.*;
-import javafx.scene.control.TextField;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 

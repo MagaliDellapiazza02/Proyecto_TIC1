@@ -1,13 +1,7 @@
 package um.edu.uy.persistence;
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import um.edu.uy.business.entities.Flight;
-import um.edu.uy.business.entities.Gate;
-import um.edu.uy.business.entities.Passenger;
-import org.hibernate.annotations.GenericGenerator;
-
-import java.util.List;
 
 public interface FlightRepository extends CrudRepository<Flight, String> {
 

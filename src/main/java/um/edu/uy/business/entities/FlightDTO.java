@@ -1,9 +1,6 @@
 package um.edu.uy.business.entities;
 
-import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
-import org.springframework.beans.factory.annotation.Autowired; //   ?
 
 import java.util.Date;
 //import java.sql.Date;

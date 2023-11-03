@@ -1,6 +1,9 @@
 package um.edu.uy.business.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,8 +24,6 @@ public class GateReservation {
     @GenericGenerator(name="reserves", strategy = "increment")
     private Long id;
 
-    private Long reservationNumber;
-
     @ManyToOne
     private Airport airport;
 
@@ -36,4 +37,11 @@ public class GateReservation {
 
     private Time occupiedTime;
 
+    public GateReservation(Airport airport, Gate gate, Date date, Flight designatedFlight, Time occupiedTime) {
+        this.airport = airport;
+        this.gate = gate;
+        this.date = date;
+        this.designatedFlight = designatedFlight;
+        this.occupiedTime = occupiedTime;
+    }
 }

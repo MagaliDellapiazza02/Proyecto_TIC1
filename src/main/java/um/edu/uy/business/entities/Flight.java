@@ -1,9 +1,7 @@
 package um.edu.uy.business.entities;
 
-import lombok.*;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -33,11 +31,11 @@ public class Flight {
     // Detalles de la Ruta:
     @ManyToOne // muchos vuelos pueden salir y llegar a un aeropuerto
     private Airport originAirport;
-    private String originAirportIATA = originAirport.getIATA();
+    private String originAirportIATA;
 
     @ManyToOne // muchos vuelos pueden salir y llegar a un aeropuerto
     private Airport destinyAirport;
-    private String destinyAirportIATA = destinyAirport.getIATA();
+    private String destinyAirportIATA;
 
     //Horarios del Vuelo:
     private Date scheduledDeparture;  //ETD
@@ -54,13 +52,20 @@ public class Flight {
     @ManyToMany(mappedBy = "flights")
     private List<Luggage> luggages = new LinkedList<>();
 
-    public Flight(Airline airlineOwner, Airport originAirport, Airport destinyAirport, Airplane airplane, Date scheduledDeparture, Date scheduledArrival, String flightNumber) {
+
+
+    public Flight(Airline airlineOwner, Airport originAirport, Airport destinyAirport, Airplane airplane, Date scheduledDeparture, Date scheduledArrival, String flightNumber){
         this.airlineOwner = airlineOwner;
         this.originAirport = originAirport;
         this.destinyAirport = destinyAirport;
         this.airplane = airplane;
         this.scheduledDeparture = scheduledDeparture;
         this.scheduledArrival = scheduledArrival;
+
+        this.flightState = "Pending";
+
+        this.originAirportIATA = originAirport.getIATA();
+        this.destinyAirportIATA = destinyAirport.getIATA();
         this.flightNumber = flightNumber;
     }
 }

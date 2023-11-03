@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import um.edu.uy.Main;
 import um.edu.uy.ui.PublicMethods;
-import um.edu.uy.ui.passenger.SignUpController;
 
 import java.io.IOException;
 

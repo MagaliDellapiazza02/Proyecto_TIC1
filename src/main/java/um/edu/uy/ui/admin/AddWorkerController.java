@@ -1,26 +1,13 @@
 package um.edu.uy.ui.admin;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import um.edu.uy.Main;
-import um.edu.uy.business.entities.Passenger;
 import um.edu.uy.business.entities.User;
-import um.edu.uy.services.PassengerMgr;
 import um.edu.uy.services.UserMgr;
 import um.edu.uy.ui.PublicMethods;
-import um.edu.uy.ui.passenger.SignUpController;
-
-import java.awt.event.ActionEvent;
-import java.io.IOException;
 
 @Component
 public class AddWorkerController {

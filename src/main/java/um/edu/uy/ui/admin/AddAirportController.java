@@ -1,23 +1,14 @@
 package um.edu.uy.ui.admin;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import um.edu.uy.Main;
 import um.edu.uy.business.entities.Airport;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.persistence.AirportRepository;
 import um.edu.uy.ui.PublicMethods;
-
-import java.io.IOException;
 
 @Component
 public class AddAirportController {

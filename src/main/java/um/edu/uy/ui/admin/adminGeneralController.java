@@ -2,22 +2,12 @@ package um.edu.uy.ui.admin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import um.edu.uy.Main;
 import um.edu.uy.services.UserMgr;
 import um.edu.uy.ui.PublicMethods;
-import um.edu.uy.ui.passenger.SignUpController;
-
-import java.io.IOException;
 
 @Controller
 public class adminGeneralController {

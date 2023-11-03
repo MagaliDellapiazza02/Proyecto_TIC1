@@ -1,6 +1,5 @@
 package um.edu.uy.business.entities;
 
-import um.edu.uy.business.entities.Gate;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
