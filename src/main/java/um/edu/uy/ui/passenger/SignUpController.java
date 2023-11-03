@@ -16,6 +16,7 @@ import um.edu.uy.business.entities.Passenger;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.services.PassengerMgr;
 import org.springframework.stereotype.Component;
+import um.edu.uy.ui.PublicMethods;
 
 import java.io.IOException;
 
@@ -30,6 +31,12 @@ public class SignUpController {
 
     @FXML
     private TextField txtDocument;
+
+    @FXML
+    private TextField txtPassport;
+
+    @FXML
+    private TextField txtNationality;
 
     @FXML
     private TextField txtMail;
@@ -67,75 +74,46 @@ public class SignUpController {
     public void registrarmeButtonClicked(ActionEvent event) {
         // Checkear que se haya llenado todos los espacios
         if (txtDocument.getText() == null || txtDocument.getText().equals("") ||
+                txtPassport.getText() == null || txtPassport.getText().equals("") ||
+                txtNationality.getText() == null || txtNationality.getText().equals("") ||
                 txtName.getText() == null || txtName.getText().equals("") ||
                 txtMail.getText() == null || txtMail.getText().equals("") ||
                 txtPassword.getText() == null || txtPassword.getText().equals("") ||
                 txtPasswordC.getText() == null || txtPasswordC.getText().equals("")) {
 
-            showAlert(
+            PublicMethods.showAlert(
                     "Datos faltantes!",
                     "No se ingresaron los datos necesarios para completar el ingreso.");
 
         } else if (!txtPassword.getText().equals(txtPasswordC.getText())){
-            showAlert(
+            PublicMethods.showAlert(
                     "ERROR Contraseña!",
                     "Se ingresaron dos contraseñas distintas.");
 
         } else{
                 try {
-                    Long document = Long.valueOf(txtDocument.getText());
+                    long document = Long.valueOf(txtDocument.getText());
+                    String passport = txtPassport.getText();
+                    String nationality = txtNationality.getText();
                     String name = txtName.getText();
                     String mail = txtMail.getText();
                     String password = txtPassword.getText();
 
-                    Passenger newP = new Passenger(document, name, mail, password);
+                    Passenger newP = new Passenger(document, passport, nationality, name, mail, password);
                     passengerMgr.addPassenger(newP);
 
-
-                    //Mostrar ventana
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-                    Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/passenger/PassengerWindow.fxml"));
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
-                    stage.setScene(scene);
-                    stage.show();
+                    PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/passenger/PassengerWindow.fxml", "Pasajero");
 
                 } catch(Exception e) {
                     e.printStackTrace();
+                    PublicMethods.showAlert("ERROR!", "Ya existe un usuario con este mail.");
                 }
         }
     }
 
-    private void showAlert(String title, String contextText) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(contextText);
-        alert.showAndWait();
-    }
-
     @FXML
-    void backButtonClicked(ActionEvent event) throws Exception {
-
-        close(event);
-
-        // Open the User window
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+    void backButtonClicked(ActionEvent event){
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/LogIn.fxml", "Log In");
     }
 
 }

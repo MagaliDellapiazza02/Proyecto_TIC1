@@ -79,8 +79,6 @@ public class UserController {
                 String name = txtName.getText();
                 String address = txtAddress.getText();
 
-                try {
-
                     User user = new User();
 
                     userMgr.addUser(user);
@@ -89,10 +87,6 @@ public class UserController {
 
                     close(event);
 
-                } catch (InvalidInformation invalidInformation) {
-                    showAlert(
-                            "Informacion invalida !",
-                            "Se encontro un error en los datos ingresados.");
                 } catch (EntityAlreadyExists entityAlreadyExists) {
 
                     showAlert(
@@ -100,13 +94,13 @@ public class UserController {
                             "El documento indicado ya ha sido registrado en el sistema).");
                 }
 
-            } catch (NumberFormatException e) {
+            /*} catch (NumberFormatException e) {
 
                 showAlert(
                         "Datos incorrectos !",
                         "El documento no tiene el formato esperado (numerico).");
 
-            }
+            }*/
         }
 
     }

@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 import um.edu.uy.Main;
+import um.edu.uy.ui.PublicMethods;
 import um.edu.uy.ui.passenger.SignUpController;
 
 import java.io.IOException;
@@ -33,53 +34,14 @@ public class AdminAirlinesController {
     private Label labTitle;
 
     @FXML
-    void close(ActionEvent actionEvent) {
-        Node source = (Node)  actionEvent.getSource();
-        Stage stage  = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
     void backButtonClicked(ActionEvent event) {
-
-        close(event);
-
-        // Open the User window
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/UserAdminMenu.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Admin Menu");
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/admin/UserAdminMenu.fxml", "Admin Menu");
     }
 
 
     @FXML
-        void addAirlineButtonClicked(ActionEvent event) {
-        close(event);
-
-        // Open Add Airline window
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AddAirline.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Crear Aerolinea");
-            stage.show();
-
-        } catch (IOException e){
-            e.printStackTrace();
-        }
+    void addAirlineButtonClicked(ActionEvent event) {
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/admin/AddAirline.fxml", "Crear Aerolinea");
     }
+
 }

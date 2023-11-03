@@ -41,7 +41,7 @@
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.admin.AddWorkerController">
   <children>
-      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="424.0" prefWidth="586.0">
+      <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="640.0">
          <children>
             <Label layoutX="66.0" layoutY="88.0" text="Nombre Completo:" />
             <Label layoutX="103.0" layoutY="128.0" text="Documento:" />
@@ -52,18 +52,23 @@
                   <Font size="32.0" />
                </font>
             </Label>
-            <Label layoutX="114.0" layoutY="245.0" text="Direccion:" />
+            <Label layoutX="114.0" layoutY="314.0" text="Direccion:" />
             <Label layoutX="147.0" layoutY="209.0" text="Rol:" />
-            <Label layoutX="103.0" layoutY="283.0" text="Contraseña:" />
-            <Label layoutX="47.0" layoutY="320.0" text="Confirmar Contraseña:" />
+            <Label layoutX="103.0" layoutY="352.0" text="Contraseña:" />
+            <Label layoutX="47.0" layoutY="389.0" text="Confirmar Contraseña:" />
             <TextField fx:id="txtDocument" layoutX="186.0" layoutY="124.0" prefHeight="25.0" prefWidth="251.0" />
-            <TextField fx:id="txtMail" layoutX="186.0" layoutY="165.0" prefHeight="25.0" prefWidth="251.0" />
-            <TextField fx:id="txtRole" layoutX="185.0" layoutY="205.0" prefHeight="25.0" prefWidth="251.0" />
-            <TextField fx:id="txtAddress" layoutX="185.0" layoutY="241.0" prefHeight="25.0" prefWidth="251.0" />
-            <TextField fx:id="txtPassword" layoutX="185.0" layoutY="279.0" prefHeight="25.0" prefWidth="251.0" />
-            <TextField fx:id="txtPasswordC" layoutX="184.0" layoutY="316.0" prefHeight="25.0" prefWidth="251.0" />
-            <Button fx:id="btnAdd" layoutX="415.0" layoutY="369.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="63.0" onAction="#addBtnClicked" text="Crear" />
-            <Button fx:id="btnBack" layoutX="35.0" layoutY="369.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="63.0" onAction="#backButtonClicked" text="Atras" />
+            <TextField fx:id="txtMail" layoutX="186.0" layoutY="165.0" prefHeight="25.0" prefWidth="251.0" promptText="jperez@gmail.com" />
+            <TextField fx:id="txtRole" layoutX="185.0" layoutY="205.0" prefHeight="25.0" prefWidth="251.0" promptText="administrador, maletero, otro" />
+            <TextField fx:id="txtAddress" layoutX="185.0" layoutY="310.0" prefHeight="25.0" prefWidth="251.0" />
+            <TextField fx:id="txtPassword" layoutX="185.0" layoutY="348.0" prefHeight="25.0" prefWidth="251.0" />
+            <TextField fx:id="txtPasswordC" layoutX="184.0" layoutY="385.0" prefHeight="25.0" prefWidth="251.0" />
+            <Button fx:id="btnLogOut" layoutX="11.0" layoutY="22.0" mnemonicParsing="false" onAction="#logOutButtonClicked" prefHeight="32.0" prefWidth="111.0" text="Cerrar Sesion" />
+            <Label layoutX="92.0" layoutY="245.0" text="Nacionalidad:" />
+            <Label layoutX="114.0" layoutY="280.0" text="Telefono:" />
+            <TextField fx:id="txtNationality" layoutX="186.0" layoutY="241.0" prefHeight="25.0" prefWidth="251.0" />
+            <TextField fx:id="txtTelephone" layoutX="186.0" layoutY="276.0" prefHeight="25.0" prefWidth="251.0" />
+            <Button fx:id="btnAdd" layoutX="437.0" layoutY="427.0" mnemonicParsing="false" onAction="#addBtnClicked" prefHeight="32.0" prefWidth="63.0" text="Crear" />
+            <Button fx:id="btnBack" layoutX="16.0" layoutY="443.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="32.0" prefWidth="63.0" text="Atras" />
          </children>
       </AnchorPane>
   </children>
