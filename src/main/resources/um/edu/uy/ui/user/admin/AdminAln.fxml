@@ -36,8 +36,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.admin.AdminAirlinesController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.admin.AdminAirlinesController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
@@ -48,8 +47,7 @@
                   <Font size="31.0" />
                </font>
             </Label>
-            <Button fx:id="btnDelete" layoutX="212.0" layoutY="175.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Borrar Aerolínea" />
-            <Button fx:id="btnSearch" layoutX="210.0" layoutY="216.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Buscar Aerolínea" />
+            <Button fx:id="btnSearch" layoutX="211.0" layoutY="200.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Buscar Aerolínea" />
       </children>
     </AnchorPane>
   </children>

@@ -15,6 +15,7 @@ import um.edu.uy.Main;
 import um.edu.uy.business.entities.Airport;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.persistence.AirportRepository;
+import um.edu.uy.ui.PublicMethods;
 
 import java.io.IOException;
 
@@ -38,14 +39,6 @@ public class AddAirportController {
     @Autowired
     private AirportRepository airportRepository;
 
-
-    @FXML
-    private void close(javafx.event.ActionEvent actionEvent) {
-        Node source = (Node) actionEvent.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
-
     private void addAirport(Airport a) throws EntityAlreadyExists {
         //verificar en el front que los datos sean de tipo correcto antes de crear el aeropuerto. Checkear que el role este correcto
 
@@ -62,7 +55,7 @@ public class AddAirportController {
         if (txtIATA.getText() == null || txtIATA.getText().equals("") || txtName.getText() == null || txtName.getText().equals("") || txtType.getText() == null || txtType.getText().equals("")) {
             System.out.println("faltaron datos");
 
-            showAlert("Datos faltantes!", "No se ingresaron los datos necesarios para completar el ingreso.");
+            PublicMethods.showAlert("Datos faltantes!", "No se ingresaron los datos necesarios para completar el ingreso.");
 
         } else {
             try {
@@ -73,58 +66,21 @@ public class AddAirportController {
 
                 Airport newA = new Airport(name, type, IATA);
                 addAirport(newA);
-                showAlert("Éxito", "Aeropuerto creado con éxito");
+                PublicMethods.showAlert("Éxito", "Aeropuerto creado con éxito");
 
             } catch (Exception e) {
                 e.printStackTrace();
-                showAlert("Error", "Hubo un error al guardar el aeropuerto");
+                PublicMethods.showAlert("Error", "Hubo un error al guardar el aeropuerto");
             }
-            close(event);
 
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-                Parent root = fxmlLoader.load(AdminAirportsController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AdminAirports.fxml"));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.setTitle("Administrar aeropuertos");
-                stage.show();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/admin/AdminAirports.fxml", "Administrar aeropuertos");
         }
-    }
-
-    @FXML
-    private void showAlert(String title, String contextText) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(contextText);
-        alert.showAndWait();
     }
 
     @FXML
     void backButtonClicked(javafx.event.ActionEvent event) {
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/admin/AdminAirports.fxml", "Admin Worker");
 
-        close(event);
-
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(AdminAirportsController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AdminAirports.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Admin Worker");
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
+
 }

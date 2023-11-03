@@ -24,6 +24,10 @@ public class Passenger {
 
     private long document;
 
+    private String passport;
+
+    private String nationality;
+
     private String name;
 
     private String mail;
@@ -36,7 +40,7 @@ public class Passenger {
     @ManyToMany
     private List<Flight> flights = new ArrayList<>();
 
-    public Passenger(long document, String name, String mail, String password) {
+    public Passenger(long document, String passport, String nationality, String name, String mail, String password) {
         this.document = document;
         this.name = name;
         this.mail = mail;

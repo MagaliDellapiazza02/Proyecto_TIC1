@@ -13,8 +13,10 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import um.edu.uy.Main;
+import um.edu.uy.business.entities.Session;
 import um.edu.uy.business.entities.User;
 import um.edu.uy.services.UserMgr;
+import um.edu.uy.ui.PublicMethods;
 import um.edu.uy.ui.passenger.SignUpController;
 
 @Component
@@ -50,6 +52,12 @@ public class AddWorkerAlnController {
     @FXML
     private TextField txtPasswordC;
 
+    @FXML
+    private TextField txtNationality;
+
+    @FXML
+    private TextField txtTelephone;
+
     @Autowired
     private UserMgr userMgr;
 
@@ -61,15 +69,17 @@ public class AddWorkerAlnController {
                 txtMail.getText() == null || txtMail.getText().equals("") ||
                 txtAddress.getText() == null || txtAddress.getText().equals("") ||
                 txtRole.getText() == null || txtRole.getText().equals("") ||
+                txtNationality.getText() == null || txtNationality.getText().equals("") ||
+                txtTelephone.getText() == null || txtTelephone.getText().equals("") ||
                 txtPassword.getText() == null || txtPassword.getText().equals("") ||
                 txtPasswordC.getText() == null || txtPasswordC.getText().equals("")) {
 
-            showAlert(
+            PublicMethods.showAlert(
                     "Datos faltantes!",
                     "No se ingresaron los datos necesarios para completar el ingreso.");
 
         } else if (!txtPassword.getText().equals(txtPasswordC.getText())){
-            showAlert(
+            PublicMethods.showAlert(
                     "ERROR Contraseña!",
                     "Se ingresaron dos contraseñas distintas.");
 
@@ -80,73 +90,34 @@ public class AddWorkerAlnController {
                 String mail = txtMail.getText();
                 String password = txtPassword.getText();
                 String address = txtAddress.getText();
-                String company = "thisAirline"; //CORREGIR ESTO!!!
                 String role = txtRole.getText();
+                String nationality = txtNationality.getText();
+                String telephone = txtTelephone.getText();
 
-                User newU = new User(document, name, mail, password, address, company, role);
-                userMgr.addUser(newU);
+                //Setear company
+                String company = userMgr.getAirlineByMail(Session.mail);
+                if (company.equals("None")) {
+                    PublicMethods.showAlert("ERROR", "No está autorizado a agregar trabajadores");
+                } else {
+                    User newU = new User(document, name, mail, password, address, company, role, nationality, telephone);
+                    userMgr.addUser(newU);
+                }
 
             } catch(Exception e) {
                 e.printStackTrace();
+                PublicMethods.showAlert("ERROR!", "Ya existe un usuario con ese mail");
             }
         }
     }
 
     @FXML
-    private void showAlert(String title, String contextText) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(contextText);
-        alert.showAndWait();
-    }
-
-    @FXML
     void backButtonClicked(ActionEvent event) {
-        close(event);
-
-        try {
-
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/airline/AlnWorkerAdmin.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Administrador Aerolinea");
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airline/AlnWorkerAdmin.fxml", "Administrador Aerolinea");
     }
 
     @FXML
     void logOutButtonClicked(ActionEvent event) {
-        close(event);
-
-        try {
-
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn1.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Log In");
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        PublicMethods.logOut(event);
     }
 
-    @FXML
-    private void close(ActionEvent actionEvent) {
-        Node source = (Node)  actionEvent.getSource();
-        Stage stage  = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
 }

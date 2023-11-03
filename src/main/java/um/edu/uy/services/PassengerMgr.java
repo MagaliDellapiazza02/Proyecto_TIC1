@@ -17,10 +17,13 @@ public class PassengerMgr {
     @Autowired
     private PassengerRepository passengerRepository;
 
+
+    private UserRepository userRepository;
+
     public void addPassenger(Passenger p) throws EntityAlreadyExists {
         //verificar en el front que los datos sean de tipo correcto antes de crear el usuario. Checkear que el role este correcto
 
-        if(passengerRepository.findByDocument(p.getDocument()) != null ||  checkIfUserNameExists(p.getMail())) {
+        if(passengerRepository.findByDocument(p.getDocument()) != null ||  checkIfUserNameExists(p.getMail()) || checkIfUserMailExists(p.getMail())) {
             throw new EntityAlreadyExists();
         }
 
@@ -30,6 +33,11 @@ public class PassengerMgr {
     public boolean checkIfUserNameExists(String mail) {
         Optional<Passenger> passengerOptional = passengerRepository.findByMail(mail);
         return passengerOptional.isPresent();
+    }
+
+    public boolean checkIfUserMailExists(String mail) {
+        Optional<User> userOptional = userRepository.findByMail(mail);
+        return userOptional.isPresent();
     }
 
     public boolean checkLogIn(String mail, String password) {

@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
 import um.edu.uy.Main;
+import um.edu.uy.ui.PublicMethods;
 import um.edu.uy.ui.passenger.SignUpController;
 
 @Component
@@ -27,23 +28,7 @@ public class AirportWorkerController {
     @FXML
     private void logOutButtonClicked(ActionEvent event) {
 
-        close(event);
-        // Abrir la ventana de inicio de sesión (puede ser "LogIn.fxml")
-        try {
-
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Log In");
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        PublicMethods.logOut(event);
     }
 
     @FXML

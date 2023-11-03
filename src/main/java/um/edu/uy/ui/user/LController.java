@@ -17,6 +17,7 @@ import um.edu.uy.Main;
 import um.edu.uy.business.entities.Session;
 import um.edu.uy.services.PassengerMgr;
 import um.edu.uy.services.UserMgr;
+import um.edu.uy.ui.PublicMethods;
 import um.edu.uy.ui.passenger.SignUpController;
 
 
@@ -53,7 +54,7 @@ public class LController {
         // Verificar si los campos de usuario y contraseña son nulos o están vacíos
         if (username == null || username.isEmpty() || password == null || password.isEmpty()) {
             // Mostrar una alerta de campos vacíos
-            showAlert("Campos vacíos", "Por favor, complete todos los campos.");
+            PublicMethods.showAlert("Campos vacíos", "Por favor, complete todos los campos.");
             return; // No hacer nada más si los campos son nulos o vacíos
         }
 
@@ -63,76 +64,34 @@ public class LController {
                 String checkedLogIn = userMgr.checkWorkerLogIn(username, password);
 
                 if (checkedLogIn.equals("None")) {
-                    showAlert("Usuario invalido", "Mail no existe o contraseña incorrecta");
+                    PublicMethods.showAlert("Usuario invalido", "Mail no existe o contraseña incorrecta");
 
                 }else if (checkedLogIn.equals("Admin Airport")) {
                     Session.mail=username; //guardo el mail del usuario para acceder en otras instancias
-                    close(event);
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-                    Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/UserAdminMenu.fxml"));
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    stage.setTitle("Menu Administrador");
-                    stage.setScene(scene);
-                    stage.show();
+                    PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/admin/UserAdminMenu.fxml", "Menu Administrador");
 
                 } else if (checkedLogIn.equals("Worker Airport")) {
                     Session.mail=username; //guardo el mail del usuario para acceder en otras instancias
-                    close(event);
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-                    Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/userAirport/AirportWorker.fxml"));
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    stage.setTitle("Menu Administrador");
-                    stage.setScene(scene);
-                    stage.show();
+                    PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/userAirport/AirportWorker.fxml", "Menu Administrador");
 
                 }else if (checkedLogIn.split(" ")[0].equals("Admin")) {
                     Session.mail = username; //guardo el mail del usuario para acceder en otras instancias
-                    close(event);
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-                    Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/airline/AlnWorkerAdmin.fxml"));
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    stage.setTitle("Aerolinea Administrador");
-                    stage.setScene(scene);
-                    stage.show();
+                    PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airline/AlnWorkerAdmin.fxml", "Aerolinea Administrador");
 
                 } else if (checkedLogIn.split(" ")[0].equals("Worker")) {
                     Session.mail = username; //guardo el mail del usuario para acceder en otras instancias
-                    close(event);
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-                    Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/airline/AlnWorkerUser.fxml"));
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    stage.setTitle("Trabajador Aerolinea");
-                    stage.setScene(scene);
-                    stage.show();
+                    PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airline/AlnWorkerUser.fxml", "Trabajador Aerolinea");
+
                 }
 
             } else {
-
                 Session.mail=username; //guardo el mail del usuario para acceder en otras instancias
-
-                close(event);
-
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-                Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/passenger/PassengerWindow.fxml"));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setTitle("Pasajero");
-                stage.setScene(scene);
-                stage.show();
+                PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/passenger/PassengerWindow.fxml", "Pasajero");
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+            PublicMethods.showAlert("ERROR", "No se pudo iniciar sesion");
         }
     }
 
@@ -167,20 +126,5 @@ public class LController {
             return true; // La ventana de registro está abierta
         }
         return false; // La ventana de registro no está abierta
-    }
-
-    @FXML
-    void close(ActionEvent actionEvent) {
-        Node source = (Node)  actionEvent.getSource();
-        Stage stage  = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
-
-    private void showAlert(String title, String contextText) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(contextText);
-        alert.showAndWait();
     }
 }

@@ -16,35 +16,10 @@ public class AirlineMgr {
     @Autowired
     private AirlineRepository airlineRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
-    public void addAirline(Airline airline)
-            throws InvalidInformation, EntityAlreadyExists {
-
-        if (airline.getAlnName()== null || "".equals(airline.getAlnCountry()) || airline.getAlnIATA() == null || "".equals(airline.getAlnICAO())) {
-            //hacer algo
-            throw new InvalidInformation("Alguno de los datos ingresados no es correcto");
-
-        }
-
-        // Verifico si no existe
-
+    public void addAirline(Airline airline) throws EntityAlreadyExists {
         if (airlineRepository.findOneByAlnIATA(airline.getAlnIATA()) != null) {
-
             throw new EntityAlreadyExists();
         }
-
         airlineRepository.save(airline);
-
-        //Asignarle un trabajador a la aerolinea, admin de aerolinea
-
-        // password: iata de aerolinea, mail: nombre de la aerolinea
-        User adminAirline = new User(airline.getAlnIATA(),airline.getAlnName()); //
-        adminAirline.setRole("adminAirline");
-        adminAirline.setCompany(airline.getAlnName());
-        userRepository.save(adminAirline);
-        // document = ? , restriccion not null en la tabla
-
     }
 }

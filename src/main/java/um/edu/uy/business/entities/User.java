@@ -36,7 +36,11 @@ public class User {
 
     private String role;
 
-    public User(long document, String name, String mail, String password, String address, String company, String role) {
+    private String nacionality;
+
+    private String telephone;
+
+    public User(long document, String name, String mail, String password, String address, String company, String role, String nacionality, String telephone) {
         this.document = document;
         this.name = name;
         this.mail = mail;
@@ -44,6 +48,8 @@ public class User {
         this.address = address;
         this.company = company;
         this.role = role;
+        this.nacionality = nacionality;
+        this.telephone = telephone;
     }
 
     public User(String password, String mail) {

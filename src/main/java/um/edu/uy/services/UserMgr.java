@@ -6,6 +6,7 @@ import um.edu.uy.business.entities.Passenger;
 import um.edu.uy.business.entities.User;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.business.exceptions.InvalidInformation;
+import um.edu.uy.persistence.PassengerRepository;
 import um.edu.uy.persistence.UserRepository;
 
 import java.util.ArrayList;
@@ -18,23 +19,46 @@ public class UserMgr {
     @Autowired
     private UserRepository userRepository;
 
-    public void addUser(User user)
-            throws InvalidInformation, EntityAlreadyExists {
 
-        if (user.getName() == null || "".equals(user.getName()) || user.getAddress() == null || "".equals(user.getAddress())) {
-            //hacer algo
-            throw new InvalidInformation("Alguno de los datos ingresados no es correcto");
+    private PassengerRepository passengerRepository;
 
-        }
-
-        // Verifico si el cliente no existe
-
-        if (userRepository.findUserByMail(user.getMail()) != null) {
-
+    public void addUser(User user) throws EntityAlreadyExists {
+        if (checkIfUserMailExists(user.getMail()) || checkIfUserNameExists(user.getMail())) {
             throw new EntityAlreadyExists();
+        } else {
+            userRepository.save(user);
         }
+    }
 
-        userRepository.save(user);
+    public boolean checkIfUserMailExists(String mail) {
+        Optional<User> userOptional = userRepository.findByMail(mail);
+        return userOptional.isPresent();
+    }
+
+
+    public boolean deleteUser(long doc) {
+        User u = userRepository.findByDocument(doc);
+        if (u != null){
+            userRepository.delete(u);
+            return true;
+        }
+        return false;
+    }
+
+    public String getAirlineByMail(String mail) {
+        User u = userRepository.findUserByMail(mail);
+        if(u != null) {
+            return u.getCompany();
+        }
+        return "None";
+    }
+
+    public String getRoleByMail(String mail) {
+        User u = userRepository.findUserByMail(mail);
+        if(u != null) {
+            return u.getRole();
+        }
+        return "None";
     }
 
     public void loginUser(User user)
