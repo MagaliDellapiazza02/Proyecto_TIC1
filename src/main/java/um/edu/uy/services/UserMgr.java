@@ -45,7 +45,7 @@ public class UserMgr {
         return false;
     }
 
-    public String getAirlineByMail(String mail) {
+    public String getCompanyByMail(String mail) {
         User u = userRepository.findUserByMail(mail);
         if(u != null) {
             return u.getCompany();
@@ -101,12 +101,14 @@ public class UserMgr {
 
     public String checkWorkerLogIn(String mail, String password) {
         if (!checkIfUserNameExists(mail)) {
-            return "None";
+            return "No User";
         }
         Optional<User> uOptional = userRepository.findByMail(mail);
         if(uOptional.isPresent()) {
             if(uOptional.get().getPassword().equals(password)) {
-                if (uOptional.get().getCompany().equals("aeropuerto")) {
+                if (uOptional.get().getCompany().equals("Administrador Sistema")) {
+                    return "Admin System";
+                }else if (uOptional.get().getCompany().split("$")[0].equals("Aeropuerto")) {
                     if (uOptional.get().getRole().equals("administrador")) {
                         return "Admin Airport";
                     } else {
@@ -122,7 +124,7 @@ public class UserMgr {
                 }
             }
         }
-        return "None";
+        return "No User";
     }
 
     public List<User> getAllUsers()

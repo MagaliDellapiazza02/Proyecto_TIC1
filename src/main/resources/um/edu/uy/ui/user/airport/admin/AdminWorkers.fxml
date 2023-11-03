@@ -34,22 +34,21 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.admin.UserAdminWindowController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.airport.admin.AdminWorkersController">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false">
-               <graphic>
-                  <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar Sesion" />
-               </graphic>
-        </Menu>
-      </menus>
-    </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button fx:id="btnAln" layoutX="252.0" layoutY="145.0" mnemonicParsing="false" onAction="#adminAln" prefHeight="25.0" prefWidth="147.0" text="Administrar Aerolíneas" />
-            <Button fx:id="btnAirports" layoutX="252.0" layoutY="192.0" mnemonicParsing="false" onAction="#adminAirports" text="Administrar Aeropuertos" />
+            <Button fx:id="btnBack" layoutX="34.0" layoutY="321.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atras" />
+            <Button fx:id="btnAddWroker" layoutX="242.0" layoutY="136.0" mnemonicParsing="false" onAction="#addWorkerButtonClicked" prefHeight="25.0" prefWidth="109.0" text="Crear Trabajador" />
+            <Label fx:id="labTitle" layoutX="132.0" layoutY="29.0" text="Administrar Trabajadores">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnDeleteWorker" layoutX="242.0" layoutY="194.0" mnemonicParsing="false" onAction="#deleteButtonClicked" text="Borrar Trabajador" />
+            <Button fx:id="btnLogOut" layoutX="12.0" layoutY="17.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar Sesion" />
       </children>
     </AnchorPane>
   </children>

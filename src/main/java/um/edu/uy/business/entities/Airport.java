@@ -21,6 +21,8 @@ public class Airport {
 
     private String name;
 
+    private String country;
+
     private String type;
 
     private String IATA;
@@ -28,8 +30,9 @@ public class Airport {
     @OneToMany(mappedBy = "airport")
     private List<Gate> gates;
 
-    public Airport(String name, String type, String IATA) {
+    public Airport(String name, String country, String type, String IATA) {
         this.name = name;
+        this.country = country;
         this.type = type;
         this.IATA = IATA;
         gates = new LinkedList<Gate>();

@@ -48,43 +48,28 @@ public class SignUpController {
     @Autowired
     private PassengerMgr passengerMgr;
 
-    @FXML
-    void close(ActionEvent actionEvent) {
-        Node source = (Node)  actionEvent.getSource();
-        Stage stage  = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    private void iniciarSesionButtonClicked() {
-        // Manejar el evento del botón "Iniciar Sesión" aquí
-        // Puedes abrir una nueva ventana o realizar otra acción necesaria
-        // Obtener los valores de los campos de entrada
-        String username = txtName.getText();
-        String password = txtPassword.getText();
-    }
 
     @FXML
     public void registrarmeButtonClicked(ActionEvent event) {
-        // Checkear que se haya llenado todos los espacios
-        if (txtDocument.getText() == null || txtDocument.getText().equals("") ||
-                txtPassport.getText() == null || txtPassport.getText().equals("") ||
-                txtNationality.getText() == null || txtNationality.getText().equals("") ||
-                txtName.getText() == null || txtName.getText().equals("") ||
-                txtMail.getText() == null || txtMail.getText().equals("") ||
-                txtPassword.getText() == null || txtPassword.getText().equals("") ||
-                txtPasswordC.getText() == null || txtPasswordC.getText().equals("")) {
+        try {
+            if (txtDocument.getText() == null || txtDocument.getText().equals("") ||
+                    txtPassport.getText() == null || txtPassport.getText().equals("") ||
+                    txtNationality.getText() == null || txtNationality.getText().equals("") ||
+                    txtName.getText() == null || txtName.getText().equals("") ||
+                    txtMail.getText() == null || txtMail.getText().equals("") ||
+                    txtPassword.getText() == null || txtPassword.getText().equals("") ||
+                    txtPasswordC.getText() == null || txtPasswordC.getText().equals("")) {
 
-            PublicMethods.showAlert(
-                    "Datos faltantes!",
-                    "No se ingresaron los datos necesarios para completar el ingreso.");
+                PublicMethods.showAlert(
+                        "Datos faltantes!",
+                        "No se ingresaron los datos necesarios para completar el ingreso.");
 
-        } else if (!txtPassword.getText().equals(txtPasswordC.getText())){
-            PublicMethods.showAlert(
-                    "ERROR Contraseña!",
-                    "Se ingresaron dos contraseñas distintas.");
+            } else if (!txtPassword.getText().equals(txtPasswordC.getText())){
+                PublicMethods.showAlert(
+                        "ERROR Contraseña!",
+                        "Se ingresaron dos contraseñas distintas.");
 
-        } else{
+            } else{
                 try {
                     long document = Long.valueOf(txtDocument.getText());
                     String passport = txtPassport.getText();
@@ -102,7 +87,12 @@ public class SignUpController {
                     e.printStackTrace();
                     PublicMethods.showAlert("ERROR!", "Ya existe un usuario con este mail.");
                 }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            PublicMethods.showAlert("ERROR!", "Ingrese correctamente todos los espacios");
         }
+
     }
 
     @FXML

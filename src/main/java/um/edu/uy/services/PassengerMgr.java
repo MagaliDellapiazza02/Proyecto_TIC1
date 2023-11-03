@@ -17,7 +17,7 @@ public class PassengerMgr {
     @Autowired
     private PassengerRepository passengerRepository;
 
-
+    @Autowired
     private UserRepository userRepository;
 
     public void addPassenger(Passenger p) throws EntityAlreadyExists {
