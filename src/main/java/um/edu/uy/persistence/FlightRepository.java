@@ -3,6 +3,8 @@ package um.edu.uy.persistence;
 import org.springframework.data.repository.CrudRepository;
 import um.edu.uy.business.entities.Flight;
 
+import java.util.List;
+
 public interface FlightRepository extends CrudRepository<Flight, String> {
 
         /**
@@ -12,13 +14,10 @@ public interface FlightRepository extends CrudRepository<Flight, String> {
         */
         Flight findOneByFlightNumber(String code);
 
-        /*@Query
-        Flight findOneByFlightNumberAndAirlineOwner(String code, String airlineOwner);
-*/
-        //Encontrar las pistas libres de un aeropuerto para tal fecha
-       /*
-       @Query (value="select * from [nombre de la tabla] a where a.first_name= :firstName", nativeQuery=true)
-        List<Gate> getAvailableGatesbyDateAndAirport(String originAirport, String scheduledDeparture);
-                */
+        List<Flight> findByflightState(String flightState);
+
+        List<Flight> findByDestinyApprovedAndDestinyAirportIATAAndFlightState(boolean destinyApproved, String destinyAirportIATA, String flightState);
+
+        List<Flight> findByOriginApprovedAndOriginAirportIATAAndFlightState(boolean originApproved, String originAirportIATA, String flightState);
 
 }

@@ -30,6 +30,9 @@ public class Airport {
     @OneToMany(mappedBy = "airport")
     private List<Gate> gates;
 
+    @OneToMany(mappedBy = "airport")
+    private List<Runway> runways;
+
     public Airport(String name, String country, String type, String IATA) {
         this.name = name;
         this.country = country;

@@ -45,6 +45,14 @@ public class UserMgr {
         return false;
     }
 
+    public String getNameByMail(String mail) {
+        User u = userRepository.findUserByMail(mail);
+        if(u != null) {
+            return u.getName();
+        }
+        return "None";
+    }
+
     public String getCompanyByMail(String mail) {
         User u = userRepository.findUserByMail(mail);
         if(u != null) {

@@ -20,7 +20,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     Optional<User> findByMail(String mail);
 
-
     boolean existsByIdAndName(Long id, String name);
 
     @Query(value = "select count(*) from users where name=?", nativeQuery = true)

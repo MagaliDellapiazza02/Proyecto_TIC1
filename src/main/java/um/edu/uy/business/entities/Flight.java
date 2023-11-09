@@ -45,6 +45,8 @@ public class Flight {
 
     //Estado del Vuelo:
     private String flightState;
+    private boolean originApproved;
+    private boolean destinyApproved;
 
     //Lista de pasajeros y equipajes:
     @ManyToMany(mappedBy = "flights")
@@ -62,7 +64,12 @@ public class Flight {
         this.scheduledDeparture = scheduledDeparture;
         this.scheduledArrival = scheduledArrival;
 
+        this.flightIATA= airlineOwner.getAlnIATA();
+        this.flightICAO= airlineOwner.getAlnICAO();
+
         this.flightState = "Pending";
+        this.originApproved = false;
+        this.destinyApproved = false;
 
         this.originAirportIATA = originAirport.getIATA();
         this.destinyAirportIATA = destinyAirport.getIATA();

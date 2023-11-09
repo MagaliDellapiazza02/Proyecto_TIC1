@@ -17,6 +17,7 @@ import um.edu.uy.Main;
 import um.edu.uy.business.entities.*;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.persistence.*;
+import um.edu.uy.ui.PublicMethods;
 
 import java.io.IOException;
 import java.sql.Time;
@@ -142,8 +143,7 @@ public class AddFlightsController {
 
         } else {
             try {
-                //Airline airline = airlineRepository.findOneByAlnIATA(userRepository.findByMail(Session.mail).get().getCompany());//asumo que company es el IATA de la aerolinea
-                Airline airline = airlineRepository.findOneByAlnIATA("PLU");
+                Airline airline = airlineRepository.findOneByAlnIATA(userRepository.findByMail(Session.mail).get().getCompany());
 
                 String flightNumber = airline.getAlnIATA() + " " + txtFlightNumber.getText();
 
@@ -163,7 +163,6 @@ public class AddFlightsController {
                 Date departureDate = Date.from(departureDate1.atStartOfDay(ZoneId.systemDefault()).toInstant());
                 Date arrivalDate = Date.from(arrivalDate1.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-
                 // Convierto los Time a milisegundos
                 long arrivalTimeInMilliseconds = arrivalTime.getTime();
                 long departureTimeInMilliseconds = departureTime.getTime();
@@ -174,37 +173,16 @@ public class AddFlightsController {
 
                 Flight newA = new Flight(airline, originAirport, destinyAirport, airplane, departureDate, arrivalDate, flightNumber);
                 addFlight(newA);
-
-                if (reservaValidada(originAirport, destinyAirport, departureDate, arrivalDate, newA)) {
-                    newA.setFlightState("Confirmed");
-                    flightRepository.save(newA);
-                    showAlert("Finalizado", "Vuelo agregado con éxito");
-                } else {
-                    showAlert("No hay disponibilidad", "No hay pistas o puertas disponibles para el vuelo");
-                }
+                showAlert("Finalizado", "Vuelo agregado con éxito\nPendiente a validación de aeropuertos");
 
             } catch (Exception e) {
                 e.printStackTrace();
                 showAlert("", "Hubo un error al guardar o validar el vuelo");
             }
-            close(event);
-
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-                Parent root = fxmlLoader.load(AdministrarVuelosController.class.getResourceAsStream("/um/edu/uy/ui/user/airline/admin/AdministrarVuelos.fxml"));
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(scene);
-                stage.setTitle("Administrar vuelos");
-                stage.show();
-
-            } catch (IOException e) {
-                e.printStackTrace();
+            PublicMethods.changeWindow(event,"/um/edu/uy/ui/user/airline/admin/AdministrarVuelos.fxml", "Administrar vuelos");
             }
         }
-    }
+
 
     private boolean reservaValidada(Airport originAirport, Airport destinyAirport, Date departureDate, Date arrivalDate, Flight flight) {
         List<Runway> availableRunwaysAtOrigin = runwayRepository.findAvailableOnesByAirportIDAndDate(originAirport.getId(), departureDate);

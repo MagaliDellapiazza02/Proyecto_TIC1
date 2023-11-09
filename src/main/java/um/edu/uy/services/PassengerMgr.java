@@ -30,6 +30,14 @@ public class PassengerMgr {
         passengerRepository.save(p);
     }
 
+    public String getNameByMail(String mail) {
+        Passenger p = passengerRepository.findByMail(mail).get();
+        if(p != null) {
+            return p.getName();
+        }
+        return "None";
+    }
+
     public boolean checkIfUserNameExists(String mail) {
         Optional<Passenger> passengerOptional = passengerRepository.findByMail(mail);
         return passengerOptional.isPresent();

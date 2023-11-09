@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.passenger.TrackLuggageController">
+   <top>
+      <AnchorPane prefHeight="515.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+         <children>
+              <TableView fx:id="luggageList" layoutX="14.0" layoutY="36.0" prefHeight="409.0" prefWidth="613.0">
+                  <columns>
+                      <TableColumn fx:id="trackingCodeColumn" prefWidth="150" text="Número de vuelo" />
+                      <TableColumn fx:id="weightColumn" prefWidth="100" text="Salida" />
+                      <TableColumn fx:id="stateColumn" prefWidth="97.0" text="Llegada" />
+                  <TableColumn fx:id="stateColumn1" prefWidth="97.0" text="Aerolínea" />
+                  </columns>
+              </TableView>
+              <Button fx:id="backBtn" layoutX="14.0" layoutY="450.0" onAction="#backButtonClicked" text="Back" />
+            <Label layoutX="243.0" layoutY="6.0" text="Vuelos sin validar">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

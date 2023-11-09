@@ -21,6 +21,14 @@ public class AirportWorkerController {
     private Button btnLuggage;
 
     @FXML
+    private Button btnValidateFlights;
+
+    @FXML
+    void ValidateFlightsBtnClicked(ActionEvent event) {
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airport/worker/ValidateFlights.fxml", "Validar Vuelos");
+    }
+
+    @FXML
     private void logOutButtonClicked(ActionEvent event) {
 
         PublicMethods.logOut(event);
