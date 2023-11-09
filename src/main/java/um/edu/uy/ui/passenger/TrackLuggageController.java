@@ -18,9 +18,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import um.edu.uy.Main;
 import um.edu.uy.business.entities.Luggage;
+import um.edu.uy.business.entities.Passenger;
 import um.edu.uy.business.entities.Session;
 import um.edu.uy.persistence.LuggageRepository;
 import um.edu.uy.persistence.PassengerRepository;
+import um.edu.uy.ui.PublicMethods;
 import um.edu.uy.ui.user.LogInControllerYaNoVa;
 
 import java.io.IOException;
@@ -43,15 +45,11 @@ public class TrackLuggageController implements Initializable {
     private Button backBtn;
 
     @Autowired
-    private LuggageRepository luggageRepository;
-    @Autowired
-    private LogInControllerYaNoVa loginController;
-    @Autowired
     private PassengerRepository passengerRepository;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //agregarElementosALista(); //se rompe
+        agregarElementosALista();
     }
 
     private void agregarElementosALista() {
@@ -59,45 +57,18 @@ public class TrackLuggageController implements Initializable {
         weightColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
         stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
 
-        Iterable<Luggage> elementos = passengerRepository.findByMail(Session.mail).get().getLuggageList();
+        Passenger passenger = passengerRepository.findByMailWithLuggageList(Session.mail).orElseThrow();
 
         ObservableList<Luggage> listaDeEquipaje = FXCollections.observableArrayList();
 
-        for (Luggage luggage : elementos) {
-            listaDeEquipaje.add(luggage);
-        }
+        // Ahora la colección luggageList está cargada y se puede acceder sin problemas
+        listaDeEquipaje.addAll(passenger.getLuggageList());
 
         luggageList.setItems(listaDeEquipaje);
     }
 
     @FXML
-    void close(ActionEvent actionEvent) {
-        Node source = (Node) actionEvent.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
     void backButtonClicked(ActionEvent event) throws Exception {
-
-        close(event);
-
-        // Open the User window
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(PassengerWindowController.class.getResourceAsStream("/um/edu/uy/ui/user/passenger/PassengerWindow.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Información");
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/passenger/PassengerWindow.fxml", "Pasajero");
     }
-
 }
