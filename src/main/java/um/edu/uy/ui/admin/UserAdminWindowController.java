@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import um.edu.uy.Main;
+import um.edu.uy.ui.PublicMethods;
 import um.edu.uy.ui.passenger.SignUpController;
 
 import java.io.IOException;
@@ -36,107 +37,20 @@ public class UserAdminWindowController {
         return new UserAdminWindowController();
     }
 */
-    @FXML
-    private void close(ActionEvent actionEvent) {
-        Node source = (Node)  actionEvent.getSource();
-        Stage stage  = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
 
     @FXML
     void adminAln(ActionEvent event) {
-
-        // Open the User window
-        try {
-            close(event);
-
-
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AdminAln.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Admin Airlines");
-            stage.show();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/admin/AdminAln.fxml", "Admin Aerolineas");
     }
 
     @FXML
     void adminAirports(ActionEvent event) {
-        // Open the User window
-        try {
-
-            close(event);
-
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AdminAirports.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Admin Airports");
-            stage.show();
-
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-
-    @FXML
-    void adminWorkersbtnClicked(ActionEvent event) {
-        // Open the User window
-        try {
-            close(event);
-
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/admin/AdminWorkers.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Admin Worker");
-            stage.show();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/admin/AdminAirports.fxml", "Admin Aeropuertos");
     }
 
     @FXML
     void logOutButtonClicked(ActionEvent event) {
-
-        close(event);
-
-        // Open the User window
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Log In");
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        PublicMethods.logOut(event);
     }
 
 }

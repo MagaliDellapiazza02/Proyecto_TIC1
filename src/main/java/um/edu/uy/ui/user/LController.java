@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -63,24 +62,28 @@ public class LController {
             if (!passengerMgr.checkLogIn(username, password)) {
                 String checkedLogIn = userMgr.checkWorkerLogIn(username, password);
 
-                if (checkedLogIn.equals("None")) {
+                if (checkedLogIn.equals("No User")) {
                     PublicMethods.showAlert("Usuario invalido", "Mail no existe o contraseña incorrecta");
 
-                }else if (checkedLogIn.equals("Admin Airport")) {
+                } else if (checkedLogIn.equals("Admin System")) {
                     Session.mail=username; //guardo el mail del usuario para acceder en otras instancias
-                    PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/admin/UserAdminMenu.fxml", "Menu Administrador");
+                    PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/admin/UserAdminMenu.fxml", "Menu Administrador Sistema");
+
+                } else if (checkedLogIn.equals("Admin Airport")) {
+                    Session.mail=username; //guardo el mail del usuario para acceder en otras instancias
+                    PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airport/admin/AirportAdminMenu.fxml", "Menu Administrador Aeropuerto");
 
                 } else if (checkedLogIn.equals("Worker Airport")) {
                     Session.mail=username; //guardo el mail del usuario para acceder en otras instancias
-                    PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/userAirport/AirportWorker.fxml", "Menu Administrador");
+                    PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airport/worker/AirportWorker.fxml", "Trabajador Aeropuerto");
 
                 }else if (checkedLogIn.split(" ")[0].equals("Admin")) {
                     Session.mail = username; //guardo el mail del usuario para acceder en otras instancias
-                    PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airline/AlnWorkerAdmin.fxml", "Aerolinea Administrador");
+                    PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airline/admin/AlnWorkerAdmin.fxml", "Aerolinea Administrador");
 
                 } else if (checkedLogIn.split(" ")[0].equals("Worker")) {
                     Session.mail = username; //guardo el mail del usuario para acceder en otras instancias
-                    PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airline/AlnWorkerUser.fxml", "Trabajador Aerolinea");
+                    PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airline/worker/AlnWorkerUser.fxml", "Trabajador Aerolinea");
 
                 }
 

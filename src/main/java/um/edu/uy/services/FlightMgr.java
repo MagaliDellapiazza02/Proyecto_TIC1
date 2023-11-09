@@ -2,13 +2,15 @@ package um.edu.uy.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import um.edu.uy.business.entities.Flight;
-import um.edu.uy.business.entities.FlightDTO;
+import um.edu.uy.business.entities.*;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.business.exceptions.InvalidInformation;
-import um.edu.uy.persistence.FlightRepository;
-import um.edu.uy.persistence.PassengerRepository;
+import um.edu.uy.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+
+import java.sql.Time;
+import java.util.Date;
+import java.util.List;
 
 
 @Service
@@ -16,6 +18,18 @@ public class FlightMgr {
 
     @Autowired
     private FlightRepository flightRepository;
+
+    @Autowired
+    private GateRepository gateRepository;
+
+    @Autowired
+    private RunwayRepository runwayRepository;
+
+    @Autowired
+    private GateReservationRepository gateReservationRepository;
+
+    @Autowired
+    private RunwayReservationRepository runwayReservationRepository;
 
 
     public void addFlight(Flight flight)
@@ -41,20 +55,97 @@ public class FlightMgr {
             throw new EntityAlreadyExists();
         }
 
-        Flight newFlight = new Flight(flight.getAirlineOwner(), flight.getOriginAirport(), flight.getDestinyAirport(), flight.getAirplane(), flight.getScheduledDeparture(), flight.getScheduledArrival(), flight.getFlightNumber());
-
-        flightRepository.save(newFlight);
+        flightRepository.save(flight);
 
     }
 
 
-    public void validateFlight(){
+    public boolean validateFlight(Airport originAirport, Airport destinyAirport, Date departureDate, Date arrivalDate, Flight flight) {
+        List<Runway> availableRunwaysAtOrigin = runwayRepository.findAvailableOnesByAirportIDAndDate(originAirport.getId(), departureDate);
+        List<Gate> availableGatesAtOrigin = gateRepository.findAvailableOnesByAirportIDAndDate(originAirport.getId(), departureDate);
 
+        List<Gate> availableGatesAtDestiny = gateRepository.findAvailableOnesByAirportIDAndDate(destinyAirport.getId(), arrivalDate);
+        List<Runway> availableRunwaysAtDestiny = runwayRepository.findAvailableOnesByAirportIDAndDate(destinyAirport.getId(), arrivalDate);
 
-        /*
-        Validar que ambos aeropuertos tengan una gateway y una runway disponible para el horario de salida y de llegada
-         */
+        if (availableGatesAtOrigin.isEmpty() || availableRunwaysAtOrigin.isEmpty() || availableGatesAtDestiny.isEmpty() || availableRunwaysAtDestiny.isEmpty()) {
+            return false;
 
+        } else {
+            Gate originGate = availableGatesAtOrigin.get(0);
+            Gate arrivalGate = availableGatesAtDestiny.get(0);
+            Runway originRunway = availableRunwaysAtOrigin.get(0);
+            Runway arrivalRunway = availableRunwaysAtDestiny.get(0);
 
+            //creo tiempos predeterminados para cada reserva de puerta y pista
+            Time gateReserveTime = new Time(0, 30, 0);
+            Time runwayReserveTime = new Time(0, 2, 0);
+
+            //creo las reservas de puerta y pista
+            GateReservation originGateReservation = new GateReservation(originAirport, originGate, departureDate, flight, gateReserveTime);
+            GateReservation arrivalGateReservation = new GateReservation(destinyAirport, arrivalGate, arrivalDate, flight, gateReserveTime);
+            RunwayReservation originRunwayReservation = new RunwayReservation(originAirport, originRunway, departureDate, flight, runwayReserveTime);
+            RunwayReservation arrivalRunwayReservation = new RunwayReservation(destinyAirport, arrivalRunway, arrivalDate, flight, runwayReserveTime);
+
+            //guardo las reservas
+            gateReservationRepository.save(originGateReservation);
+            gateReservationRepository.save(arrivalGateReservation);
+            runwayReservationRepository.save(originRunwayReservation);
+            runwayReservationRepository.save(arrivalRunwayReservation);
+            return true;
+        }
     }
+
+    public boolean validateFlightOnOrigin(Airport originAirport, Date departureDate, Flight flight) {
+        List<Runway> availableRunwaysAtOrigin = runwayRepository.findAvailableOnesByAirportIDAndDate(originAirport.getId(), departureDate);
+        List<Gate> availableGatesAtOrigin = gateRepository.findAvailableOnesByAirportIDAndDate(originAirport.getId(), departureDate);
+
+
+        if (availableGatesAtOrigin.isEmpty() || availableRunwaysAtOrigin.isEmpty()) {
+            return false;
+
+        } else {
+            Gate originGate = availableGatesAtOrigin.get(0);
+            Runway originRunway = availableRunwaysAtOrigin.get(0);
+
+            //creo tiempos predeterminados para cada reserva de puerta y pista
+            Time gateReserveTime = new Time(0, 30, 0);
+            Time runwayReserveTime = new Time(0, 2, 0);
+
+            //creo las reservas de puerta y pista
+            GateReservation originGateReservation = new GateReservation(originAirport, originGate, departureDate, flight, gateReserveTime);
+            RunwayReservation originRunwayReservation = new RunwayReservation(originAirport, originRunway, departureDate, flight, runwayReserveTime);
+
+            //guardo las reservas
+            gateReservationRepository.save(originGateReservation);
+            runwayReservationRepository.save(originRunwayReservation);
+            return true;
+        }
+    }
+
+    public boolean validateFlightOnDestiny(Airport destinyAirport, Date arrivalDate, Flight flight) {
+                List<Gate> availableGatesAtDestiny = gateRepository.findAvailableOnesByAirportIDAndDate(destinyAirport.getId(), arrivalDate);
+        List<Runway> availableRunwaysAtDestiny = runwayRepository.findAvailableOnesByAirportIDAndDate(destinyAirport.getId(), arrivalDate);
+
+        if (availableGatesAtDestiny.isEmpty() || availableRunwaysAtDestiny.isEmpty()) {
+            return false;
+
+        } else {
+            Gate arrivalGate = availableGatesAtDestiny.get(0);
+            Runway arrivalRunway = availableRunwaysAtDestiny.get(0);
+
+            //creo tiempos predeterminados para cada reserva de puerta y pista
+            Time gateReserveTime = new Time(0, 30, 0);
+            Time runwayReserveTime = new Time(0, 2, 0);
+
+            //creo las reservas de puerta y pista
+            GateReservation arrivalGateReservation = new GateReservation(destinyAirport, arrivalGate, arrivalDate, flight, gateReserveTime);
+            RunwayReservation arrivalRunwayReservation = new RunwayReservation(destinyAirport, arrivalRunway, arrivalDate, flight, runwayReserveTime);
+
+            //guardo las reservas
+            gateReservationRepository.save(arrivalGateReservation);
+            runwayReservationRepository.save(arrivalRunwayReservation);
+            return true;
+        }
+    }
+
 }

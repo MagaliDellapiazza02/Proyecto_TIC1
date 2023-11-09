@@ -35,8 +35,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.admin.UserAdminWindowController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.admin.UserAdminWindowController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -49,7 +48,6 @@
     </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button fx:id="btnWorkers" layoutX="252.0" layoutY="103.0" mnemonicParsing="false" onAction="#adminWorkersbtnClicked" text="Administrar Trabajadores" />
             <Button fx:id="btnAln" layoutX="252.0" layoutY="145.0" mnemonicParsing="false" onAction="#adminAln" prefHeight="25.0" prefWidth="147.0" text="Administrar Aerolíneas" />
             <Button fx:id="btnAirports" layoutX="252.0" layoutY="192.0" mnemonicParsing="false" onAction="#adminAirports" text="Administrar Aeropuertos" />
       </children>

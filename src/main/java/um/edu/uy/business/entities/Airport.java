@@ -1,6 +1,5 @@
 package um.edu.uy.business.entities;
 
-import um.edu.uy.business.entities.Gate;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,6 +21,8 @@ public class Airport {
 
     private String name;
 
+    private String country;
+
     private String type;
 
     private String IATA;
@@ -29,8 +30,12 @@ public class Airport {
     @OneToMany(mappedBy = "airport")
     private List<Gate> gates;
 
-    public Airport(String name, String type, String IATA) {
+    @OneToMany(mappedBy = "airport")
+    private List<Runway> runways;
+
+    public Airport(String name, String country, String type, String IATA) {
         this.name = name;
+        this.country = country;
         this.type = type;
         this.IATA = IATA;
         gates = new LinkedList<Gate>();

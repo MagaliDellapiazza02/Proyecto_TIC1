@@ -1,22 +1,36 @@
 package um.edu.uy.ui.passenger;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import um.edu.uy.Main;
 import org.springframework.stereotype.Controller;
+import um.edu.uy.Main;
+import um.edu.uy.business.entities.Session;
+import um.edu.uy.persistence.PassengerRepository;
+import um.edu.uy.persistence.UserRepository;
+import um.edu.uy.services.PassengerMgr;
+import um.edu.uy.services.UserMgr;
 import um.edu.uy.ui.PublicMethods;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Component
 @Controller
-public class PassengerWindowController {
+public class PassengerWindowController implements Initializable {
 
+    @FXML
+    private Label GreetingLabel;
     @FXML
     private AnchorPane anchorPane;
 
@@ -29,24 +43,18 @@ public class PassengerWindowController {
     @FXML
     private Button logOutButton;
 
+    @Autowired
+    private PassengerMgr passengerMgr;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        System.out.println(Session.mail);
+        GreetingLabel.setText("Bienvenido, " + passengerMgr.getNameByMail(Session.mail));
+    }
 
     @FXML
     private void rastrearEquipajeButtonClicked(ActionEvent event) {
-        try {
-            //Mostrar ventana
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(TrackLuggageController.class.getResourceAsStream("/um/edu/uy/ui/user/passenger/TrackLuggage.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Rastreo equipajes");
-            stage.show();
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/passenger/TrackLuggage.fxml", "Rastrear equipaje");
     }
 
     @FXML
@@ -59,10 +67,4 @@ public class PassengerWindowController {
     void logOutButtonClicked(ActionEvent event) {
         PublicMethods.logOut(event);
     }
-
-
-
-
-
-
 }

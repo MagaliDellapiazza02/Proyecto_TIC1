@@ -2,25 +2,15 @@ package um.edu.uy.ui.admin;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import um.edu.uy.Main;
 import um.edu.uy.business.entities.Airline;
-import um.edu.uy.business.entities.Session;
 import um.edu.uy.business.entities.User;
 import um.edu.uy.services.AirlineMgr;
 import um.edu.uy.services.UserMgr;
 import um.edu.uy.ui.PublicMethods;
-import um.edu.uy.ui.passenger.SignUpController;
-
-import java.io.IOException;
 
 @Component
 public class AddAirlineController {
@@ -77,61 +67,65 @@ public class AddAirlineController {
 
     @FXML
     void addAirlineButtonClicked(ActionEvent event) {
-        //asignar rol de administrador  y company
-        if (txtDocument.getText() == null || txtDocument.getText().equals("") ||
-                txtName.getText() == null || txtName.getText().equals("") ||
-                txtMail.getText() == null || txtMail.getText().equals("") ||
-                txtAddress.getText() == null || txtAddress.getText().equals("") ||
-                txtNationality.getText() == null || txtNationality.getText().equals("") ||
-                txtTelephone.getText() == null || txtTelephone.getText().equals("") ||
-                txtPassword.getText() == null || txtPassword.getText().equals("") ||
-                txtPasswordC.getText() == null || txtPasswordC.getText().equals("") ||
-                txtalnCodeIATA.getText() == null || txtalnCodeIATA.getText().equals("") ||
-                txtalnCodeICAO.getText() == null || txtalnCodeICAO.getText().equals("") ||
-                txtalnCountry.getText() == null || txtalnCountry.getText().equals("") ||
-                txtalnName.getText() == null || txtalnName.getText().equals("")) {
+        try {
+            if (txtDocument.getText() == null || txtDocument.getText().equals("") ||
+                    txtName.getText() == null || txtName.getText().equals("") ||
+                    txtMail.getText() == null || txtMail.getText().equals("") ||
+                    txtAddress.getText() == null || txtAddress.getText().equals("") ||
+                    txtNationality.getText() == null || txtNationality.getText().equals("") ||
+                    txtTelephone.getText() == null || txtTelephone.getText().equals("") ||
+                    txtPassword.getText() == null || txtPassword.getText().equals("") ||
+                    txtPasswordC.getText() == null || txtPasswordC.getText().equals("") ||
+                    txtalnCodeIATA.getText() == null || txtalnCodeIATA.getText().equals("") ||
+                    txtalnCodeICAO.getText() == null || txtalnCodeICAO.getText().equals("") ||
+                    txtalnCountry.getText() == null || txtalnCountry.getText().equals("") ||
+                    txtalnName.getText() == null || txtalnName.getText().equals("")) {
 
-            PublicMethods.showAlert(
-                    "Datos faltantes!",
-                    "No se ingresaron los datos necesarios para completar el ingreso.");
+                PublicMethods.showAlert(
+                        "Datos faltantes!",
+                        "No se ingresaron los datos necesarios para completar el ingreso.");
 
-        } else if (!txtPassword.getText().equals(txtPasswordC.getText())){
-            PublicMethods.showAlert(
-                    "ERROR Contraseña!",
-                    "Se ingresaron dos contraseñas distintas.");
+            } else if (!txtPassword.getText().equals(txtPasswordC.getText())){
+                PublicMethods.showAlert(
+                        "ERROR Contraseña!",
+                        "Se ingresaron dos contraseñas distintas.");
 
-        } else{
-            try {
-                String alnIATA = txtalnCodeIATA.getText();
-                String alnICAO = txtalnCodeICAO.getText();
-                String alnName = txtalnName.getText();
-                String alnCountry = txtalnCountry.getText();
+            } else{
+                try {
+                    String alnIATA = txtalnCodeIATA.getText();
+                    String alnICAO = txtalnCodeICAO.getText();
+                    String alnName = txtalnName.getText();
+                    String alnCountry = txtalnCountry.getText();
 
-                Airline a = new Airline(alnName, alnIATA, alnICAO, alnCountry);
-                airlineMgr.addAirline(a);
-
-
-                Long document = Long.valueOf(txtDocument.getText());
-                String name = txtName.getText();
-                String mail = txtMail.getText();
-                String password = txtPassword.getText();
-                String address = txtAddress.getText();
-                String role = "administrador";
-                String company = alnName;
-                String nationality = txtNationality.getText();
-                String telephone = txtTelephone.getText();
-
-                User newU = new User(document, name, mail, password, address, company, role, nationality, telephone);
-                userMgr.addUser(newU);
-
-                PublicMethods.showAlert("Agregado", "Agregado con exito");
+                    Airline a = new Airline(alnName, alnIATA, alnICAO, alnCountry);
+                    airlineMgr.addAirline(a);
 
 
-            } catch(Exception e) {
-                e.printStackTrace();
-                PublicMethods.showAlert("ERROR!", "Ya existe un usuario con ese mail o una aerolinea con ese codigo IATA");
+                    Long document = Long.valueOf(txtDocument.getText());
+                    String name = txtName.getText();
+                    String mail = txtMail.getText();
+                    String password = txtPassword.getText();
+                    String address = txtAddress.getText();
+                    String role = "administrador";
+                    String company = "Aerolinea$" + alnIATA;
+                    String nationality = txtNationality.getText();
+                    String telephone = txtTelephone.getText();
+
+                    User newU = new User(document, name, mail, password, address, company, role, nationality, telephone);
+                    userMgr.addUser(newU);
+
+                    PublicMethods.showAlert("Agregado", "Agregado con exito");
+
+
+                } catch(Exception e) {
+                    e.printStackTrace();
+                    PublicMethods.showAlert("ERROR!", "Ya existe un usuario con ese mail o una aerolinea con ese codigo IATA");
+                }
             }
+        } catch (Exception e) {
+            PublicMethods.showAlert("ERROR!", "Ingrese correctamente todos los campos.");
         }
+
 
     }
 

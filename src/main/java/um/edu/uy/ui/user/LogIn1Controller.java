@@ -15,8 +15,6 @@ import um.edu.uy.Main;
 import um.edu.uy.services.UserMgr;
 import um.edu.uy.ui.passenger.SignUpController;
 
-import java.io.IOException;
-
 @Component
 @Controller
 public class LogIn1Controller {

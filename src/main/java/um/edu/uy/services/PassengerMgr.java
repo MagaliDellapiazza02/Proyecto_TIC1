@@ -17,7 +17,7 @@ public class PassengerMgr {
     @Autowired
     private PassengerRepository passengerRepository;
 
-
+    @Autowired
     private UserRepository userRepository;
 
     public void addPassenger(Passenger p) throws EntityAlreadyExists {
@@ -28,6 +28,14 @@ public class PassengerMgr {
         }
 
         passengerRepository.save(p);
+    }
+
+    public String getNameByMail(String mail) {
+        Passenger p = passengerRepository.findByMail(mail).get();
+        if(p != null) {
+            return p.getName();
+        }
+        return "None";
     }
 
     public boolean checkIfUserNameExists(String mail) {
