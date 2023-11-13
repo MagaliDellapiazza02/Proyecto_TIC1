@@ -11,4 +11,5 @@ public interface AirlineRepository extends CrudRepository<Airline, Long> {
      * @return
      */
     Airline findOneByAlnIATA(String code);
+    Airline findOneByAlnName(String name);
 }

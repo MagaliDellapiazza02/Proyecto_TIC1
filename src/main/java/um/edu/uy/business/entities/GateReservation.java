@@ -20,8 +20,8 @@ import java.util.Date;
 @Entity
 public class GateReservation {
     @Id
-    @GeneratedValue(generator="reserves_id")
-    @GenericGenerator(name="reserves", strategy = "increment")
+    @GeneratedValue(generator = "reserves_id")
+    @GenericGenerator(name = "reserves", strategy = "increment")
     private Long id;
 
     @ManyToOne
@@ -30,12 +30,17 @@ public class GateReservation {
     @ManyToOne
     private Gate gate;
 
+    private int gateNumber;
+
     private Date date;
 
     @ManyToOne
     private Flight designatedFlight;
+    private String flightNumber;
 
     private Time occupiedTime;
+
+    private boolean flightConfirmed;
 
     public GateReservation(Airport airport, Gate gate, Date date, Flight designatedFlight, Time occupiedTime) {
         this.airport = airport;
@@ -43,5 +48,8 @@ public class GateReservation {
         this.date = date;
         this.designatedFlight = designatedFlight;
         this.occupiedTime = occupiedTime;
+        this.flightConfirmed = false;
+        this.gateNumber = gate.getGateNumber();
+        this.flightNumber = designatedFlight.getFlightNumber();
     }
 }

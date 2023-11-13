@@ -13,11 +13,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import um.edu.uy.business.entities.Flight;
-import um.edu.uy.business.entities.Session;
-import um.edu.uy.persistence.AirportRepository;
-import um.edu.uy.persistence.FlightRepository;
-import um.edu.uy.persistence.UserRepository;
+import um.edu.uy.business.entities.*;
+import um.edu.uy.persistence.*;
 import um.edu.uy.services.FlightMgr;
 import um.edu.uy.ui.PublicMethods;
 
@@ -52,6 +49,9 @@ public class ValidateFlightsController implements Initializable {
     @FXML
     private Button backBtn;
 
+    @FXML
+    private Button cancelBtn;
+
     @Autowired
     private FlightRepository flightRepository;
 
@@ -64,6 +64,12 @@ public class ValidateFlightsController implements Initializable {
     @Autowired
     private AirportRepository airportRepository;
 
+    @Autowired
+    private GateReservationRepository gateReservationRepository;
+
+    @Autowired
+    private RunwayReservationRepository runwayReservationRepository;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //String userAirportName = userRepository.findByMail(Session.mail).get().getCompany();
@@ -75,9 +81,11 @@ public class ValidateFlightsController implements Initializable {
                 if (newValue != null) {
                     // Habilita el botón cuando se selecciona un vuelo
                     ValidateBtn.setDisable(false);
+                    cancelBtn.setDisable(false);
                 } else {
                     // Deshabilita el botón cuando no hay vuelo seleccionado
                     ValidateBtn.setDisable(true);
+                    cancelBtn.setDisable(true);
                 }
             }
         });
@@ -122,6 +130,7 @@ public class ValidateFlightsController implements Initializable {
         if (airportRepository.findByName(userAirportName).getIATA().equals(flight.getOriginAirport().getIATA())) {
             if (flightMgr.validateFlightOnOrigin(flight.getOriginAirport(), flight.getScheduledDeparture(), flight)) {
                 flight.setOriginApproved(true);
+                PublicMethods.showAlert("Validado", "El vuelo ha sido validado");
             } else {
                 PublicMethods.showAlert("Error", "El vuelo no se puede validar\nNo hay disponibilidad");
                 backButtonClicked(event);
@@ -130,6 +139,7 @@ public class ValidateFlightsController implements Initializable {
         } else if (airportRepository.findByName(userAirportName).getIATA().equals(flight.getDestinyAirport().getIATA())) {
             if (flightMgr.validateFlightOnDestiny(flight.getDestinyAirport(), flight.getScheduledArrival(), flight)) {
                 flight.setDestinyApproved(true);
+                PublicMethods.showAlert("Validado", "El vuelo ha sido validado");
             } else {
                 PublicMethods.showAlert("Error", "El vuelo no se puede validar\nNo hay disponibilidad");
                 backButtonClicked(event);
@@ -141,14 +151,38 @@ public class ValidateFlightsController implements Initializable {
         //si el vuelo pasa a tener validación de origen y destino, pasa a estar aprobado
         if (flight.isOriginApproved() && flight.isDestinyApproved()) {
             flight.setFlightState("Approved");
+            String IATADestino = flight.getDestinyAirportIATA();
+            String IATAOrigen = flight.getOriginAirportIATA();
+            GateReservation reservaPuertaOrigen = gateReservationRepository.findGateReservationByDesignatedFlightAndAirport_IATA(flight, IATAOrigen);
+            RunwayReservation reservaPistaOrigen = runwayReservationRepository.findRunwayReservationByDesignatedFlightAndAirport_IATA(flight, IATAOrigen);
+            GateReservation reservaPuertaDestino = gateReservationRepository.findGateReservationByDesignatedFlightAndAirport_IATA(flight, IATADestino);
+            RunwayReservation reservaPistaDestino = runwayReservationRepository.findRunwayReservationByDesignatedFlightAndAirport_IATA(flight, IATADestino);
+
+            reservaPuertaOrigen.setFlightConfirmed(true);
+            reservaPistaOrigen.setFlightConfirmed(true);
+            reservaPuertaDestino.setFlightConfirmed(true);
+            reservaPistaDestino.setFlightConfirmed(true);
+
+            gateReservationRepository.save(reservaPuertaOrigen);
+            runwayReservationRepository.save(reservaPistaOrigen);
+            gateReservationRepository.save(reservaPuertaDestino);
+            runwayReservationRepository.save(reservaPistaDestino);
         }
         flightRepository.save(flight);
-        PublicMethods.showAlert("Validado", "El vuelo ha sido validado");
         backButtonClicked(event);
     }
 
     @FXML
     void backButtonClicked(ActionEvent event) {
         PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airport/worker/AirportWorker.fxml", "Trabajador Aeropuerto");
+    }
+
+    public void CancelButtonClicked(ActionEvent actionEvent) {
+        Flight flight = flightList.getSelectionModel().getSelectedItem();
+        flight.setFlightState("Canceled");
+        flightRepository.save(flight);
+
+        PublicMethods.showAlert("Cancelado", "El vuelo ha sido cancelado");
+        backButtonClicked(actionEvent);
     }
 }
