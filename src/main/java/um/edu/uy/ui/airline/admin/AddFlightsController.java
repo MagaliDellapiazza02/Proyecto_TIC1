@@ -100,15 +100,6 @@ public class AddFlightsController {
     }
 
     @FXML
-    private void showAlert(String title, String contextText) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(contextText);
-        alert.showAndWait();
-    }
-
-    @FXML
     private void close(javafx.event.ActionEvent actionEvent) {
         Node source = (Node) actionEvent.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
@@ -135,9 +126,7 @@ public class AddFlightsController {
                 txtOriginIATA.getText() == null || txtOriginIATA.getText().equals("") ||
                 arrivalDate == null || departureDate == null) {
 
-            showAlert(
-                    "Datos faltantes!",
-                    "No se ingresaron los datos necesarios para completar el ingreso.");
+            PublicMethods.showAlert("Datos faltantes!", "No se ingresaron los datos necesarios para completar el ingreso.");
 
         } else {
             try {
@@ -173,11 +162,11 @@ public class AddFlightsController {
 
                 Flight newA = new Flight(airline, originAirport, destinyAirport, airplane, departureDate, arrivalDate, flightNumber);
                 addFlight(newA);
-                showAlert("Finalizado", "Vuelo agregado con éxito\nPendiente a validación de aeropuertos");
+                PublicMethods.showAlert("Finalizado", "Vuelo agregado con éxito\nPendiente a validación de aeropuertos");
 
             } catch (Exception e) {
                 e.printStackTrace();
-                showAlert("", "Hubo un error al guardar o validar el vuelo");
+                PublicMethods.showAlert("", "Hubo un error al guardar o validar el vuelo");
             }
             PublicMethods.changeWindow(event,"/um/edu/uy/ui/user/airline/admin/AdministrarVuelos.fxml", "Administrar vuelos");
             }
