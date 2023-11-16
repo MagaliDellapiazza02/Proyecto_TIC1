@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import um.edu.uy.Main;
-import um.edu.uy.ui.user.LogInControllerYaNoVa;
+import um.edu.uy.ui.user.LController;
 
 public class JavaFXApplication extends Application  {
 
@@ -21,7 +21,7 @@ public class JavaFXApplication extends Application  {
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-        root = fxmlLoader.load(LogInControllerYaNoVa.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn.fxml"));
+        root = fxmlLoader.load(LController.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.setResizable(false);
         primaryStage.show();

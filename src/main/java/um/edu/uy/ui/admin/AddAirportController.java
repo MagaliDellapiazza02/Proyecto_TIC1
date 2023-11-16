@@ -122,7 +122,7 @@ public class AddAirportController {
                     String password = txtPassword.getText();
                     String address = txtAddress.getText();
                     String role = "administrador";
-                    String company = "Aeropuerto$" + airportName;
+                    String company = "Aeropuerto%" + airportName;
                     String nationality = txtNationality.getText();
                     String telephone = txtTelephone.getText();
 

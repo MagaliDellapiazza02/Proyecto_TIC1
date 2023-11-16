@@ -24,4 +24,10 @@ public class AlnWorkerUserController {
     void logOutButtonClicked(ActionEvent event) {
         PublicMethods.logOut(event);
     }
+
+    @FXML
+    void addPBtnClicked(ActionEvent event) {
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airline/worker/AddPassenger.fxml", "Agregar Pasajeros");
+
+    }
 }

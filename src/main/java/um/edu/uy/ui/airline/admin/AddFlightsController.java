@@ -17,6 +17,7 @@ import um.edu.uy.Main;
 import um.edu.uy.business.entities.*;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.persistence.*;
+import um.edu.uy.services.UserMgr;
 import um.edu.uy.ui.PublicMethods;
 
 import java.io.IOException;
@@ -85,9 +86,17 @@ public class AddFlightsController {
     @Autowired
     private GateReservationRepository gateReservationRepository;
 
+    @Autowired
+    private UserMgr userMgr;
+
     @FXML
     void backButtonClicked(javafx.event.ActionEvent event) throws IOException {
-        PublicMethods.changeWindow(event,"/um/edu/uy/ui/user/airline/admin/AdministrarVuelos.fxml", "Administrar vuelos");
+        String role = userMgr.getRoleByMail(Session.mail);
+        if(role.equals("administrador")) {
+            PublicMethods.changeWindow(event,"/um/edu/uy/ui/user/airline/admin/AdministrarVuelos.fxml", "Administrar vuelos");
+        } else {
+            PublicMethods.changeWindow(event,"/um/edu/uy/ui/user/airline/worker/AlnWorkerUser.fxml", "Trabajador Aerolinea");
+        }
     }
 
     @FXML

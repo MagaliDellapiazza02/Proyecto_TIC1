@@ -107,7 +107,7 @@ public class AddAirlineController {
                     String password = txtPassword.getText();
                     String address = txtAddress.getText();
                     String role = "administrador";
-                    String company = "Aerolinea$" + alnIATA;
+                    String company = "Aerolinea%" + alnIATA;
                     String nationality = txtNationality.getText();
                     String telephone = txtTelephone.getText();
 
