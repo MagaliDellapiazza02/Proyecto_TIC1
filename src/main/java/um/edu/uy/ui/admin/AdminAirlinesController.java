@@ -36,4 +36,9 @@ public class AdminAirlinesController {
         PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/admin/AddAirline.fxml", "Crear Aerolinea");
     }
 
+    @FXML
+    void searchButtonClicked(javafx.event.ActionEvent event) {
+
+    }
+
 }

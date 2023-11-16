@@ -25,7 +25,7 @@ import um.edu.uy.persistence.PassengerRepository;
 import um.edu.uy.ui.user.LController;
 
 import um.edu.uy.ui.PublicMethods;
-import um.edu.uy.ui.user.LogInControllerYaNoVa;
+import um.edu.uy.ui.user.LController;
 
 import java.io.IOException;
 import java.net.URL;

@@ -58,7 +58,7 @@ public class UserMgr {
         if(u != null) {
             return u.getCompany();
         }
-        return "None";
+        return "None%None";
     }
 
     public String getRoleByMail(String mail) {
@@ -116,7 +116,7 @@ public class UserMgr {
             if(uOptional.get().getPassword().equals(password)) {
                 if (uOptional.get().getCompany().equals("Administrador Sistema")) {
                     return "Admin System";
-                }else if (uOptional.get().getCompany().split("$")[0].equals("Aeropuerto")) {
+                }else if (uOptional.get().getCompany().split("%")[0].equals("Aeropuerto")) {
                     if (uOptional.get().getRole().equals("administrador")) {
                         return "Admin Airport";
                     } else {

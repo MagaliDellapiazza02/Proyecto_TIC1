@@ -72,8 +72,9 @@ public class ValidateFlightsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //String userAirportName = userRepository.findByMail(Session.mail).get().getCompany();
-        String userAirportName = "Carrasco"; //para probar
+        String[] company = userRepository.findUserByMail(Session.mail).getCompany().split("%");
+        String userAirportName = company[1];
+        //String userAirportName = "Carrasco"; //para probar
         agregarElementosALista(userAirportName);
         flightList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Flight>() {
             @Override
@@ -93,9 +94,9 @@ public class ValidateFlightsController implements Initializable {
 
     private void agregarElementosALista(String userAirportName) {
         // Configura las propiedades de las columnas
-        arrivalAirportColumn.setCellValueFactory(new PropertyValueFactory<>("originAirportIATA"));
+        arrivalAirportColumn.setCellValueFactory(new PropertyValueFactory<>("destinyAirportIATA"));
         arrivalDateColumn.setCellValueFactory(new PropertyValueFactory<>("scheduledArrival"));
-        departureAirportColumn.setCellValueFactory(new PropertyValueFactory<>("destinyAirportIATA"));
+        departureAirportColumn.setCellValueFactory(new PropertyValueFactory<>("originAirportIATA"));
         departureDateColumn.setCellValueFactory(new PropertyValueFactory<>("scheduledDeparture"));
         flightNumberColumn.setCellValueFactory(new PropertyValueFactory<>("flightNumber"));
 
@@ -122,8 +123,9 @@ public class ValidateFlightsController implements Initializable {
 
     @FXML
     void ValidateButtonClicked(ActionEvent event) {
-        //String userAirportName = userRepository.findByMail(Session.mail).get().getCompany();
-        String userAirportName = "Carrasco"; //para probar
+        String[] company = userRepository.findUserByMail(Session.mail).getCompany().split("%");
+        String userAirportName = company[1];
+        //String userAirportName = "Carrasco"; //para probar
         Flight flight = flightList.getSelectionModel().getSelectedItem();
 
         //el vuelo sale del aeropuerto del usuario

@@ -14,6 +14,9 @@ import um.edu.uy.persistence.UserRepository;
 public class AirlineMgr {
 
     @Autowired
+    private UserMgr userMgr;
+
+    @Autowired
     private AirlineRepository airlineRepository;
 
     public void addAirline(Airline airline) throws EntityAlreadyExists {
@@ -21,5 +24,10 @@ public class AirlineMgr {
             throw new EntityAlreadyExists();
         }
         airlineRepository.save(airline);
+    }
+
+    public String findAirlineWithUser (String mail) {
+        String IATA = userMgr.getCompanyByMail(mail).split("%")[1];
+        return IATA;
     }
 }

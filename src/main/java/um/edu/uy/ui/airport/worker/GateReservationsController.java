@@ -57,8 +57,9 @@ public class GateReservationsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //String userAirportName = userRepository.findByMail(Session.mail).get().getCompany();
-        String userAirportName = "Carrasco";
+        String[] company = userRepository.findByMail(Session.mail).get().getCompany().split("$");
+        String userAirportName = company[1];
+        //String userAirportName = "Carrasco";
         agregarElementosALista(userAirportName);
         reservationsList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<GateReservation>() {
             @Override

@@ -36,4 +36,9 @@ public class AdminAirportsController {
 
     }
 
+    @FXML
+    void searchButtonClicked(javafx.event.ActionEvent event) {
+
+    }
+
 }
