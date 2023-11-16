@@ -55,7 +55,7 @@ public class RunwayReservationsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String[] company = userRepository.findByMail(Session.mail).get().getCompany().split("$");
+        String[] company = userRepository.findByMail(Session.mail).get().getCompany().split("%");
         String userAirportName = company[1];
         //String userAirportName = "Carrasco";
         agregarElementosALista(userAirportName);
