@@ -2,19 +2,12 @@ package um.edu.uy.ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.NodeOrientation;
-import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import um.edu.uy.Main;
 import um.edu.uy.ui.user.LController;
@@ -23,9 +16,9 @@ import java.io.IOException;
 
 
 public class PublicMethods {
-    static final String CSS_PATH_ALERT = "/um/edu/uy/ui/user/alertdialog.css";
+    static final String CSS_PATH_ALERT = "/um/edu/uy/ui/user/stylebases/alertdialog.css";
 
-    static final String CSS_BUTTONS_PATH = "/um/edu/uy/ui/user/buttons.css";
+    static final String CSS_BUTTONS_PATH = "/um/edu/uy/ui/user/stylebases/buttons.css";
     public static void close(ActionEvent actionEvent) {
         Node source = (Node)  actionEvent.getSource();
         Stage stage  = (Stage) source.getScene().getWindow();
@@ -41,7 +34,7 @@ public class PublicMethods {
         String css = PublicMethods.class.getResource(CSS_PATH_ALERT).toExternalForm();
         alert.getDialogPane().getStylesheets().add(css);
 
-        ImageView icon = new ImageView(new Image("/um/edu/uy/ui/user/alert5.png"));
+        ImageView icon = new ImageView(new Image("/um/edu/uy/ui/user/stylebases/alert5.png"));
         alert.setGraphic(icon);
         /*alert.getGraphic().setScaleX(0.8);
         alert.getGraphic().setScaleY(0.8);*/

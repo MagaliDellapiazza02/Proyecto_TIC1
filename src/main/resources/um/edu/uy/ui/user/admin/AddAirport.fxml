@@ -86,7 +86,7 @@
             <TextField fx:id="txtPassword" layoutX="475.0" layoutY="337.0" prefHeight="25.0" prefWidth="230.0" />
             <Label layoutX="331.0" layoutY="372.0" text="Confirmar Contraseña:" />
             <TextField fx:id="txtPasswordC" layoutX="475.0" layoutY="369.0" prefHeight="26.0" prefWidth="230.0" />
-            <Pane layoutX="21.0" layoutY="36.0" stylesheets="@/um/edu/uy/ui/user/buttons.css">
+            <Pane layoutX="21.0" layoutY="36.0" stylesheets="@/um/edu/uy/ui/user/stylebases/buttons.css">
                <children>
                   <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar sesión" textFill="WHITE" />
                       <Button fx:id="btnConfirm" defaultButton="true" layoutX="565.0" layoutY="382.0" mnemonicParsing="false" onAction="#addBtnClicked" prefHeight="36.0" prefWidth="119.0" text="Crear aeropuerto" textFill="WHITE" />

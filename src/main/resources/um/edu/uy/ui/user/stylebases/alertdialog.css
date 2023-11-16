@@ -1,0 +1,29 @@
+.dialog-pane {
+    -fx-background-color: #ffffff;
+    /* -fx-border-color: #f38f43; */
+
+    -fx-border-width: 2px; /* Ancho del borde */
+}
+
+/* Aplicar un estilo personalizado al texto en el cuadro de diálogo */
+.dialog-pane .content {
+    -fx-text-fill: #000000; /* Color del texto */
+    -fx-font-size: 14px; /* Tamaño de fuente */
+    -fx-font-family: "Roboto"; /* Tipo de fuente */
+    -fx-alignment: center-left;
+}
+
+/* Aplicar un estilo personalizado a los botones en el cuadro de diálogo */
+.dialog-pane .button-bar .button {
+    -fx-background-color: #f38f43;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+.button{
+    -fx-background-color: #f38f43;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+}
+
+
