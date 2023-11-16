@@ -132,8 +132,10 @@ public class AddFlightsController {
 
         } else {
             try {
-                //Airline airline = airlineRepository.findOneByAlnIATA(userRepository.findByMail(Session.mail).get().getCompany());
-                Airline airline= airlineRepository.findOneByAlnName("Pluna");
+                String[] company = userRepository.findByMail(Session.mail).get().getCompany().split("%");
+                String alnIATA = company[1];
+                Airline airline = airlineRepository.findOneByAlnIATA(alnIATA);
+                //Airline airline= airlineRepository.findOneByAlnName("Pluna");
                 String flightNumber = airline.getAlnIATA() + " " + txtFlightNumber.getText();
 
                 Airport originAirport = airportRepository.findByIATA(txtOriginIATA.getText());

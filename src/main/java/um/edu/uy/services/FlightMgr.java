@@ -111,8 +111,10 @@ public class FlightMgr {
             Time gateReserveTime = new Time(0, 30, 0);
             Time runwayReserveTime = new Time(0, 2, 0);
 
+            Date gateReservationTime = new Date(departureDate.getTime() - new Time(0, 30, 0).getTime());
+
             //creo las reservas de puerta y pista
-            GateReservation originGateReservation = new GateReservation(originAirport, originGate, departureDate, flight, gateReserveTime);
+            GateReservation originGateReservation = new GateReservation(originAirport, originGate, gateReservationTime, flight, gateReserveTime);
             RunwayReservation originRunwayReservation = new RunwayReservation(originAirport, originRunway, departureDate, flight, runwayReserveTime);
 
             //guardo las reservas
@@ -123,7 +125,7 @@ public class FlightMgr {
     }
 
     public boolean validateFlightOnDestiny(Airport destinyAirport, Date arrivalDate, Flight flight) {
-                List<Gate> availableGatesAtDestiny = gateRepository.findAvailableOnesByAirportIDAndDate(destinyAirport.getId(), arrivalDate);
+        List<Gate> availableGatesAtDestiny = gateRepository.findAvailableOnesByAirportIDAndDate(destinyAirport.getId(), arrivalDate);
         List<Runway> availableRunwaysAtDestiny = runwayRepository.findAvailableOnesByAirportIDAndDate(destinyAirport.getId(), arrivalDate);
 
         if (availableGatesAtDestiny.isEmpty() || availableRunwaysAtDestiny.isEmpty()) {

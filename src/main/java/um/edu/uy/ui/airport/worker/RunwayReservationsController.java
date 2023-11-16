@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import um.edu.uy.business.entities.GateReservation;
 import um.edu.uy.business.entities.RunwayReservation;
+import um.edu.uy.business.entities.Session;
 import um.edu.uy.persistence.AirportRepository;
 import um.edu.uy.persistence.RunwayReservationRepository;
 import um.edu.uy.persistence.UserRepository;
@@ -54,8 +55,9 @@ public class RunwayReservationsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //String userAirportName = userRepository.findByMail(Session.mail).get().getCompany();
-        String userAirportName = "Carrasco";
+        String[] company = userRepository.findByMail(Session.mail).get().getCompany().split("$");
+        String userAirportName = company[1];
+        //String userAirportName = "Carrasco";
         agregarElementosALista(userAirportName);
         reservationsList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<RunwayReservation>() {
             @Override
