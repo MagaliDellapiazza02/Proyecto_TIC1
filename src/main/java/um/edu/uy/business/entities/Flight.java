@@ -48,6 +48,10 @@ public class Flight {
     private boolean originApproved;
     private boolean destinyApproved;
 
+    //Capacidad de asientos y valijas libres
+    private int passengersLeft;
+    private int luggagesLeft;
+
     //Lista de pasajeros y equipajes:
     @ManyToMany(mappedBy = "flights")
     private List<Passenger> passengers = new LinkedList<>();
@@ -74,5 +78,29 @@ public class Flight {
         this.originAirportIATA = originAirport.getIATA();
         this.destinyAirportIATA = destinyAirport.getIATA();
         this.flightNumber = flightNumber;
+
+        this.passengersLeft = airplane.getSeatCapacity();
+        this.luggagesLeft = airplane.getLuggageCapacity();
+    }
+
+
+    public boolean addPassengerToList(Passenger p) {
+        if (passengersLeft > 0) {
+            passengers.add(p);
+            passengersLeft = passengersLeft - 1;
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean addLuggageToList(Luggage l) {
+        int counter = luggagesLeft - l.getWeight();
+        if (counter >= 0) {
+            luggages.add(l);
+            luggagesLeft = counter;
+            return true;
+        }
+        return false;
     }
 }

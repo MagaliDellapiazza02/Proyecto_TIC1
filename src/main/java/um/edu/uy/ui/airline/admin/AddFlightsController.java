@@ -87,18 +87,7 @@ public class AddFlightsController {
 
     @FXML
     void backButtonClicked(javafx.event.ActionEvent event) throws IOException {
-
-        close(event);
-
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-        Parent root = fxmlLoader.load(AdministrarVuelosController.class.getResourceAsStream("/um/edu/uy/ui/user/airline/admin/AdministrarVuelos.fxml"));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Administrar vuelos");
-        stage.show();
+        PublicMethods.changeWindow(event,"/um/edu/uy/ui/user/airline/admin/AdministrarVuelos.fxml", "Administrar vuelos");
     }
 
     @FXML
@@ -143,8 +132,8 @@ public class AddFlightsController {
 
         } else {
             try {
-                Airline airline = airlineRepository.findOneByAlnIATA(userRepository.findByMail(Session.mail).get().getCompany());
-
+                //Airline airline = airlineRepository.findOneByAlnIATA(userRepository.findByMail(Session.mail).get().getCompany());
+                Airline airline= airlineRepository.findOneByAlnName("Pluna");
                 String flightNumber = airline.getAlnIATA() + " " + txtFlightNumber.getText();
 
                 Airport originAirport = airportRepository.findByIATA(txtOriginIATA.getText());
@@ -183,38 +172,4 @@ public class AddFlightsController {
             }
         }
 
-
-    private boolean reservaValidada(Airport originAirport, Airport destinyAirport, Date departureDate, Date arrivalDate, Flight flight) {
-        List<Runway> availableRunwaysAtOrigin = runwayRepository.findAvailableOnesByAirportIDAndDate(originAirport.getId(), departureDate);
-        List<Gate> availableGatesAtOrigin = gateRepository.findAvailableOnesByAirportIDAndDate(originAirport.getId(), departureDate);
-
-        List<Gate> availableGatesAtDestiny = gateRepository.findAvailableOnesByAirportIDAndDate(destinyAirport.getId(), arrivalDate);
-        List<Runway> availableRunwaysAtDestiny = runwayRepository.findAvailableOnesByAirportIDAndDate(destinyAirport.getId(), arrivalDate);
-
-        if (availableGatesAtOrigin.isEmpty() || availableRunwaysAtOrigin.isEmpty() || availableGatesAtDestiny.isEmpty() || availableRunwaysAtDestiny.isEmpty()) {
-            return false;
-        } else {
-            Gate originGate = availableGatesAtOrigin.get(0);
-            Gate arrivalGate = availableGatesAtDestiny.get(0);
-            Runway originRunway = availableRunwaysAtOrigin.get(0);
-            Runway arrivalRunway = availableRunwaysAtDestiny.get(0);
-
-            //creo tiempos predeterminados para cada reserva de puerta y pista
-            Time gateReserveTime = new Time(0, 30, 0);
-            Time runwayReserveTime = new Time(0, 2, 0);
-
-            //creo las reservas de puerta y pista
-            GateReservation originGateReservation = new GateReservation(originAirport, originGate, departureDate, flight, gateReserveTime);
-            GateReservation arrivalGateReservation = new GateReservation(destinyAirport, arrivalGate, arrivalDate, flight, gateReserveTime);
-            RunwayReservation originRunwayReservation = new RunwayReservation(originAirport, originRunway, departureDate, flight, runwayReserveTime);
-            RunwayReservation arrivalRunwayReservation = new RunwayReservation(destinyAirport, arrivalRunway, arrivalDate, flight, runwayReserveTime);
-
-            //guardo las reservas
-            gateReservationRepository.save(originGateReservation);
-            gateReservationRepository.save(arrivalGateReservation);
-            runwayReservationRepository.save(originRunwayReservation);
-            runwayReservationRepository.save(arrivalRunwayReservation);
-            return true;
-        }
-    }
 }

@@ -28,6 +28,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
+            <Button fx:id="cancelBtn" disable="true" layoutX="472.0" layoutY="448.0" onAction="#CancelButtonClicked" text="Cancelar vuelo" />
          </children>
       </AnchorPane>
    </top>

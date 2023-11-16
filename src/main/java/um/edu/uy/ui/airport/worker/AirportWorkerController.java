@@ -24,21 +24,26 @@ public class AirportWorkerController {
     private Button btnValidateFlights;
 
     @FXML
+    private Button gateReservationsBtn;
+
+    @FXML
+    private Button runwayReservationsBtn;
+
+    @FXML
     void ValidateFlightsBtnClicked(ActionEvent event) {
         PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airport/worker/ValidateFlights.fxml", "Validar Vuelos");
     }
 
     @FXML
-    private void logOutButtonClicked(ActionEvent event) {
-
-        PublicMethods.logOut(event);
+    void gateReservationsBtnClicked(ActionEvent event) {
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airport/worker/GateReservations.fxml", "Reservas de puertas con vuelos sin confirmar");
     }
-
     @FXML
-    void close(ActionEvent actionEvent) {
-        Node source = (Node) actionEvent.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
+    void runwayReservationsBtnClicked(ActionEvent actionEvent) {
+        PublicMethods.changeWindow(actionEvent, "/um/edu/uy/ui/user/airport/worker/RunwayReservations.fxml", "Reservas de pistas con vuelos sin confirmar");
     }
-
+    @FXML
+    void logOutButtonClicked(ActionEvent actionEvent) {
+        PublicMethods.logOut(actionEvent);
+    }
 }

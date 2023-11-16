@@ -14,7 +14,9 @@ public interface FlightRepository extends CrudRepository<Flight, String> {
         */
         Flight findOneByFlightNumber(String code);
 
-        List<Flight> findByflightState(String flightState);
+        List<Flight> findAllByFlightIATA(String IATA);
+
+        List<Flight> findByFlightStateAndFlightIATA(String state, String IATA);
 
         List<Flight> findByDestinyApprovedAndDestinyAirportIATAAndFlightState(boolean destinyApproved, String destinyAirportIATA, String flightState);
 
