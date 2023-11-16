@@ -63,7 +63,7 @@ public class AdministrarAvionesController {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(Main.getContext()::getBean);
 
-            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn1.fxml"));
+            Parent root = fxmlLoader.load(SignUpController.class.getResourceAsStream("/um/edu/uy/ui/user/LogIn.fxml"));
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);

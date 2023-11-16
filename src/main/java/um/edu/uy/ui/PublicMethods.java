@@ -2,19 +2,30 @@ package um.edu.uy.ui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.NodeOrientation;
+import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import um.edu.uy.Main;
 import um.edu.uy.ui.user.LController;
 
 import java.io.IOException;
 
+
 public class PublicMethods {
+    static final String CSS_PATH_ALERT = "/um/edu/uy/ui/user/alertdialog.css";
 
-
+    static final String CSS_BUTTONS_PATH = "/um/edu/uy/ui/user/buttons.css";
     public static void close(ActionEvent actionEvent) {
         Node source = (Node)  actionEvent.getSource();
         Stage stage  = (Stage) source.getScene().getWindow();
@@ -26,9 +37,17 @@ public class PublicMethods {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(contextText);
+
+        String css = PublicMethods.class.getResource(CSS_PATH_ALERT).toExternalForm();
+        alert.getDialogPane().getStylesheets().add(css);
+
+        ImageView icon = new ImageView(new Image("/um/edu/uy/ui/user/alert5.png"));
+        alert.setGraphic(icon);
+        /*alert.getGraphic().setScaleX(0.8);
+        alert.getGraphic().setScaleY(0.8);*/
+
         alert.showAndWait();
     }
-
     public static void changeWindow(ActionEvent event, String newWindow, String title) {
         try {
             close(event);
@@ -41,11 +60,14 @@ public class PublicMethods {
             Stage stage = (Stage)((Node) event.getSource()) .getScene().getWindow();
             stage.setScene(scene);
             stage.setTitle(title);
+
+            String css = PublicMethods.class.getResource(CSS_BUTTONS_PATH).toExternalForm();
+            scene.getStylesheets().add(css);
             stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert("ERROR!", "Error cambiando de ventana");
+            showAlert("ERROR!", "Error cambiando de ventana.");
         }
     }
 
@@ -65,7 +87,7 @@ public class PublicMethods {
 
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert("ERROR!", "Error cerrando sesion.");
+            showAlert("ERROR!", "Error cerrando sesión.");
         }
     }
 

@@ -114,12 +114,12 @@ public class AddAirlineController {
                     User newU = new User(document, name, mail, password, address, company, role, nationality, telephone);
                     userMgr.addUser(newU);
 
-                    PublicMethods.showAlert("Agregado", "Agregado con exito");
+                    PublicMethods.showAlert("Agregado", "Agregado con éxito!");
 
 
                 } catch(Exception e) {
                     e.printStackTrace();
-                    PublicMethods.showAlert("ERROR!", "Ya existe un usuario con ese mail o una aerolinea con ese codigo IATA");
+                    PublicMethods.showAlert("ERROR!", "Ya existe un usuario con ese mail o una aerolinea con ese codigo IATA.");
                 }
             }
         } catch (Exception e) {

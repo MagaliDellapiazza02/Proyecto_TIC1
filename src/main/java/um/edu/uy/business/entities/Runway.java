@@ -27,4 +27,9 @@ public class Runway {
     public Runway(int runwayNumber) {
         this.runwayNumber = runwayNumber;
     }
+
+    public Runway(int runwayNumber, Airport airport) {
+        this.runwayNumber = runwayNumber;
+        this.airport = airport;
+    }
 }

@@ -39,6 +39,6 @@ public class WorkerVuelosController {
 
     @FXML
     void addButtonClicked(ActionEvent event) {
-        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airline/admin/addFlight.fxml", "Agregar vuelo");
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airline/admin/AddFlight.fxml", "Agregar vuelo");
     }
 }

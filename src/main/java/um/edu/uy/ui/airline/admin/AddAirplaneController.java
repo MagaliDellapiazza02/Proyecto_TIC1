@@ -64,11 +64,11 @@ public class AddAirplaneController {
 
                 Airplane newA = new Airplane(licensePlate, type, seats, luggage);
                 addAirplane(newA);
-                PublicMethods.showAlert("", "Avión agregado con éxito");
+                PublicMethods.showAlert("", "Avión agregado con éxito!");
 
             } catch (Exception e) {
                 e.printStackTrace();
-                PublicMethods.showAlert("", "Hubo un error al guardar el avión");
+                PublicMethods.showAlert("", "Hubo un error al guardar el avión.");
             }
 
             PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airline/admin/AdministrarAviones.fxml", "Administrar aviones");

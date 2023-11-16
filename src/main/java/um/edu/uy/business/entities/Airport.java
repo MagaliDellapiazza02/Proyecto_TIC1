@@ -39,6 +39,7 @@ public class Airport {
         this.type = type;
         this.IATA = IATA;
         gates = new LinkedList<Gate>();
+        runways = new LinkedList<Runway>();
     }
 
     public Airport() {

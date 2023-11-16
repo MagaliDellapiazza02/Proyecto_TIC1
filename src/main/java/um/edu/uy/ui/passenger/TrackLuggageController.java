@@ -22,6 +22,8 @@ import um.edu.uy.business.entities.Passenger;
 import um.edu.uy.business.entities.Session;
 import um.edu.uy.persistence.LuggageRepository;
 import um.edu.uy.persistence.PassengerRepository;
+import um.edu.uy.ui.user.LController;
+
 import um.edu.uy.ui.PublicMethods;
 import um.edu.uy.ui.user.LogInControllerYaNoVa;
 
@@ -44,6 +46,10 @@ public class TrackLuggageController implements Initializable {
     @FXML
     private Button backBtn;
 
+    @Autowired
+    private LuggageRepository luggageRepository;
+    @Autowired
+    private LController loginController;
     @Autowired
     private PassengerRepository passengerRepository;
 

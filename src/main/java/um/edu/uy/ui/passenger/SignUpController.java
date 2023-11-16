@@ -90,7 +90,7 @@ public class SignUpController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            PublicMethods.showAlert("ERROR!", "Ingrese correctamente todos los espacios");
+            PublicMethods.showAlert("ERROR!", "Ingrese correctamente todos los espacios.");
         }
 
     }

@@ -26,4 +26,9 @@ public class Gate {
     public Gate(int gateNumber) {
         this.gateNumber = gateNumber;
     }
+
+    public Gate(int gateNumber, Airport airport) {
+        this.gateNumber = gateNumber;
+        this.airport = airport;
+    }
 }
