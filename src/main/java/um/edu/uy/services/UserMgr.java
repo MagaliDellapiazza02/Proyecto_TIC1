@@ -2,11 +2,9 @@ package um.edu.uy.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import um.edu.uy.business.entities.Passenger;
 import um.edu.uy.business.entities.User;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.business.exceptions.InvalidInformation;
-import um.edu.uy.persistence.PassengerRepository;
 import um.edu.uy.persistence.UserRepository;
 
 import java.util.ArrayList;
@@ -18,9 +16,6 @@ public class UserMgr {
 
     @Autowired
     private UserRepository userRepository;
-
-
-    private PassengerRepository passengerRepository;
 
     public void addUser(User user) throws EntityAlreadyExists {
         if (checkIfUserMailExists(user.getMail()) || checkIfUserNameExists(user.getMail())) {
@@ -43,6 +38,10 @@ public class UserMgr {
             return true;
         }
         return false;
+    }
+
+    public Optional<User> findByMail(String mail) {
+        return userRepository.findByMail(mail);
     }
 
     public String getNameByMail(String mail) {
@@ -69,8 +68,7 @@ public class UserMgr {
         return "None";
     }
 
-    public void loginUser(User user)
-            throws InvalidInformation {
+    public void loginUser(User user) throws InvalidInformation {
 
         if (user.getName() == null || "".equals(user.getName()) || user.getAddress() == null || "".equals(user.getAddress())) {
             //hacer algo
@@ -135,8 +133,7 @@ public class UserMgr {
         return "No User";
     }
 
-    public List<User> getAllUsers()
-    {
+    public List<User> getAllUsers() {
         List<User> lista = new ArrayList<>();
         userRepository.findAll().forEach(user -> lista.add(user));
         return lista;

@@ -6,7 +6,6 @@ import um.edu.uy.business.entities.*;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.business.exceptions.InvalidInformation;
 import um.edu.uy.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.sql.Time;
 import java.util.Date;
@@ -148,6 +147,14 @@ public class FlightMgr {
             runwayReservationRepository.save(arrivalRunwayReservation);
             return true;
         }
+    }
+
+    public List<Flight> getFlightsFromDepartureAirport(boolean originApproved, String originAirportIATA, String flightState) {
+        return flightRepository.findByOriginApprovedAndOriginAirportIATAAndFlightState(originApproved, originAirportIATA, flightState);
+    }
+
+    public List<Flight> getFlightsFromArrivalAirport(boolean destinyApproved, String destinyAirportIATA, String flightState) {
+        return flightRepository.findByDestinyApprovedAndDestinyAirportIATAAndFlightState(destinyApproved, destinyAirportIATA, flightState);
     }
 
 }

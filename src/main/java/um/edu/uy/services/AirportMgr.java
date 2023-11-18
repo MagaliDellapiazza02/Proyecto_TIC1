@@ -23,4 +23,8 @@ public class AirportMgr {
 
         AirportRepository.save(a);
     }
+
+    public Airport findByName(String name) {
+        return AirportRepository.findByName(name);
+    }
 }
