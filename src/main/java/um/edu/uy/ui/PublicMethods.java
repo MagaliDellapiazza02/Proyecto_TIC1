@@ -34,7 +34,7 @@ public class PublicMethods {
         String css = PublicMethods.class.getResource(CSS_PATH_ALERT).toExternalForm();
         alert.getDialogPane().getStylesheets().add(css);
 
-        ImageView icon = new ImageView(new Image("/um/edu/uy/ui/user/stylebases/alert5.png"));
+        ImageView icon = new ImageView(new Image("/um/edu/uy/ui/user/stylebases/alert.png"));
         alert.setGraphic(icon);
         /*alert.getGraphic().setScaleX(0.8);
         alert.getGraphic().setScaleY(0.8);*/

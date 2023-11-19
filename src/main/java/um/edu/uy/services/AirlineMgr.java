@@ -30,4 +30,8 @@ public class AirlineMgr {
         String IATA = userMgr.getCompanyByMail(mail).split("%")[1];
         return IATA;
     }
+
+    public Airline findAirlineByIATA(String IATA) {
+        return airlineRepository.findOneByAlnIATA(IATA);
+    }
 }

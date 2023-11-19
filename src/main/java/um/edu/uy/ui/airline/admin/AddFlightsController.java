@@ -17,6 +17,7 @@ import um.edu.uy.Main;
 import um.edu.uy.business.entities.*;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.persistence.*;
+import um.edu.uy.services.FlightMgr;
 import um.edu.uy.services.UserMgr;
 import um.edu.uy.ui.PublicMethods;
 
@@ -89,6 +90,8 @@ public class AddFlightsController {
     @Autowired
     private UserMgr userMgr;
 
+    private FlightMgr flightMgr;
+
     @FXML
     void backButtonClicked(javafx.event.ActionEvent event) {
         String role = userMgr.getRoleByMail(Session.mail);
@@ -106,15 +109,6 @@ public class AddFlightsController {
         stage.close();
     }
 
-    private void addFlight(Flight a) throws EntityAlreadyExists {
-        //verificar en el front que los datos sean de tipo correcto antes de crear el avion. Checkear que el role este correcto
-
-        if (flightRepository.findOneByFlightNumber(a.getFlightNumber()) != null) {
-            throw new EntityAlreadyExists();
-        }
-
-        flightRepository.save(a);
-    }
 
     @FXML
     void addBtnClicked(ActionEvent event) {
@@ -161,7 +155,7 @@ public class AddFlightsController {
                 departureDate.setTime(departureDate.getTime() + departureTimeInMilliseconds - 10800000);
 
                 Flight newA = new Flight(airline, originAirport, destinyAirport, airplane, departureDate, arrivalDate, flightNumber);
-                addFlight(newA);
+                flightMgr.addFlight(newA);
                 PublicMethods.showAlert("Finalizado", "Vuelo agregado con éxito\nPendiente a validación de aeropuertos");
 
             } catch (Exception e) {

@@ -33,6 +33,7 @@
 -->
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -40,15 +41,19 @@
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
-                <Label fx:id="labTitle" layoutX="170.0" layoutY="23.0" text="Administrar Aeropuertos">
+                <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="106.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@/um/edu/uy/ui/user/stylebases/airport.png" />
+                    </image></ImageView>
+                <Label fx:id="labTitle" layoutX="170.0" layoutY="44.0" text="Administrar Aeropuertos">
                     <font>
                         <Font size="31.0" />
                     </font>
                 </Label>
-                <Button fx:id="btnAdd" layoutX="245.0" layoutY="135.0" mnemonicParsing="false" onAction="#addAirportButtonClicked" prefHeight="25.0" prefWidth="109.0" text="Crear Aeropuerto" />
-                <Button fx:id="btnSearch" layoutX="242.0" layoutY="222.0" mnemonicParsing="false" text="Buscar Aeropuerto" />
+                <Button fx:id="btnAdd" layoutX="176.0" layoutY="163.0" mnemonicParsing="false" onAction="#addAirportButtonClicked" prefHeight="26.0" prefWidth="305.0" text="Crear Aeropuerto" />
+                <Button fx:id="btnSearch" layoutX="176.0" layoutY="252.0" mnemonicParsing="false" onAction="#searchAirportButtonClicked" prefWidth="305.0" text="Buscar Aeropuerto" />
+              <Button fx:id="btnBack" layoutX="27.0" layoutY="359.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atrás" />
             </children>
         </AnchorPane>
-        <Button fx:id="btnBack" mnemonicParsing="false" onAction="#backButtonClicked" text="Atras" />
     </children>
 </VBox>

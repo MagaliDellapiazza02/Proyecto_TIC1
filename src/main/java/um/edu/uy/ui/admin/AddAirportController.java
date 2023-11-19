@@ -3,6 +3,7 @@ package um.edu.uy.ui.admin;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import um.edu.uy.business.entities.*;
@@ -83,16 +84,9 @@ public class AddAirportController {
     @Autowired
     private UserMgr userMgr;
 
+    @Autowired
+    private AirportMgr airportMgr;
 
-    private void addAirport(Airport a) throws EntityAlreadyExists {
-        //verificar en el front que los datos sean de tipo correcto antes de crear el aeropuerto. Checkear que el role este correcto
-
-        if (airportRepository.findByName(a.getName()) != null) {
-            throw new EntityAlreadyExists();
-        }
-
-        airportRepository.save(a);
-    }
 
     @FXML
     void addBtnClicked(ActionEvent event) {
@@ -128,22 +122,22 @@ public class AddAirportController {
                     String type = txtType.getText();
                     String IATA = txtIATA.getText();
 
-                    Airport a = new Airport(airportName, country, type, IATA);
-                    addAirport(a);
+                    Airport airport = new Airport(airportName, country, type, IATA);
+                    airportMgr.addAirport(airport);
 
                     int gatesAmount = Integer.parseInt(txtGatesAmount.getText());
                     int runwaysAmount = Integer.parseInt(txtRunwaysAmount.getText());
 
 
                     for (int i = 0; i < gatesAmount; i++) { //agregar las gates al aeropuerto y appendear
-                        Gate gate = new Gate(i, a);
-                        a.getGates().add(gate);
+                        Gate gate = new Gate(i, airport);
+                        airport.getGates().add(gate);
                         gateRepository.save(gate);
                     }
 
                     for (int i = 0; i < runwaysAmount; i++) { //agregar las gates al aeropuerto y appendear
-                        Runway runway = new Runway(i, a);
-                        a.getRunways().add(runway);
+                        Runway runway = new Runway(i, airport);
+                        airport.getRunways().add(runway);
                         runwayRepository.save(runway);
                     }
 

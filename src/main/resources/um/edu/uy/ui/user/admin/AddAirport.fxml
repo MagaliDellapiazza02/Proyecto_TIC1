@@ -89,8 +89,8 @@
             <Pane layoutX="21.0" layoutY="36.0" stylesheets="@/um/edu/uy/ui/user/stylebases/buttons.css">
                <children>
                   <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar sesión" textFill="WHITE" />
-                      <Button fx:id="btnConfirm" defaultButton="true" layoutX="565.0" layoutY="382.0" mnemonicParsing="false" onAction="#addBtnClicked" prefHeight="36.0" prefWidth="119.0" text="Crear aeropuerto" textFill="WHITE" />
-                      <Button fx:id="btnBack" cancelButton="true" layoutX="13.0" layoutY="382.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="36.0" prefWidth="65.0" text="Atrás" textFill="WHITE" />
+                      <Button fx:id="btnConfirm" defaultButton="true" layoutX="565.0" layoutY="390.0" mnemonicParsing="false" onAction="#addBtnClicked" prefHeight="26.0" prefWidth="119.0" text="Crear aeropuerto" textFill="WHITE" />
+                      <Button fx:id="btnBack" cancelButton="true" layoutX="12.0" layoutY="391.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="26.0" prefWidth="65.0" text="Atrás" textFill="WHITE" />
                </children>
             </Pane>
             </children>

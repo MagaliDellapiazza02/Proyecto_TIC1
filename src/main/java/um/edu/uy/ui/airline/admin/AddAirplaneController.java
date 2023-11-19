@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import um.edu.uy.business.entities.Airplane;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.persistence.AirplaneRepository;
+import um.edu.uy.services.AirplaneMgr;
 import um.edu.uy.ui.PublicMethods;
 
 @Component
@@ -33,15 +34,9 @@ public class AddAirplaneController {
     @Autowired
     private AirplaneRepository airplaneRepository;
 
-    private void addAirplane(Airplane a) throws EntityAlreadyExists {
-        //verificar en el front que los datos sean de tipo correcto antes de crear el avion. Checkear que el role este correcto
+    private AirplaneMgr airplaneMgr;
 
-        if (airplaneRepository.findByLicensePlate(a.getLicensePlate()) != null) {
-            throw new EntityAlreadyExists();
-        }
 
-        airplaneRepository.save(a);
-    }
 
     @FXML
     void addBtnClicked(javafx.event.ActionEvent event) {
@@ -63,7 +58,7 @@ public class AddAirplaneController {
                 int seats = Integer.parseInt(txtSeats.getText());
 
                 Airplane newA = new Airplane(licensePlate, type, seats, luggage);
-                addAirplane(newA);
+                airplaneMgr.addAirplane(newA);
                 PublicMethods.showAlert("", "Avión agregado con éxito!");
 
             } catch (Exception e) {

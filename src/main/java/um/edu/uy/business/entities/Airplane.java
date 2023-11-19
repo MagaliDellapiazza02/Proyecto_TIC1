@@ -1,10 +1,7 @@
 package um.edu.uy.business.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -29,6 +26,9 @@ public class Airplane {
     private int seatCapacity;
 
     private int luggageCapacity;
+
+    @ManyToOne
+    private Airline airline;
 
     public Airplane(String licensePlate, String type, int seatCapacity, int luggageCapacity) {
         this.licensePlate = licensePlate;

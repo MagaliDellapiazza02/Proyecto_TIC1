@@ -37,8 +37,17 @@ public class AdminAirportsController {
     }
 
     @FXML
-    void searchButtonClicked(javafx.event.ActionEvent event) {
+    void searchAirportButtonClicked(ActionEvent event) {
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/admin/SearchAirport.fxml", "Buscar aeropuerto");
+    }
 
+    @FXML
+    void setBtnSearch(ActionEvent event) {
+    	//llamar al método de buscar
+
+
+        //si encuentra algo, lo muestre
+        //si no, que muestre un mensaje de error
     }
 
 }

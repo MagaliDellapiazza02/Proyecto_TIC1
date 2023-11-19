@@ -37,8 +37,8 @@ public class AdminAirlinesController {
     }
 
     @FXML
-    void searchButtonClicked(javafx.event.ActionEvent event) {
-
+    void searchAirlineButtonClicked(javafx.event.ActionEvent event) {
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/admin/SearchAirline.fxml", "Buscar Aerolinea");
     }
 
 }

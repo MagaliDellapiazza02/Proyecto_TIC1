@@ -34,23 +34,28 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.airline.admin.AddAirplaneController">
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
-                <TextField fx:id="txtLicensePlate" layoutX="296.0" layoutY="87.0" promptText="AB-123" />
-                <TextField fx:id="txtType" layoutX="296.0" layoutY="123.0" promptText="Boeing 777" />
-                <TextField fx:id="txtSeats" layoutX="296.0" layoutY="159.0" />
-                <TextField fx:id="txtLuggage" layoutX="296.0" layoutY="197.0" />
-                <Label layoutX="204.0" layoutY="91.0" text="Matrícula" />
-                <Label layoutX="175.0" layoutY="163.0" text="Capacidad asientos" />
-                <Label layoutX="214.0" layoutY="127.0" text="Tipo" />
-                <Button fx:id="btnBack" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atrás" />
-                <Button fx:id="btnConfirm" layoutX="549.0" layoutY="361.0" mnemonicParsing="false" onAction="#addBtnClicked" text="Crear avión" />
-                <Label layoutX="283.0" layoutY="41.0" text="Agregar avión" />
-                <Label layoutX="174.0" layoutY="201.0" text="Capacidad equipaje" />
-            <Button fx:id="btnLogOut" layoutX="21.0" layoutY="25.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar Sesion" />
+                <TextField fx:id="txtLicensePlate" layoutX="301.0" layoutY="125.0" promptText="AB-123" />
+                <TextField fx:id="txtType" layoutX="301.0" layoutY="161.0" promptText="Boeing 777" />
+                <TextField fx:id="txtSeats" layoutX="301.0" layoutY="197.0" />
+                <TextField fx:id="txtLuggage" layoutX="301.0" layoutY="235.0" />
+                <Label layoutX="209.0" layoutY="129.0" text="Matrícula" />
+                <Label layoutX="180.0" layoutY="201.0" text="Capacidad asientos" />
+                <Label layoutX="219.0" layoutY="165.0" text="Tipo" />
+                <Button fx:id="btnBack" layoutX="21.0" layoutY="361.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atrás" />
+                <Button fx:id="btnConfirm" layoutX="546.0" layoutY="361.0" mnemonicParsing="false" onAction="#addBtnClicked" prefHeight="26.0" prefWidth="71.0" text="Crear " />
+                <Label layoutX="244.0" layoutY="51.0" prefHeight="38.0" prefWidth="152.0" text="Crear avión">
+                    <font>
+                        <Font size="31.0" />
+                    </font>
+                </Label>
+                <Label layoutX="179.0" layoutY="239.0" text="Capacidad equipaje" />
+            <Button fx:id="btnLogOut" layoutX="22.0" layoutY="25.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar sesión" />
 
             </children>
         </AnchorPane>

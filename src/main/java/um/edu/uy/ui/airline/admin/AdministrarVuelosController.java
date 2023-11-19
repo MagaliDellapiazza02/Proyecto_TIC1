@@ -39,31 +39,7 @@ public class AdministrarVuelosController {
     }
 
     @FXML
-    private void close(ActionEvent actionEvent) {
-        Node source = (Node)  actionEvent.getSource();
-        Stage stage  = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
     void addButtonClicked(ActionEvent event) {
         PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airline/admin/AddFlight.fxml", "Agregar vuelo");
-        /*close(event);
-
-        try {
-
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(Main.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(AddFlightsController.class.getResourceAsStream("/um/edu/uy/ui/user/airline/admin/AddFlight.fxml"));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Agregar vuelo");
-            stage.show();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
     }
 }

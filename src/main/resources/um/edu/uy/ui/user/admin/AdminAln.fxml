@@ -33,6 +33,7 @@
 -->
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -40,14 +41,18 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button fx:id="btnBack" layoutX="37.0" layoutY="315.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atras" />
-            <Button fx:id="btnAdd" layoutX="211.0" layoutY="134.0" mnemonicParsing="false" onAction="#addAirlineButtonClicked" prefHeight="25.0" prefWidth="109.0" text="Crear Aerolínea" />
-            <Label fx:id="labTitle" layoutX="132.0" layoutY="36.0" text="Administrar Aerolíneas">
+          <ImageView fitHeight="50.0" fitWidth="76.0" layoutX="106.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+              <image>
+                  <Image url="@/um/edu/uy/ui/user/stylebases/customs-officer.png" />
+              </image></ImageView>
+            <Button fx:id="btnBack" layoutX="34.0" layoutY="350.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atrás" />
+            <Button fx:id="btnAdd" layoutX="174.0" layoutY="140.0" mnemonicParsing="false" onAction="#addAirlineButtonClicked" prefHeight="26.0" prefWidth="293.0" text="Crear Aerolínea" />
+            <Label fx:id="labTitle" layoutX="174.0" layoutY="41.0" text="Administrar Aerolíneas">
                <font>
                   <Font size="31.0" />
                </font>
             </Label>
-            <Button fx:id="btnSearch" layoutX="211.0" layoutY="200.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Buscar Aerolínea" />
+            <Button fx:id="btnSearch" layoutX="174.0" layoutY="221.0" mnemonicParsing="false"  onAction="#searchAirlineButtonClicked" prefHeight="26.0" prefWidth="293.0" text="Buscar Aerolínea" />
       </children>
     </AnchorPane>
   </children>

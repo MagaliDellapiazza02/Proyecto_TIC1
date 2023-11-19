@@ -1,19 +1,42 @@
 package um.edu.uy.ui.admin;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import javafx.scene.control.Label;
 import um.edu.uy.business.entities.Airline;
+import um.edu.uy.business.entities.Flight;
 import um.edu.uy.persistence.AirlineRepository;
 import um.edu.uy.ui.PublicMethods;
 
+import javax.swing.*;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+
 @Component
-public class SearchAirlineController {
+public class SearchAirlineController implements Initializable {
+
+    @FXML
+    private TableView<Airline> airlineTableView;
+    @FXML
+    private TableColumn<Airline, Long> idTableColumn;
+    @FXML
+    private TableColumn<Airline, String> alnIATATableColumn;
+    @FXML
+    private TableColumn<Airline, String> alnICATOTableColumn;
+    @FXML
+    private TableColumn<Airline, String> alnNameTableColumn;
+    @FXML
+    private TableColumn<Airline, String> alnCountryTableColumn;
 
     @FXML
     private Label labAirline;
@@ -25,41 +48,19 @@ public class SearchAirlineController {
     private Button btnLogOut;
 
     @FXML
-    private Button btnSearch;
-
-    @FXML
-    private TextField txtIATA;
+    private TextField txtBar;
 
     @Autowired
     private AirlineRepository alnRepository;
 
-    @FXML
-    void searchButtonClicked(ActionEvent event) {
-        try {
-            if (txtIATA.getText() == null || txtIATA.getText().equals("")) {
+    private List<Airline> elementos;
 
-                PublicMethods.showAlert(
-                        "Datos faltantes!",
-                        "No se ingresaron los datos necesarios para completar el ingreso.");
-            }
+    ObservableList<Airline> airlineObservableList = FXCollections.observableArrayList();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            PublicMethods.showAlert("ERROR!", "Ingrese correctamente todos los espacios");
-        }
-
-        String IATA = txtIATA.getText();
-
-        Airline aln = alnRepository.findOneByAlnIATA(IATA);
-
-
-
-
-
-    }
 
     @FXML
     void backButtonClicked(ActionEvent event) {
+        elementos.clear();
         PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/admin/AdminAln.fxml", "Administrar Aerolineas");
     }
 
@@ -67,4 +68,67 @@ public class SearchAirlineController {
     void logOutButtonClicked(ActionEvent event) {
         PublicMethods.logOut(event);
     }
-}
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        if(airlineObservableList != null){
+            airlineObservableList.clear();
+        }
+        elementos = alnRepository.findAll();
+        try {
+
+            //elementos = alnRepository.getAirlineByAlnIATA(txtIATA.getText());
+
+            idTableColumn.setCellValueFactory(new PropertyValueFactory<Airline, Long>("id"));
+            alnIATATableColumn.setCellValueFactory(new PropertyValueFactory<Airline, String>("alnIATA"));
+            alnICATOTableColumn.setCellValueFactory(new PropertyValueFactory<Airline, String>("alnICAO"));
+            alnNameTableColumn.setCellValueFactory(new PropertyValueFactory<Airline, String>("alnName"));
+            alnCountryTableColumn.setCellValueFactory(new PropertyValueFactory<Airline, String>("alnCountry"));
+
+            for (Airline airline : elementos) {
+                airlineObservableList.add(airline);
+            }
+
+                airlineTableView.setItems(airlineObservableList);
+
+                FilteredList<Airline> filteredData = new FilteredList<>(airlineObservableList, b -> true);
+
+                txtBar.textProperty().addListener((observable, oldValue, newValue) -> {
+                    filteredData.setPredicate(airline -> {
+                        if (newValue == null || newValue.isEmpty() || newValue.isBlank()) {
+                            return true;
+                        }
+
+                        String lowerCaseFilter = newValue.toLowerCase();
+
+
+                        if(String.valueOf(airline.getId()).indexOf(lowerCaseFilter) != -1){
+                            return true;
+                        }
+                        if (airline.getAlnIATA().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                            return true;
+                        } else if (airline.getAlnICAO().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                            return true;
+                        } else if (airline.getAlnName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                            return true;
+                        } else if (airline.getAlnCountry().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                            return true;
+                        } else
+                            return false;
+                    });
+                });
+
+                SortedList<Airline> sortedData = new SortedList<>(filteredData);
+                sortedData.comparatorProperty().bind(airlineTableView.comparatorProperty());
+
+                airlineTableView.setItems(sortedData);
+
+            } catch(Exception e){
+                JOptionPane.showMessageDialog(null, "No se encontró la aerolínea");
+            }
+
+        }
+
+    }
+
+
