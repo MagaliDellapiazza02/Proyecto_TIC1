@@ -17,6 +17,6 @@ public interface PassengerRepository extends CrudRepository<Passenger, Long> {
 
     Optional<Passenger> findByMail(String mail);
 
-    @Query("SELECT p FROM Passenger p LEFT JOIN FETCH p.luggageList WHERE p.mail = :mail")
-    Optional<Passenger> findByMailWithLuggageList(@Param("mail") String mail);
+    //@Query("SELECT p FROM Passenger p LEFT JOIN FETCH p.luggageList WHERE p.mail = :mail")
+    //Optional<Passenger> findByMailWithLuggageList(@Param("mail") String mail);
 }

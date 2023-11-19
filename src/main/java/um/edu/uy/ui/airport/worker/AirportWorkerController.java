@@ -30,6 +30,16 @@ public class AirportWorkerController {
     private Button runwayReservationsBtn;
 
     @FXML
+    void luggagesButtonClicked(ActionEvent event) {
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airport/worker/GiveLuggageFlight.fxml", "Vuelo para entregar valijas");
+    }
+
+    @FXML
+    void flightsButtonClicked(ActionEvent event) {
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airport/worker/FlightsAirport.fxml", "Ver Vuelos");
+    }
+
+    @FXML
     void ValidateFlightsBtnClicked(ActionEvent event) {
         PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airport/worker/ValidateFlights.fxml", "Validar Vuelos");
     }

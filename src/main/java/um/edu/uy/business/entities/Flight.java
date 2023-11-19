@@ -54,12 +54,13 @@ public class Flight {
     private int luggagesLeft;
 
     //Lista de pasajeros y equipajes:
-    @ManyToMany(mappedBy = "flights", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Passenger> passengers = new ArrayList<>();
+    //@ManyToMany(mappedBy = "flights", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    //private List<Passenger> passengers = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "flights", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Luggage> luggages;
+    //@ManyToMany(mappedBy = "flights", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    //private List<Luggage> luggages;
 
+    //Lista de vuelos y pasajeros
     @OneToMany(mappedBy = "flight")
     private List<FlightPassenger> flightPassengers = new ArrayList<>();
 
@@ -87,11 +88,11 @@ public class Flight {
         this.passengersLeft = airplane.getSeatCapacity();
         this.luggagesLeft = airplane.getLuggageCapacity();
 
-        this.passengers = new ArrayList<>();
-        this.luggages = new ArrayList<>();
+        //this.passengers = new ArrayList<>();
+        //this.luggages = new ArrayList<>();
     }
 
-
+    /*
     public boolean addPassengerToList(Passenger p) {
         if (passengersLeft > 0) {
             System.out.println("que vien");
@@ -128,4 +129,7 @@ public class Flight {
         }
         return false;
     }
+     */
+
+
 }

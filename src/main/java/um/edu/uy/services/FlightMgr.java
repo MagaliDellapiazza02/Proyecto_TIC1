@@ -213,4 +213,8 @@ public class FlightMgr {
         return flightRepository.findByDestinyApprovedAndDestinyAirportIATAAndFlightState(destinyApproved, destinyAirportIATA, flightState);
     }
 
+    public Flight getFlightByNumber(String flightNumber) {
+        return flightRepository.findOneByFlightNumber(flightNumber);
+    }
+
 }
