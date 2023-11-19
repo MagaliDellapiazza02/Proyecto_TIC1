@@ -90,12 +90,12 @@ public class AddFlightsController {
     private UserMgr userMgr;
 
     @FXML
-    void backButtonClicked(javafx.event.ActionEvent event) throws IOException {
+    void backButtonClicked(javafx.event.ActionEvent event) {
         String role = userMgr.getRoleByMail(Session.mail);
         if(role.equals("administrador")) {
             PublicMethods.changeWindow(event,"/um/edu/uy/ui/user/airline/admin/AdministrarVuelos.fxml", "Administrar vuelos");
         } else {
-            PublicMethods.changeWindow(event,"/um/edu/uy/ui/user/airline/worker/AlnWorkerUser.fxml", "Trabajador Aerolinea");
+            PublicMethods.changeWindow(event,"/um/edu/uy/ui/user/airline/worker/WorkerVuelos.fxml", "Administrar Vuelos");
         }
     }
 
@@ -168,7 +168,7 @@ public class AddFlightsController {
                 e.printStackTrace();
                 PublicMethods.showAlert("", "Hubo un error al guardar o validar el vuelo");
             }
-            PublicMethods.changeWindow(event,"/um/edu/uy/ui/user/airline/admin/AdministrarVuelos.fxml", "Administrar vuelos");
+            backButtonClicked(event);
             }
         }
 

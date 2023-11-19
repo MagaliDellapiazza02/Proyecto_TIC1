@@ -34,37 +34,31 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.airport.worker.CheckInPassengerController">
+<VBox prefHeight="400.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.airport.worker.AddLuggageController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="579.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="btnNext" disable="true" layoutX="531.0" layoutY="343.0" mnemonicParsing="false" onAction="#addButtonClicked" text="Agregar" />
-            <Button fx:id="btnBack" layoutX="37.0" layoutY="361.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atras" />
-            <Button fx:id="btnLogOut" layoutX="28.0" layoutY="35.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar Sesion" />
-            <Label layoutX="250.0" layoutY="35.0" text="CHECK IN">
+            <Label layoutX="223.0" layoutY="33.0" text="CHECK IN">
                <font>
                   <Font size="35.0" />
                </font>
             </Label>
-            <Label layoutX="59.0" layoutY="101.0" text="Pasajero">
+            <Button fx:id="btnAdd" layoutX="436.0" layoutY="272.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="38.0" prefWidth="89.0" text="Agregar" />
+            <Label layoutX="149.0" layoutY="178.0" text="Codigo de Traqueo:" />
+            <TextField fx:id="txtLugTrackingCode" layoutX="274.0" layoutY="174.0" />
+            <Label layoutX="63.0" layoutY="102.0" text="Nueva Valija">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <TableView fx:id="tablePassengers" layoutX="90.0" layoutY="143.0" prefHeight="200.0" prefWidth="421.0">
-              <columns>
-                <TableColumn fx:id="colName" prefWidth="110.0" text="Nombre" />
-                <TableColumn fx:id="colPassport" prefWidth="126.0" text="Pasaporte" />
-                  <TableColumn fx:id="colNationality" prefWidth="89.0" text="Nacionalidad" />
-                  <TableColumn fx:id="colDocument" prefWidth="95.0" text="Documento" />
-              </columns>
-            </TableView>
+            <Label layoutX="226.0" layoutY="219.0" text="Peso:" />
+            <TextField fx:id="txtLugWeight" layoutX="274.0" layoutY="215.0" />
+            <Button fx:id="btnBack" layoutX="57.0" layoutY="297.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="38.0" prefWidth="70.0" text="Back" />
          </children>
     </AnchorPane>
   </children>

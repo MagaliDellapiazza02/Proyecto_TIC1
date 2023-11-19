@@ -40,29 +40,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.airport.worker.CheckInPassengerController">
+<VBox prefHeight="400.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.passenger.MyFlightsController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="579.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="689.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="btnNext" disable="true" layoutX="531.0" layoutY="343.0" mnemonicParsing="false" onAction="#addButtonClicked" text="Agregar" />
-            <Button fx:id="btnBack" layoutX="37.0" layoutY="361.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atras" />
-            <Button fx:id="btnLogOut" layoutX="28.0" layoutY="35.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar Sesion" />
-            <Label layoutX="250.0" layoutY="35.0" text="CHECK IN">
+            <Button fx:id="btnBack" layoutX="56.0" layoutY="339.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="34.0" prefWidth="66.0" text="Atrás" />
+            <Button fx:id="btnLogOut" layoutX="34.0" layoutY="28.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar Sesión" />
+            <Label layoutX="263.0" layoutY="41.0" text="Ver mis Vuelos">
                <font>
                   <Font size="35.0" />
                </font>
             </Label>
-            <Label layoutX="59.0" layoutY="101.0" text="Pasajero">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-            <TableView fx:id="tablePassengers" layoutX="90.0" layoutY="143.0" prefHeight="200.0" prefWidth="421.0">
+            <TableView fx:id="tableFlights" layoutX="6.0" layoutY="114.0" prefHeight="210.0" prefWidth="739.0">
               <columns>
-                <TableColumn fx:id="colName" prefWidth="110.0" text="Nombre" />
-                <TableColumn fx:id="colPassport" prefWidth="126.0" text="Pasaporte" />
-                  <TableColumn fx:id="colNationality" prefWidth="89.0" text="Nacionalidad" />
-                  <TableColumn fx:id="colDocument" prefWidth="95.0" text="Documento" />
+                <TableColumn fx:id="colNumFlight" prefWidth="81.0" text="N° Vuelo" />
+                  <TableColumn fx:id="colDepartureTime" prefWidth="183.0" text="Horario Salida" />
+                <TableColumn fx:id="colOriginAirport" prefWidth="112.0" text="Aeropuerto Origen" />
+                  <TableColumn fx:id="colArrivalTime" prefWidth="164.0" text="Horario Llegada" />
+                  <TableColumn fx:id="colDestinyAirport" prefWidth="117.0" text="Aeropuerto Destino" />
+                  <TableColumn fx:id="colAirline" prefWidth="85.0" text="Aerolinea" />
               </columns>
             </TableView>
          </children>

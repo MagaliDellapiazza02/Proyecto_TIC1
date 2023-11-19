@@ -33,16 +33,21 @@ public class Passenger {
 
     private String password;
 
-    @OneToMany(mappedBy = "passenger") //relación 1-n entre pasajero y equipaje
+    @OneToMany //relación 1-n entre pasajero y equipaje
     private List<Luggage> luggageList = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Flight> flights = new ArrayList<>();
+
+    @OneToMany(mappedBy = "passenger")
+    private List<FlightPassenger> flightPassengers = new ArrayList<>();
 
     public Passenger(long document, String passport, String nationality, String name, String mail, String password) {
         this.document = document;
         this.name = name;
         this.mail = mail;
         this.password = password;
+        this.passport = passport;
+        this.nationality = nationality;
     }
 }

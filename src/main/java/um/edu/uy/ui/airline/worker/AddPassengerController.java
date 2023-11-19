@@ -1,4 +1,5 @@
 package um.edu.uy.ui.airline.worker;
+import jakarta.transaction.Transactional;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -19,9 +20,11 @@ import org.springframework.stereotype.Component;
 import um.edu.uy.business.entities.Airline;
 import um.edu.uy.business.entities.Flight;
 import um.edu.uy.business.entities.Session;
+import um.edu.uy.business.entities.User;
 import um.edu.uy.persistence.AirlineRepository;
 import um.edu.uy.persistence.FlightRepository;
 import um.edu.uy.services.AirlineMgr;
+import um.edu.uy.services.FlightMgr;
 import um.edu.uy.services.PassengerMgr;
 import um.edu.uy.ui.PublicMethods;
 
@@ -70,7 +73,11 @@ public class AddPassengerController implements Initializable {
     private FlightRepository flightRepository;
 
     @Autowired
+    private FlightMgr flightMgr;
+
+    @Autowired
     private AirlineMgr airlineMgr;
+
 
     @FXML
     void menuBtnFlightsClicked(ActionEvent event) {
@@ -87,9 +94,38 @@ public class AddPassengerController implements Initializable {
 
     }
 
-    @FXML
-    void addButtonClicked(ActionEvent event) {
 
+    @FXML
+    public void addButtonClicked(ActionEvent event) {
+        try {
+            if (txtPassport.getText() == null || txtPassport.getText().equals("") ) {
+
+                PublicMethods.showAlert(
+                        "Datos faltantes!",
+                        "No se ingresaron los datos necesarios para completar el ingreso.");
+
+            } else{
+                System.out.println("hola");
+                String passport = txtPassport.getText();
+
+                Flight flight = tableFlights.getSelectionModel().getSelectedItem();
+
+                boolean result = flightMgr.addPassenger(flight, passport);
+
+                if (result) {
+                    PublicMethods.showAlert("Agregado", "Agregado con éxito!");
+                    backButtonClicked(event);
+
+                } else {
+                    PublicMethods.showAlert("ERROR!", "No se pudo agregar porque no existe ese pasaporte o ya se encuentra en este avion");
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            PublicMethods.showAlert("ERROR!", "Ingrese correctamente todos los campos.");
+
+        }
     }
 
     @FXML

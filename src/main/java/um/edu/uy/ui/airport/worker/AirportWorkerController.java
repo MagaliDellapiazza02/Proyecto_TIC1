@@ -42,6 +42,12 @@ public class AirportWorkerController {
     void runwayReservationsBtnClicked(ActionEvent actionEvent) {
         PublicMethods.changeWindow(actionEvent, "/um/edu/uy/ui/user/airport/worker/RunwayReservations.fxml", "Reservas de pistas con vuelos sin confirmar");
     }
+
+    @FXML
+    void checkInBtnClicked(ActionEvent actionEvent) {
+        PublicMethods.changeWindow(actionEvent, "/um/edu/uy/ui/user/airport/worker/CheckInFlight.fxml", "Vuelo para hacer Check In");
+    }
+
     @FXML
     void logOutButtonClicked(ActionEvent actionEvent) {
         PublicMethods.logOut(actionEvent);

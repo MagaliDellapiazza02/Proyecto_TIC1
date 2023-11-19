@@ -1,7 +1,9 @@
 package um.edu.uy.persistence;
 
 import org.springframework.data.repository.CrudRepository;
+import um.edu.uy.business.entities.Airport;
 import um.edu.uy.business.entities.Flight;
+import um.edu.uy.business.entities.Passenger;
 
 import java.util.List;
 
@@ -22,4 +24,5 @@ public interface FlightRepository extends CrudRepository<Flight, String> {
 
         List<Flight> findByOriginApprovedAndOriginAirportIATAAndFlightState(boolean originApproved, String originAirportIATA, String flightState);
 
+        List<Flight> findByFlightStateAndOriginAirport(String flightState, Airport a);
 }

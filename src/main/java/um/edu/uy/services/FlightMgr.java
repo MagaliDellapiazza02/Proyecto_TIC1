@@ -8,6 +8,7 @@ import um.edu.uy.business.exceptions.InvalidInformation;
 import um.edu.uy.persistence.*;
 
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +30,12 @@ public class FlightMgr {
 
     @Autowired
     private RunwayReservationRepository runwayReservationRepository;
+
+    @Autowired
+    private PassengerRepository passengerRepository;
+
+    @Autowired
+    private FlightPassengerRepository flightPassengerRepository;
 
 
     public void addFlight(Flight flight)
@@ -148,6 +155,55 @@ public class FlightMgr {
             return true;
         }
     }
+
+    public boolean addPassenger(Flight flight, String passport) {
+        /*flight.getPassengers().clear();
+        flight.setPassengersLeft(150);
+        flightRepository.save(flight);
+
+        Passenger p = passengerRepository.findPassengerByPassport(passport);
+        p.getFlights().clear();
+        passengerRepository.save(p);
+        flightRepository.save(flight);
+        return true;*/
+        Passenger p = passengerRepository.findPassengerByPassport(passport);
+        if (p == null || flight.getPassengersLeft() < 1) {
+            return false;
+        }
+        /*
+        List<Passenger> passengers = flight.getPassengers();
+        List<Flight> flights =  p.getFlights();
+        System.out.println(passengers.size());
+        int pasLeft = flight.getPassengersLeft();
+
+        if(passengers.contains(p) || flights.contains(flight)){
+            return false;
+        }
+
+
+        passengers.add(p);
+        */
+        int pasLeft = flight.getPassengersLeft();
+        FlightPassenger fP = flightPassengerRepository.findFlightPassengerByFlightAndPassenger(flight, p);
+        if (fP != null){
+            return false;
+        }
+
+        FlightPassenger newFlighPassenger = new FlightPassenger(flight, p);
+
+        flight.setPassengersLeft(pasLeft-1);
+
+
+
+        //flights.add(flight);
+
+        flightRepository.save(flight);
+        flightPassengerRepository.save(newFlighPassenger);
+        //passengerRepository.save(p);
+        return true;
+
+    }
+
 
     public List<Flight> getFlightsFromDepartureAirport(boolean originApproved, String originAirportIATA, String flightState) {
         return flightRepository.findByOriginApprovedAndOriginAirportIATAAndFlightState(originApproved, originAirportIATA, flightState);

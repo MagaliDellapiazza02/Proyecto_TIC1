@@ -58,9 +58,8 @@ public class PassengerWindowController implements Initializable {
     }
 
     @FXML
-    private void verVuelosButtonClicked(ActionEvent event) {
-        // Manejo del evento para el botón "Ver vuelos"
-        // Puedes agregar aquí la lógica para ver los vuelos
+    void vuelosButtonClicked(ActionEvent event) {
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/passenger/MyFlights.fxml", "Ver mis vuelos");
     }
 
     @FXML

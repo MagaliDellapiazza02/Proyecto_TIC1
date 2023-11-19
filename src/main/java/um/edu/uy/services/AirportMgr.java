@@ -12,16 +12,25 @@ import um.edu.uy.persistence.UserRepository;
 public class AirportMgr {
 
     @Autowired
-    private AirportRepository AirportRepository;
+    private AirportRepository airportRepository;
+
+    @Autowired
+    private UserMgr userMgr;
 
     public void addAirport(Airport a) throws EntityAlreadyExists {
         //verificar en el front que los datos sean de tipo correcto antes de crear el aerpouerto. Checkear que el role este correcto
 
-        if(AirportRepository.findByName(a.getName()) != null) {
+        if(airportRepository.findByName(a.getName()) != null) {
             throw new EntityAlreadyExists();
         }
 
-        AirportRepository.save(a);
+        airportRepository.save(a);
+    }
+
+    public Airport findAirportWithUser (String mail) {
+        String name = userMgr.getCompanyByMail(mail).split("%")[1];
+
+        return airportRepository.findByName(name);
     }
 
     public Airport findByName(String name) {

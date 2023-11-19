@@ -3,6 +3,7 @@ package um.edu.uy.business.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -53,10 +54,14 @@ public class Flight {
     private int luggagesLeft;
 
     //Lista de pasajeros y equipajes:
-    @ManyToMany(mappedBy = "flights")
-    private List<Passenger> passengers = new LinkedList<>();
-    @ManyToMany(mappedBy = "flights")
-    private List<Luggage> luggages = new LinkedList<>();
+    @ManyToMany(mappedBy = "flights", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Passenger> passengers = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "flights", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Luggage> luggages;
+
+    @OneToMany(mappedBy = "flight")
+    private List<FlightPassenger> flightPassengers = new ArrayList<>();
 
 
 
@@ -81,16 +86,25 @@ public class Flight {
 
         this.passengersLeft = airplane.getSeatCapacity();
         this.luggagesLeft = airplane.getLuggageCapacity();
+
+        this.passengers = new ArrayList<>();
+        this.luggages = new ArrayList<>();
     }
 
 
     public boolean addPassengerToList(Passenger p) {
         if (passengersLeft > 0) {
-            passengers.add(p);
-            passengersLeft = passengersLeft - 1;
-            return true;
+            System.out.println("que vien");
+            if (passengersExist(p)) {
+                return false;
+            } else {
+                passengers.add(p);
+                System.out.println(passengers.isEmpty());
+                System.out.println(passengers.get(1).getPassport());
+                passengersLeft = passengersLeft - 1;
+                return true;
+            }
         }
-
         return false;
     }
 
@@ -100,6 +114,17 @@ public class Flight {
             luggages.add(l);
             luggagesLeft = counter;
             return true;
+        }
+        return false;
+    }
+
+    public boolean passengersExist(Passenger p) {
+        System.out.println(passengers.size());
+        for (int i = 0; i < passengers.size(); i++) {
+            System.out.println(passengers.get(i).getPassport());
+            if (passengers.get(i).getPassport().equals(p.getPassport())) {
+                return true;
+            }
         }
         return false;
     }

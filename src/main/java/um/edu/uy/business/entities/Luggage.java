@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class Luggage {
     private Passenger passenger;
 
     @ManyToMany
-    private List<Flight> flights = new LinkedList<>();
+    private List<Flight> flights = new ArrayList<>();
 
     public Luggage(int weight, String trackingNumber) {
         this.weight = weight;
