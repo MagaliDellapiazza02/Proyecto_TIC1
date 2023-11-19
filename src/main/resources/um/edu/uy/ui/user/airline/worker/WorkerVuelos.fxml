@@ -47,12 +47,12 @@
                   <Font size="41.0" />
                </font>
             </Label>
-            <Button fx:id="btnLogOut" layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar Sesion" />
+            <Button fx:id="btnLogOut" layoutX="14.0" layoutY="17.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar sesión" />
             <Button fx:id="btnAdd" layoutX="240.0" layoutY="119.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="36.0" prefWidth="142.0" text="Agregar vuelo" />
             <Button fx:id="btnModify" layoutX="240.0" layoutY="168.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="142.0" text="Modificar vuelo" />
             <Button fx:id="btnDelete" layoutX="240.0" layoutY="217.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="142.0" text="Eliminar vuelo" />
             <Button fx:id="btnSeeFlights" layoutX="240.0" layoutY="265.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="142.0" text="Ver vuelos" />
-            <Button fx:id="btnBack" layoutX="52.0" layoutY="335.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atras" />
+            <Button fx:id="btnBack" layoutX="52.0" layoutY="335.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atrás" />
          </children>
     </AnchorPane>
   </children>

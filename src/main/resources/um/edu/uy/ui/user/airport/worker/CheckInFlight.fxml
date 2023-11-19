@@ -44,8 +44,8 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="btnLogOut" layoutX="36.0" layoutY="41.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar Sesion" />
-            <Button fx:id="btnBack" layoutX="36.0" layoutY="358.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atras" />
+            <Button fx:id="btnLogOut" layoutX="36.0" layoutY="41.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar sesión" />
+            <Button fx:id="btnBack" layoutX="36.0" layoutY="358.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atrás" />
             <Button fx:id="btnNext" disable="true" layoutX="544.0" layoutY="358.0" mnemonicParsing="false" onAction="#nextButtonClicked" text="Siguiente" />
             <Label layoutX="232.0" layoutY="28.0" text="CHECK IN">
                <font>

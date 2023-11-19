@@ -62,13 +62,13 @@
             <TextField fx:id="txtAddress" layoutX="185.0" layoutY="310.0" prefHeight="25.0" prefWidth="251.0" />
             <TextField fx:id="txtPassword" layoutX="185.0" layoutY="348.0" prefHeight="25.0" prefWidth="251.0" />
             <TextField fx:id="txtPasswordC" layoutX="184.0" layoutY="385.0" prefHeight="25.0" prefWidth="251.0" />
-            <Button fx:id="btnLogOut" layoutX="11.0" layoutY="22.0" mnemonicParsing="false" onAction="#logOutButtonClicked" prefHeight="32.0" prefWidth="111.0" text="Cerrar Sesion" />
+            <Button fx:id="btnLogOut" layoutX="11.0" layoutY="22.0" mnemonicParsing="false" onAction="#logOutButtonClicked" prefHeight="32.0" prefWidth="111.0" text="Cerrar sesión" />
             <Label layoutX="92.0" layoutY="245.0" text="Nacionalidad:" />
             <Label layoutX="114.0" layoutY="280.0" text="Telefono:" />
             <TextField fx:id="txtNationality" layoutX="186.0" layoutY="241.0" prefHeight="25.0" prefWidth="251.0" />
             <TextField fx:id="txtTelephone" layoutX="186.0" layoutY="276.0" prefHeight="25.0" prefWidth="251.0" />
             <Button fx:id="btnAdd" layoutX="437.0" layoutY="427.0" mnemonicParsing="false" onAction="#addBtnClicked" prefHeight="32.0" prefWidth="63.0" text="Crear" />
-            <Button fx:id="btnBack" layoutX="16.0" layoutY="443.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="32.0" prefWidth="63.0" text="Atras" />
+            <Button fx:id="btnBack" layoutX="16.0" layoutY="443.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="32.0" prefWidth="63.0" text="Atrás" />
          </children>
       </AnchorPane>
   </children>

@@ -46,7 +46,7 @@
                </font>
             </Label>
             <Button fx:id="btnAdminFlights" layoutX="252.0" layoutY="161.0" mnemonicParsing="false" onAction="#adminFlightsButtonClicked" prefHeight="49.0" prefWidth="115.0" text="Administrar vuelos" />
-            <Button fx:id="btnLogOut" layoutX="14.0" layoutY="29.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar Sesion" />
+            <Button fx:id="btnLogOut" layoutX="14.0" layoutY="29.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar sesión" />
             <Button fx:id="btnAddP" layoutX="256.0" layoutY="244.0" mnemonicParsing="false" onAction="#addPBtnClicked" text="Agregar Pasajero" />
          </children>
     </AnchorPane>

@@ -40,7 +40,7 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button fx:id="btnBack" layoutX="34.0" layoutY="321.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atras" />
+            <Button fx:id="btnBack" layoutX="34.0" layoutY="321.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atrás" />
             <Button fx:id="btnAddWroker" layoutX="242.0" layoutY="136.0" mnemonicParsing="false" onAction="#addWorkerButtonClicked" prefHeight="25.0" prefWidth="109.0" text="Crear Trabajador" />
             <Label fx:id="labTitle" layoutX="132.0" layoutY="29.0" text="Administrar Trabajadores">
                <font>
@@ -48,7 +48,7 @@
                </font>
             </Label>
             <Button fx:id="btnDeleteWorker" layoutX="242.0" layoutY="194.0" mnemonicParsing="false" onAction="#deleteButtonClicked" text="Borrar Trabajador" />
-            <Button fx:id="btnLogOut" layoutX="12.0" layoutY="17.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar Sesion" />
+            <Button fx:id="btnLogOut" layoutX="12.0" layoutY="17.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar sesión" />
       </children>
     </AnchorPane>
   </children>

@@ -42,7 +42,7 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="btnLogOut" layoutX="31.0" layoutY="26.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar Sesion" />
+            <Button fx:id="btnLogOut" layoutX="31.0" layoutY="26.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar sesión" />
             <Button fx:id="btnAdminWorkers" layoutX="287.0" layoutY="127.0" mnemonicParsing="false" onAction="#adminWorkersButtonClicked" text="Administrar Trabajadores" />
             <Button fx:id="btnAdminFlights" layoutX="287.0" layoutY="181.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" onAction="#adminFlightsButtonClicked" text="Administrar Vuelos" />
             <Button fx:id="btnAdminLuggages" layoutX="287.0" layoutY="233.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" onAction="#adminLuggagesButtonClicked" text="Administrar Valijas" />

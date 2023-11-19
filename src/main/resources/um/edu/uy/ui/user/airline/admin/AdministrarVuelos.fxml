@@ -32,28 +32,39 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.airline.admin.AdministrarVuelosController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="358.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button fx:id="btnAdd" layoutX="239.0" layoutY="128.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="25.0" prefWidth="99.0" text="Agregar vuelo" />
-            <Label layoutX="232.0" layoutY="14.0" text="Vuelos">
+            <Pane layoutX="216.0" layoutY="119.0" prefHeight="194.0" prefWidth="208.0">
+               <children>
+                  <Button fx:id="btnAdd" layoutX="1.0" layoutY="7.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="26.0" prefWidth="207.0" text="Agregar vuelo" />
+                  <Button fx:id="btnModify" layoutX="1.0" layoutY="59.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="207.0" text="Modificar vuelo" />
+                  <Button fx:id="btnDelete" layoutX="1.0" layoutY="107.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="207.0" text="Eliminar vuelo" />
+                  <Button fx:id="btnSeeFlights" layoutX="1.0" layoutY="154.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="207.0" text="Ver vuelos" />
+               </children>
+            </Pane>
+            <Label layoutX="268.0" layoutY="57.0" text="Vuelos">
                <font>
-                  <Font size="41.0" />
+                  <Font size="36.0" />
                </font>
             </Label>
-            <Button fx:id="btnModify" layoutX="239.0" layoutY="175.0" mnemonicParsing="false" text="Modificar vuelo" />
-            <Button fx:id="btnDelete" layoutX="239.0" layoutY="217.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" text="Eliminar vuelo" />
-            <Button fx:id="btnSeeFlights" layoutX="239.0" layoutY="260.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" text="Ver vuelos" />
-            <Button fx:id="btnBack" layoutX="35.0" layoutY="310.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atras" />
-            <Button fx:id="btnLogOut" layoutX="14.0" layoutY="31.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar Sesion" />
+            <Button fx:id="btnBack" layoutX="23.0" layoutY="350.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atrás" />
+            <Button fx:id="btnLogOut" layoutX="14.0" layoutY="31.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar sesión" />
+            <ImageView fitHeight="52.0" fitWidth="55.0" layoutX="190.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/um/edu/uy/ui/user/stylebases/flight.png" />
+               </image>
+            </ImageView>
       </children>
     </AnchorPane>
   </children>
