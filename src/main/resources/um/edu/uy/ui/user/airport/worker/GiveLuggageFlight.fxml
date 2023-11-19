@@ -34,38 +34,39 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.airline.admin.AdministrarVuelosController">
+<VBox prefHeight="400.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.airport.worker.GiveLuggageFlightController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="358.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
-      <children>
-            <Pane layoutX="216.0" layoutY="119.0" prefHeight="194.0" prefWidth="208.0">
-               <children>
-                  <Button fx:id="btnAdd" layoutX="1.0" layoutY="7.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="26.0" prefWidth="207.0" text="Agregar vuelo" />
-                  <Button fx:id="btnModify" layoutX="1.0" layoutY="59.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="207.0" text="Modificar vuelo" />
-                  <Button fx:id="btnDelete" layoutX="1.0" layoutY="107.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="207.0" text="Eliminar vuelo" />
-                  <Button fx:id="btnSeeFlights" layoutX="1.0" layoutY="154.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="207.0" text="Ver vuelos" />
-               </children>
-            </Pane>
-            <Label layoutX="268.0" layoutY="57.0" text="Vuelos">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="772.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Button fx:id="btnBack" layoutX="39.0" layoutY="345.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="62.0" onAction="#backButtonClicked" text="Atrás" />
+            <Label layoutX="333.0" layoutY="23.0" text="Valijas">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Button fx:id="btnBack" layoutX="23.0" layoutY="350.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atrás" />
-            <Button fx:id="btnLogOut" layoutX="14.0" layoutY="31.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar sesión" />
-            <ImageView fitHeight="52.0" fitWidth="55.0" layoutX="190.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@/um/edu/uy/ui/user/stylebases/flight.png" />
-               </image>
-            </ImageView>
-      </children>
+            <Label layoutX="70.0" layoutY="76.0" text="Seleccionar Vuelo:">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tableFlights" layoutX="14.0" layoutY="118.0" prefHeight="210.0" prefWidth="739.0">
+               <columns>
+                  <TableColumn fx:id="colNumFlight" prefWidth="81.0" text="N° Vuelo" />
+                  <TableColumn fx:id="colDepartureTime" prefWidth="183.0" text="Horario Salida" />
+                  <TableColumn fx:id="colOriginAirport" prefWidth="112.0" text="Aeropuerto Origen" />
+                  <TableColumn fx:id="colArrivalTime" prefWidth="164.0" text="Horario Llegada" />
+                  <TableColumn fx:id="colDestinyAirport" prefWidth="117.0" text="Aeropuerto Destino" />
+                  <TableColumn fx:id="colAirline" prefWidth="85.0" text="Aerolinea" />
+               </columns>
+            </TableView>
+            <Button fx:id="btnNext" disable="true" layoutX="657.0" layoutY="345.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="81.0" onAction="#nextButtonClicked" text="Siguiente" />
+         </children>
     </AnchorPane>
   </children>
 </VBox>

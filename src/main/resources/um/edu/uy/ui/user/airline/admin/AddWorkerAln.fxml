@@ -61,8 +61,8 @@
             <TextField fx:id="txtPassword" layoutX="245.0" layoutY="340.0" prefHeight="25.0" prefWidth="251.0" />
             <TextField fx:id="txtPasswordC" layoutX="245.0" layoutY="372.0" prefHeight="25.0" prefWidth="251.0" />
             <Button fx:id="btnAdd" layoutX="516.0" layoutY="405.0" mnemonicParsing="false" onAction="#addBtnClicked" prefHeight="32.0" prefWidth="63.0" text="Crear" />
-            <Button fx:id="btnBack" layoutX="25.0" layoutY="421.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="32.0" prefWidth="63.0" text="Atras" />
-            <Button fx:id="btnLogOut" layoutX="37.0" layoutY="24.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar Sesion" />
+            <Button fx:id="btnBack" layoutX="25.0" layoutY="421.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="32.0" prefWidth="63.0" text="Atrás" />
+            <Button fx:id="btnLogOut" layoutX="37.0" layoutY="24.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar sesión" />
             <Label layoutX="175.0" layoutY="213.0" text="Rol:" />
             <TextField fx:id="txtRole" layoutX="245.0" layoutY="208.0" prefHeight="25.0" prefWidth="251.0" />
             <Label layoutX="126.0" layoutY="246.0" text="Nacionalidad:" />

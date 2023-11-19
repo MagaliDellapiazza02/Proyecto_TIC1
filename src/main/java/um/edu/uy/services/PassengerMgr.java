@@ -80,6 +80,11 @@ public class PassengerMgr {
         return p;
     }
 
+    public Passenger getPassengerByPassport(String passport) {
+        Passenger p = passengerRepository.findPassengerByPassport(passport);
+        return p;
+    }
+
     public List<Passenger> getPassengersFromFlight(String flightNumber) {
         Flight flight = flightRepository.findOneByFlightNumber(flightNumber);
 
@@ -88,8 +93,12 @@ public class PassengerMgr {
 
         for(int i = 0; i < flightPassengers.size(); i++) {
             FlightPassenger flightPassenger = flightPassengers.get(i);
+            System.out.println("holaaaaa");
+            System.out.println(flightPassenger.getPassenger().getPassport());
+            System.out.println(flightPassenger.isCheckedIn());
+
             if (!flightPassenger.isCheckedIn()) {
-                passengers.add(flightPassengers.get(i).getPassenger());
+                passengers.add(flightPassenger.getPassenger());
             }
         }
         return passengers;

@@ -15,7 +15,6 @@ public class AirplaneMgr {
         if (airplaneRepository.findByLicensePlate(a.getLicensePlate()) != null) {
             throw new EntityAlreadyExists();
         }
-
         airplaneRepository.save(a);
     }
 }
