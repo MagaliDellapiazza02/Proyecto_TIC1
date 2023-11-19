@@ -113,13 +113,11 @@ public class CheckInPassengerController implements Initializable {
         colPassport.setCellValueFactory(new PropertyValueFactory<>("passport"));
 
 
-        //agrego vuelos pendientes de validar que aterricen en el aeropuerto del usuario
         Iterable<Passenger> elementos = passengerMgr.getPassengersFromFlight(flightNumber);
 
         //creo la lista que se mostrará al usuario
         ObservableList<Passenger> listaPasajeros = FXCollections.observableArrayList();
 
-        //agrego vuelos que despegan y aterrizan
         for (Passenger passenger : elementos) {
             listaPasajeros.add(passenger);
         }

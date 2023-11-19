@@ -31,12 +31,19 @@ public class Luggage {
 
     @ManyToOne
     private Passenger passenger;
+    private String passport;
 
-    @ManyToMany
-    private List<Flight> flights = new ArrayList<>();
+    @ManyToOne
+    private Flight flight;
+    private String flightNumber;
 
-    public Luggage(int weight, String trackingNumber) {
+    public Luggage(Passenger p, Flight f, int weight, String trackingNumber) {
+        this.passenger = p;
+        this.flight = f;
         this.weight = weight;
         this.trackingCode = trackingNumber;
+        this.state = "Transito";
+        this.passport = p.getPassport();
+        this.flightNumber = f.getFlightNumber();
     }
 }
