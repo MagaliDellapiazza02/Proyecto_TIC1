@@ -4,11 +4,14 @@ import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import um.edu.uy.business.entities.Airline;
+import um.edu.uy.business.entities.Airplane;
 import um.edu.uy.business.entities.User;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.business.exceptions.InvalidInformation;
 import um.edu.uy.persistence.AirlineRepository;
 import um.edu.uy.persistence.UserRepository;
+
+import java.util.List;
 
 @Service
 public class AirlineMgr {
@@ -33,5 +36,9 @@ public class AirlineMgr {
 
     public Airline findAirlineByIATA(String IATA) {
         return airlineRepository.findOneByAlnIATA(IATA);
+    }
+
+    public List<Airplane> findAirplanesByIATA(String airlineIATA) {
+        return airlineRepository.findOneByAlnIATA(airlineIATA).getAirplanes();
     }
 }

@@ -18,4 +18,5 @@ public interface AirlineRepository extends CrudRepository<Airline, Long> {
 
     List<Airline> findAll();
     List<Airline> getAirlineByAlnIATA(String IATA);
+
 }

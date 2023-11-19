@@ -58,7 +58,7 @@
                   <Button fx:id="btnDeletePlane" layoutX="198.0" layoutY="52.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="119.0" text="Borrar avión" />
                   <ImageView fx:id="airplaneIV" fitHeight="39.0" fitWidth="46.0" layoutX="-5.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@/um/edu/uy/ui/user/stylebases/plane.png"/>
+                        <Image url="@/um/edu/uy/ui/user/stylebases/plane.png" />
                      </image>
                   </ImageView>
                </children>
@@ -72,10 +72,12 @@
             <Button fx:id="btnLogOut" layoutX="27.0" layoutY="23.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Cerrar sesión" />
             <TableView fx:id="airplanesTableView" layoutX="106.0" layoutY="179.0" prefHeight="168.0" prefWidth="474.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="Matrícula" />
-                <TableColumn prefWidth="102.0" text="Tipo" />
-                  <TableColumn prefWidth="158.0" text="Capacidad de Asientos" />
-                  <TableColumn prefWidth="138.0" text="Capacidad de Peso" />
+                  <TableColumn fx:id="idColumn" prefWidth="46.0" text="ID" />
+                <TableColumn fx:id="licensePlateColumn" prefWidth="104.0" text="Matrícula" />
+                <TableColumn fx:id="typeColumn" prefWidth="54.0" text="Tipo" />
+                  <TableColumn fx:id="seatsColumn" prefWidth="149.0" text="Capacidad de Asientos" />
+                  <TableColumn fx:id="luggageColumn" prefWidth="125.0" text="Capacidad de Peso" />
+                  <TableColumn prefWidth="145.0" text="Matrícula" />
               </columns>
             </TableView>
          </children>
