@@ -34,6 +34,6 @@ public class AirportMgr {
     }
 
     public Airport findByName(String name) {
-        return AirportRepository.findByName(name);
+        return airportRepository.findByName(name);
     }
 }
