@@ -65,6 +65,26 @@ public class FlightMgr {
 
     }
 
+    public void saveFlight(Flight flight)
+            throws InvalidInformation, EntityAlreadyExists {
+
+        if (flight.getAirlineOwner() == null || "".equals(flight.getAirlineOwner()) ||
+                flight.getOriginAirport() == null || "".equals(flight.getOriginAirport()) ||
+                flight.getDestinyAirport() == null || "".equals(flight.getDestinyAirport()) ||
+                flight.getAirplane() == null || "".equals(flight.getAirplane()) ||
+                flight.getScheduledDeparture() == null || "".equals(flight.getScheduledDeparture()) ||
+                flight.getScheduledArrival() == null || "".equals(flight.getScheduledArrival()) ||
+                flight.getFlightNumber() == null || "".equals(flight.getFlightNumber())
+        ) {
+            //hacer algo
+            throw new InvalidInformation("Alguno de los datos ingresados no es correcto");
+
+        }
+
+        flightRepository.save(flight);
+
+    }
+
 
     public boolean validateFlight(Airport originAirport, Airport destinyAirport, Date departureDate, Date arrivalDate, Flight flight) {
         List<Runway> availableRunwaysAtOrigin = runwayRepository.findAvailableOnesByAirportIDAndDate(originAirport.getId(), departureDate);
