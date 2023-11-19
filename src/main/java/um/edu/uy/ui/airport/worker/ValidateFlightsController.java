@@ -184,7 +184,7 @@ public class ValidateFlightsController implements Initializable {
             gateReservationMgr.addGateReservation(reservaPuertaDestino);
             runwayReservationMgr.addRunwayReservation(reservaPistaDestino);
         }
-        flightMgr.addFlight(flight);
+        flightMgr.saveFlight(flight);
         backButtonClicked(event);
     }
 

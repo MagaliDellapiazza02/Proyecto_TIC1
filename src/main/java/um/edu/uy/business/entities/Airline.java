@@ -1,11 +1,11 @@
 package um.edu.uy.business.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+
+import java.util.List;
+
 @Entity
 @Table(name = "airlines")
 @Getter
@@ -28,6 +28,10 @@ public class Airline {
     private String alnName;
 
     private String alnCountry;
+
+    @OneToMany(mappedBy = "airline", fetch = FetchType.EAGER)
+    private List<Airplane> airplanes;
+
     public Airline(String alnName, String alnIATA, String alnICAO, String alnCountry) {
         this.alnName = alnName;
         this.alnIATA = alnIATA;
