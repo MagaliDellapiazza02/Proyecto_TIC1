@@ -30,10 +30,11 @@ public class Airplane {
     @ManyToOne
     private Airline airline;
 
-    public Airplane(String licensePlate, String type, int seatCapacity, int luggageCapacity) {
+    public Airplane(String licensePlate, String type, int seatCapacity, int luggageCapacity, Airline airline) {
         this.licensePlate = licensePlate;
         this.type = type;
         this.seatCapacity = seatCapacity;
         this.luggageCapacity = luggageCapacity;
+        this.airline = airline;
     }
 }

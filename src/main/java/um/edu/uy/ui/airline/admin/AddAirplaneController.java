@@ -5,9 +5,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import um.edu.uy.business.entities.Airline;
 import um.edu.uy.business.entities.Airplane;
+import um.edu.uy.business.entities.Session;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.persistence.AirplaneRepository;
+import um.edu.uy.services.AirlineMgr;
 import um.edu.uy.services.AirplaneMgr;
 import um.edu.uy.ui.PublicMethods;
 
@@ -33,8 +36,11 @@ public class AddAirplaneController {
 
     @Autowired
     private AirplaneRepository airplaneRepository;
-
+    @Autowired
     private AirplaneMgr airplaneMgr;
+    @Autowired
+    private AirlineMgr airlineMgr;
+
 
 
 
@@ -57,7 +63,11 @@ public class AddAirplaneController {
                 int luggage = Integer.parseInt(txtLuggage.getText());
                 int seats = Integer.parseInt(txtSeats.getText());
 
-                Airplane newA = new Airplane(licensePlate, type, seats, luggage);
+                Airline airline = airlineMgr.findAirlineByIATA(airlineMgr.findAirlineWithUser(Session.mail));
+
+                Airplane newA = new Airplane(licensePlate, type, seats, luggage, airline);
+                airline.getAirplanes().add(newA);
+
                 airplaneMgr.addAirplane(newA);
                 PublicMethods.showAlert("", "Avión agregado con éxito!");
 
