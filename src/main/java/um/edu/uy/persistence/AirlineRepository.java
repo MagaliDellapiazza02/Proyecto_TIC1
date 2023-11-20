@@ -3,6 +3,7 @@ package um.edu.uy.persistence;
 import javafx.collections.ObservableList;
 import org.springframework.data.repository.CrudRepository;
 import um.edu.uy.business.entities.Airline;
+import um.edu.uy.business.entities.Airplane;
 
 import java.util.List;
 

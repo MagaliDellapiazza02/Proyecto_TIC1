@@ -40,18 +40,18 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="btnLuggage" layoutX="138.0" layoutY="134.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="87.0" onAction="#luggagesButtonClicked" text="Valijas" />
-            <Button fx:id="btnFlights" layoutX="138.0" layoutY="215.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="87.0" onAction="#flightsButtonClicked" text="Vuelos" />
+            <Button fx:id="btnLuggage" layoutX="138.0" layoutY="134.0" mnemonicParsing="false" onAction="#luggagesButtonClicked" prefHeight="44.0" prefWidth="100.0" text="Valijas" />
+            <Button fx:id="btnFlights" layoutX="138.0" layoutY="202.0" mnemonicParsing="false" onAction="#flightsButtonClicked" prefHeight="44.0" prefWidth="100.0" text="Vuelos" />
             <Button fx:id="btnLogOut" layoutX="22.0" layoutY="33.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar Sesión" />
             <Label layoutX="192.0" layoutY="40.0" text="Trabajador Aeropuerto">
                <font>
                   <Font size="31.0" />
                </font>
             </Label>
-            <Button fx:id="btnValidateFlights" layoutX="132.0" layoutY="286.0" mnemonicParsing="false" onAction="#ValidateFlightsBtnClicked" prefHeight="44.0" prefWidth="100.0" text="Validar vuelos" />
-            <Button fx:id="runwayReservationsBtn" layoutX="370.0" layoutY="143.0" mnemonicParsing="false" onAction="#runwayReservationsBtnClicked" prefHeight="25.0" prefWidth="141.0" text="Ver reservas de pista" />
-            <Button fx:id="gateReservationsBtn" layoutX="370.0" layoutY="224.0" mnemonicParsing="false" onAction="#gateReservationsBtnClicked" prefHeight="25.0" prefWidth="141.0" text="Ver reservas de puerta" />
-            <Button fx:id="btnCheckIn" layoutX="132.0" layoutY="351.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="100.0" onAction="#checkInBtnClicked" text="Check In" />
+            <Button fx:id="btnValidateFlights" layoutX="142.0" layoutY="273.0" mnemonicParsing="false" onAction="#ValidateFlightsBtnClicked" prefHeight="44.0" prefWidth="100.0" text="Validar vuelos" />
+            <Button fx:id="runwayReservationsBtn" layoutX="328.0" layoutY="212.0" mnemonicParsing="false" onAction="#runwayReservationsBtnClicked" prefHeight="25.0" prefWidth="177.0" text="Ver reservas de pista" />
+            <Button fx:id="gateReservationsBtn" layoutX="328.0" layoutY="261.0" mnemonicParsing="false" onAction="#gateReservationsBtnClicked" prefHeight="25.0" prefWidth="177.0" text="Ver reservas de puerta" />
+            <Button fx:id="btnCheckIn" layoutX="142.0" layoutY="342.0" mnemonicParsing="false" onAction="#checkInBtnClicked" prefHeight="44.0" prefWidth="100.0" text="Check In" />
          </children>
     </AnchorPane>
   </children>

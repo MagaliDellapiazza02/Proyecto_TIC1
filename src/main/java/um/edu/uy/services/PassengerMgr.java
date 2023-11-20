@@ -43,7 +43,7 @@ public class PassengerMgr {
     }
 
     public String getNameByMail(String mail) {
-        Passenger p = passengerRepository.findByMail(mail).get();
+        Passenger p = passengerRepository.findPassengerByMail(mail);
         if(p != null) {
             return p.getName();
         }
