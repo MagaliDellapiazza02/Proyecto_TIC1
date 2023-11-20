@@ -33,8 +33,6 @@
 -->
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -42,27 +40,19 @@
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.admin.UserAdminWindowController">
   <children>
-    <MenuBar prefWidth="640.0" VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false">
-               <graphic>
-                  <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar sesión" />
-               </graphic>
-        </Menu>
-      </menus>
-    </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
-            <Button fx:id="btnAln" layoutX="229.0" layoutY="88.0" mnemonicParsing="false" onAction="#adminAln" prefHeight="35.0" prefWidth="182.0" text="Administrar Aerolíneas" />
-            <Button fx:id="btnAirports" layoutX="229.0" layoutY="213.0" mnemonicParsing="false" onAction="#adminAirports" prefHeight="35.0" prefWidth="182.0" text="Administrar Aeropuertos" />
-            <ImageView fitHeight="50.0" fitWidth="76.0" layoutX="145.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="btnAln" layoutX="231.0" layoutY="121.0" mnemonicParsing="false" onAction="#adminAln" prefHeight="35.0" prefWidth="182.0" text="Administrar Aerolíneas" />
+            <Button fx:id="btnAirports" layoutX="231.0" layoutY="246.0" mnemonicParsing="false" onAction="#adminAirports" prefHeight="35.0" prefWidth="182.0" text="Administrar Aeropuertos" />
+            <ImageView fitHeight="50.0" fitWidth="60.0" layoutX="147.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@/um/edu/uy/ui/user/stylebases/customs-officer.png" />
                </image></ImageView>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="145.0" layoutY="205.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="60.0" layoutX="147.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@/um/edu/uy/ui/user/stylebases/airport.png" />
                </image></ImageView>
+            <Button fx:id="btnLogOut" layoutX="23.0" layoutY="21.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar sesión" />
       </children>
     </AnchorPane>
   </children>

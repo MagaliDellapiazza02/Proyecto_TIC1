@@ -32,18 +32,12 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.airline.admin.AdministrarAvionesController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.airline.admin.AdministrarAvionesController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
@@ -76,8 +70,7 @@
                 <TableColumn fx:id="licensePlateColumn" prefWidth="104.0" text="Matrícula" />
                 <TableColumn fx:id="typeColumn" prefWidth="54.0" text="Tipo" />
                   <TableColumn fx:id="seatsColumn" prefWidth="149.0" text="Capacidad de Asientos" />
-                  <TableColumn fx:id="luggageColumn" prefWidth="125.0" text="Capacidad de Peso" />
-                  <TableColumn prefWidth="145.0" text="Matrícula" />
+                  <TableColumn fx:id="luggageColumn" prefWidth="120.0" text="Capacidad de Peso" />
               </columns>
             </TableView>
          </children>

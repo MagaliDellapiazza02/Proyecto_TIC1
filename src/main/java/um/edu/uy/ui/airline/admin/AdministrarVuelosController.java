@@ -42,4 +42,9 @@ public class AdministrarVuelosController {
     void addButtonClicked(ActionEvent event) {
         PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airline/admin/AddFlight.fxml", "Agregar vuelo");
     }
+
+    @FXML
+    void seeFlightsButtonClicked(ActionEvent event) {
+        PublicMethods.changeWindow(event, "/um/edu/uy/ui/user/airline/admin/ShowAlnFlights.fxml", "Ver vuelos");
+    }
 }

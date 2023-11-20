@@ -36,6 +36,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -44,28 +46,33 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="400.0" prefWidth="772.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="btnBack" layoutX="39.0" layoutY="345.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="62.0" onAction="#backButtonClicked" text="Atrás" />
-            <Label layoutX="333.0" layoutY="23.0" text="Valijas">
+            <Button fx:id="btnBack" layoutX="21.0" layoutY="357.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="23.0" prefWidth="62.0" text="Atrás" />
+            <Label layoutX="320.0" layoutY="23.0" text="Valijas">
                <font>
                   <Font size="36.0" />
                </font>
             </Label>
-            <Label layoutX="70.0" layoutY="76.0" text="Seleccionar Vuelo:">
+            <Label layoutX="39.0" layoutY="83.0" text="Seleccionar Vuelo:">
                <font>
-                  <Font size="21.0" />
+                  <Font size="18.0" />
                </font>
             </Label>
-            <TableView fx:id="tableFlights" layoutX="14.0" layoutY="118.0" prefHeight="210.0" prefWidth="739.0">
+            <TableView fx:id="tableFlights" layoutX="14.0" layoutY="118.0" prefHeight="210.0" prefWidth="730.0">
                <columns>
                   <TableColumn fx:id="colNumFlight" prefWidth="81.0" text="N° Vuelo" />
-                  <TableColumn fx:id="colDepartureTime" prefWidth="183.0" text="Horario Salida" />
-                  <TableColumn fx:id="colOriginAirport" prefWidth="112.0" text="Aeropuerto Origen" />
-                  <TableColumn fx:id="colArrivalTime" prefWidth="164.0" text="Horario Llegada" />
-                  <TableColumn fx:id="colDestinyAirport" prefWidth="117.0" text="Aeropuerto Destino" />
-                  <TableColumn fx:id="colAirline" prefWidth="85.0" text="Aerolinea" />
+                  <TableColumn fx:id="colDepartureTime" prefWidth="155.0" text="Horario Salida" />
+                  <TableColumn fx:id="colOriginAirport" prefWidth="140.0" text="Aeropuerto Origen" />
+                  <TableColumn fx:id="colArrivalTime" prefWidth="130.0" text="Horario Llegada" />
+                  <TableColumn fx:id="colDestinyAirport" prefWidth="116.0" text="Aeropuerto Destino" />
+                  <TableColumn fx:id="colAirline" prefWidth="107.0" text="Aerolinea" />
                </columns>
             </TableView>
-            <Button fx:id="btnNext" disable="true" layoutX="657.0" layoutY="345.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="81.0" onAction="#nextButtonClicked" text="Siguiente" />
+            <Button fx:id="btnNext" disable="true" layoutX="657.0" layoutY="345.0" mnemonicParsing="false" onAction="#nextButtonClicked" prefHeight="38.0" prefWidth="81.0" text="Siguiente" />
+            <ImageView fitHeight="60.0" fitWidth="62.0" layoutX="249.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/um/edu/uy/ui/user/stylebases/luggage.png" />
+               </image>
+            </ImageView>
          </children>
     </AnchorPane>
   </children>

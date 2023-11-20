@@ -36,18 +36,18 @@ public class DeleteWorkerController {
     void deleteButtonClicked(ActionEvent event) {
         try{
             if (txtDocument.getText() == null || txtDocument.getText().equals("")) {
-                PublicMethods.showAlert("Dato faltante!", "No se ingresó el documento para borrar el trabajador");
+                PublicMethods.showAlert("Dato faltante!", "No se ingresó el documento para borrar el trabajador.");
 
             }
         }catch (Exception e) {
-            PublicMethods.showAlert("ERROR", "Ingrese correctamente los datos");
+            PublicMethods.showAlert("ERROR", "Ingrese correctamente los datos.");
         }
 
         long doc = Long.valueOf(txtDocument.getText());
         if (userMgr.deleteUser(doc)) {
             PublicMethods.showAlert("Borrado!", "Se borro exitosamente!");
         } else {
-            PublicMethods.showAlert("ERROR!", "No se encontró ese trabajador");
+            PublicMethods.showAlert("ERROR!", "No se encontró ese trabajador.");
         }
 
     }
