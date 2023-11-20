@@ -1,10 +1,11 @@
 package um.edu.uy.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import um.edu.uy.business.entities.Airplane;
 import um.edu.uy.business.exceptions.EntityAlreadyExists;
 import um.edu.uy.persistence.AirplaneRepository;
-
+@Service
 public class AirplaneMgr {
 
     private AirplaneRepository airplaneRepository;
@@ -16,5 +17,9 @@ public class AirplaneMgr {
             throw new EntityAlreadyExists();
         }
         airplaneRepository.save(a);
+    }
+
+    public void deleteAirplane(Airplane a) {
+    	airplaneRepository.delete(a);
     }
 }
