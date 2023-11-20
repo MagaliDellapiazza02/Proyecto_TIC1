@@ -12,7 +12,7 @@
                <Pane layoutY="181.0" prefHeight="149.0" prefWidth="677.0">
                   <children>
                           <Button fx:id="btnLogin" defaultButton="true" layoutX="295.0" layoutY="122.0" mnemonicParsing="false" onAction="#logInButtonClicked" text="Iniciar sesión" textFill="WHITE" />
-                          <TextField fx:id="txtUsername" layoutX="255.0" promptText="Usuario" />
+                          <TextField fx:id="txtUsername" layoutX="255.0" promptText="Mail" />
                           <PasswordField fx:id="txtPassword" layoutX="255.0" layoutY="56.0" promptText="Contraseña" />
                           <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="222.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                               <image>

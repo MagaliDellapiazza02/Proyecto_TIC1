@@ -76,18 +76,6 @@ public class TrackLuggageController implements Initializable {
 
         agregarElementosALista(passenger);
 
-        tableLuggages.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Luggage>() {
-            @Override
-            public void changed(ObservableValue<? extends Luggage> observable, Luggage oldValue, Luggage newValue) {
-                if (newValue != null) {
-                    // Habilita el botón cuando se selecciona un vuelo
-                    btnDelivered.setDisable(false);
-                } else {
-                    // Deshabilita el botón cuando no hay vuelo seleccionado
-                    btnDelivered.setDisable(true);
-                }
-            }
-        });
     }
 
     private void agregarElementosALista(Passenger passenger) {
@@ -97,7 +85,6 @@ public class TrackLuggageController implements Initializable {
         colFlight.setCellValueFactory(new PropertyValueFactory<>("flightNumber"));
         colState.setCellValueFactory(new PropertyValueFactory<>("state"));
         colWeight.setCellValueFactory(new PropertyValueFactory<>("weight"));
-
 
         //agrego vuelos pendientes de validar que aterricen en el aeropuerto del usuario
         Iterable<Luggage> elementos = luggageMgr.getLuggagesFromPassenger(passenger);

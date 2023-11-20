@@ -89,7 +89,7 @@ public class AddFlightsController {
 
     @Autowired
     private UserMgr userMgr;
-
+    @Autowired
     private FlightMgr flightMgr;
 
     @FXML
@@ -154,12 +154,10 @@ public class AddFlightsController {
                 arrivalDate.setTime(arrivalDate.getTime() + arrivalTimeInMilliseconds - 10800000); //resto 10.800.000 milisegundos (3 horas) para que quede en el horario correcto (no se por qué pero se suman 3hs)
                 departureDate.setTime(departureDate.getTime() + departureTimeInMilliseconds - 10800000);
 
+                Flight newA = new Flight(airline, originAirport, destinyAirport, airplane, departureDate, arrivalDate, flightNumber);
+                flightMgr.addFlight(newA);
+                PublicMethods.showAlert("Finalizado", "Vuelo agregado con éxito\nPendiente a validación de aeropuertos");
 
-                if (airline.getAirplanes().contains(airplane)) {
-                    Flight newA = new Flight(airline, originAirport, destinyAirport, airplane, departureDate, arrivalDate, flightNumber);
-                    flightMgr.addFlight(newA);
-                    PublicMethods.showAlert("Finalizado", "Vuelo agregado con éxito\nPendiente a validación de aeropuertos");
-                }
             } catch (Exception e) {
                 e.printStackTrace();
                 PublicMethods.showAlert("", "Hubo un error al guardar o validar el vuelo");

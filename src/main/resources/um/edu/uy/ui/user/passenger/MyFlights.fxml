@@ -65,7 +65,7 @@
             </TableView>
             <ImageView fitHeight="62.0" fitWidth="66.0" layoutX="244.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../stylebases/flight.png" />
+                  <Image url="/um/edu/uy/ui/user/stylebases/flight.png" />
                </image>
             </ImageView>
          </children>

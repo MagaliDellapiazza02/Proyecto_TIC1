@@ -17,6 +17,9 @@ public class LuggageMgr {
     @Autowired
     private LuggageRepository luggageRepository;
 
+    @Autowired
+    private FlightRepository flightRepository;
+
     public boolean addLuggage(Passenger p, Flight flight, int weight, String trackingCode) {
 
         if (luggageRepository.findByTrackingCode(trackingCode) != null) {
@@ -26,8 +29,9 @@ public class LuggageMgr {
         if(weightLeft < 0) {
             return false;
         }
-        Luggage luggage = new Luggage(p,flight,weightLeft,trackingCode);
-
+        Luggage luggage = new Luggage(p,flight,weight,trackingCode);
+        flight.setLuggagesLeft(weightLeft);
+        flightRepository.save(flight);
         luggageRepository.save(luggage);
         return true;
     }
