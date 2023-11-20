@@ -37,22 +37,35 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.airport.admin.AirportAdminMenuController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.airline.admin.ShowAlnFlightsController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <Button fx:id="btnLogOut" layoutX="31.0" layoutY="26.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar sesión" />
-            <Button fx:id="btnAdminWorkers" layoutX="229.0" layoutY="188.0" mnemonicParsing="false" onAction="#adminWorkersButtonClicked" prefHeight="26.0" prefWidth="207.0" text="Administrar Trabajadores" />
-            <Label layoutX="179.0" layoutY="52.0" text="Administrador Aeropuerto">
-               <font>
-                  <Font size="26.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="47.0" fitWidth="51.0" layoutX="155.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@/um/edu/uy/ui/user/stylebases/badge.png" />
-               </image>
-            </ImageView>
+            <Pane layoutX="164.0" layoutY="56.0">
+               <children>
+                  <Label layoutX="48.0" layoutY="-5.0" text="Vuelos de la aerolinea">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="airplaneIV" fitHeight="39.0" fitWidth="46.0" layoutX="-5.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/um/edu/uy/ui/user/stylebases/plane.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Button fx:id="btnBack" layoutX="27.0" layoutY="353.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Atrás" />
+            <Button fx:id="btnLogOut" layoutX="27.0" layoutY="23.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Cerrar sesión" />
+             <TableView fx:id="tableFlights" layoutX="14.0" layoutY="116.0" prefHeight="196.0" prefWidth="611.0">
+                 <columns>
+                     <TableColumn fx:id="colNumFlight" prefWidth="98.0" text="N° Vuelo" />
+                     <TableColumn fx:id="colDepartureTime" prefWidth="113.0" text="Horario Salida" />
+                     <TableColumn fx:id="colOriginAirport" prefWidth="165.0" text="Aeropuerto Origen" />
+                     <TableColumn fx:id="colArrivalTime" prefWidth="118.0" text="Horario Llegada" />
+                     <TableColumn fx:id="colDestinyAirport" prefWidth="116.0" text="Aeropuerto Destino" />
+                 </columns>
+             </TableView>
          </children>
     </AnchorPane>
   </children>

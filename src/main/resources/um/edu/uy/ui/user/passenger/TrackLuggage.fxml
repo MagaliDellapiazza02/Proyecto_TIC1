@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
@@ -12,20 +14,25 @@
    <top>
       <AnchorPane prefHeight="515.0" prefWidth="640.0" BorderPane.alignment="CENTER">
          <children>
-              <Button fx:id="btnBack" layoutX="14.0" layoutY="428.0" onAction="#backButtonClicked" prefHeight="38.0" prefWidth="70.0" text="Back" />
-            <TableView fx:id="tableLuggages" layoutX="35.0" layoutY="116.0" prefHeight="234.0" prefWidth="563.0">
+              <Button fx:id="btnBack" layoutX="14.0" layoutY="428.0" onAction="#backButtonClicked" prefHeight="28.0" prefWidth="70.0" text="Atrás" />
+            <TableView fx:id="tableLuggages" layoutX="35.0" layoutY="116.0" prefHeight="294.0" prefWidth="563.0">
                <columns>
-                  <TableColumn fx:id="colTrackingCode" prefWidth="134.0" text="Codigo Traqueo" />
-                  <TableColumn fx:id="colWeight" prefWidth="142.0" text="Peso" />
+                  <TableColumn fx:id="colTrackingCode" prefWidth="173.0" text="Código de seguimiento" />
+                  <TableColumn fx:id="colWeight" prefWidth="103.0" text="Peso" />
                   <TableColumn fx:id="colState" prefWidth="146.0" text="Estado" />
                   <TableColumn fx:id="colFlight" prefWidth="140.0" text="Vuelo" />
                </columns>
             </TableView>
-            <Label layoutX="238.0" layoutY="31.0" text="Mis Valijas">
+            <Label layoutX="244.0" layoutY="42.0" text="Mis valijas">
                <font>
                   <Font size="34.0" />
                </font>
             </Label>
+            <ImageView fitHeight="62.0" fitWidth="68.0" layoutX="173.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/um/edu/uy/ui/user/stylebases/luggage.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </top>

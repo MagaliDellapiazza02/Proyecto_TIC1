@@ -111,8 +111,6 @@ public class AdministrarAvionesController implements Initializable {
         //creo la lista que se mostrará al usuario
         ObservableList<Airplane> listaDeAviones = FXCollections.observableArrayList();
 
-        System.out.println("Aviones: " + listaDeAviones);
-
         for (Airplane airplane : elementos) {
             listaDeAviones.add(airplane);
         }

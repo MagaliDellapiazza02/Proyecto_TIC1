@@ -4,31 +4,38 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.airport.worker.ValidateFlightsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.airport.worker.ValidateFlightsController">
    <top>
       <AnchorPane prefHeight="515.0" prefWidth="640.0" BorderPane.alignment="CENTER">
          <children>
-              <TableView fx:id="flightList" layoutX="14.0" layoutY="29.0" prefHeight="409.0" prefWidth="613.0">
+              <TableView fx:id="flightList" layoutX="22.0" layoutY="71.0" prefHeight="356.0" prefWidth="596.0">
                   <columns>
-                  <TableColumn fx:id="flightNumberColumn" prefWidth="150" text="Número de vuelo" />
-                  <TableColumn fx:id="departureAirportColumn" prefWidth="76.0" text="Sale desde" />
-                  <TableColumn fx:id="departureDateColumn" prefWidth="140.00001525878906" text="Salida" />
-                  <TableColumn fx:id="arrivalDateColumn" prefWidth="156.5714111328125" text="Llegada" />
-                  <TableColumn fx:id="arrivalAirportColumn" prefWidth="88.00006103515625" text="Llega a" />
+                  <TableColumn fx:id="flightNumberColumn" prefWidth="127.0" text="Número de vuelo" />
+                  <TableColumn fx:id="departureAirportColumn" prefWidth="123.0" text="Sale desde" />
+                  <TableColumn fx:id="departureDateColumn" prefWidth="116.5" text="Salida" />
+                  <TableColumn fx:id="arrivalDateColumn" prefWidth="122.0" text="Llegada" />
+                  <TableColumn fx:id="arrivalAirportColumn" prefWidth="106.5" text="Llega a" />
                   </columns>
               </TableView>
-              <Button fx:id="backBtn" layoutX="14.0" layoutY="448.0" onAction="#backButtonClicked" text="Back" />
+              <Button fx:id="backBtn" layoutX="14.0" layoutY="448.0" onAction="#backButtonClicked" text="Atrás" />
             <Button fx:id="ValidateBtn" disable="true" layoutX="574.0" layoutY="448.0" onAction="#ValidateButtonClicked" text="Validar" />
-            <Label layoutX="213.0" layoutY="4.0" text="Vuelos pendientes de validación">
+            <Label layoutX="219.0" layoutY="28.0" text="Vuelos pendientes de validación">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
             <Button fx:id="cancelBtn" disable="true" layoutX="472.0" layoutY="448.0" onAction="#CancelButtonClicked" text="Cancelar vuelo" />
+            <ImageView fitHeight="51.0" fitWidth="55.0" layoutX="155.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/um/edu/uy/ui/user/stylebases/validate.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </top>

@@ -40,14 +40,14 @@
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label layoutX="168.0" layoutY="30.0" text="Trabajador Aerolinea">
+            <Label layoutX="177.0" layoutY="49.0" text="Trabajador Aerolinea">
                <font>
                   <Font size="33.0" />
                </font>
             </Label>
-            <Button fx:id="btnAdminFlights" layoutX="252.0" layoutY="161.0" mnemonicParsing="false" onAction="#adminFlightsButtonClicked" prefHeight="49.0" prefWidth="135.0" text="Administrar vuelos" />
+            <Button fx:id="btnAdminFlights" layoutX="218.0" layoutY="151.0" mnemonicParsing="false" onAction="#adminFlightsButtonClicked" prefHeight="26.0" prefWidth="204.0" text="Administrar vuelos" />
             <Button fx:id="btnLogOut" layoutX="14.0" layoutY="29.0" mnemonicParsing="false" onAction="#logOutButtonClicked" text="Cerrar sesión" />
-            <Button fx:id="btnAddP" layoutX="252.0" layoutY="236.0" mnemonicParsing="false" onAction="#addPBtnClicked" prefHeight="49.0" prefWidth="135.0" text="Agregar Pasajero" />
+            <Button fx:id="btnAddP" layoutX="218.0" layoutY="241.0" mnemonicParsing="false" onAction="#addPBtnClicked" prefHeight="26.0" prefWidth="204.0" text="Agregar Pasajero" />
          </children>
     </AnchorPane>
   </children>

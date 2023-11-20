@@ -237,4 +237,8 @@ public class FlightMgr {
         return flightRepository.findOneByFlightNumber(flightNumber);
     }
 
+    public List<Flight> getFlightsByFlightIATA(String flightState) {
+        return flightRepository.findByFlightIATA(flightState);
+    }
+
 }

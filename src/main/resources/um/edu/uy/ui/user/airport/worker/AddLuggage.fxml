@@ -32,33 +32,36 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.airport.worker.AddLuggageController">
+<VBox prefHeight="400.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="um.edu.uy.ui.airport.worker.AddLuggageController">
   <children>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label layoutX="223.0" layoutY="33.0" text="CHECK IN">
+            <Label layoutX="187.0" layoutY="56.0" text="Registro valijas (check-in)">
                <font>
-                  <Font size="35.0" />
+                  <Font size="26.0" />
                </font>
             </Label>
-            <Button fx:id="btnAdd" layoutX="436.0" layoutY="272.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="38.0" prefWidth="89.0" text="Agregar" />
-            <Label layoutX="149.0" layoutY="178.0" text="Codigo de Traqueo:" />
-            <TextField fx:id="txtLugTrackingCode" layoutX="274.0" layoutY="174.0" />
-            <Label layoutX="63.0" layoutY="102.0" text="Nueva Valija">
+            <Button fx:id="btnAdd" layoutX="526.0" layoutY="346.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="26.0" prefWidth="89.0" text="Agregar" />
+            <Label layoutX="150.0" layoutY="182.0" text="Codigo de Traqueo:" />
+            <TextField fx:id="txtLugTrackingCode" layoutX="275.0" layoutY="178.0" />
+            <Label layoutX="53.0" layoutY="126.0" prefWidth="114.0" text="Nueva valija" underline="true">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <Label layoutX="226.0" layoutY="219.0" text="Peso:" />
-            <TextField fx:id="txtLugWeight" layoutX="274.0" layoutY="215.0" />
-            <Button fx:id="btnBack" layoutX="57.0" layoutY="297.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="38.0" prefWidth="70.0" text="Back" />
+            <Label layoutX="229.0" layoutY="239.0" text="Peso:" />
+            <TextField fx:id="txtLugWeight" layoutX="277.0" layoutY="235.0" prefHeight="26.0" prefWidth="160.0" />
+            <Button fx:id="btnBack" layoutX="27.0" layoutY="346.0" mnemonicParsing="false" onAction="#backButtonClicked" prefHeight="17.0" prefWidth="70.0" text="Atrás" />
+            <ImageView fitHeight="53.0" fitWidth="51.0" layoutX="125.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/um/edu/uy/ui/user/stylebases/checkin.png" />
+               </image>
+            </ImageView>
          </children>
     </AnchorPane>
   </children>
